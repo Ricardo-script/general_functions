@@ -1,3 +1,7 @@
+//Iniciar projeto
+yarn init -y
+
+//-----------------------------------------------------------------------------------------
 // instalar pacote typescript:
 yarn add -D typescript
 
