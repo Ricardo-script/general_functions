@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            font-weight: 300;
+            background: #2c3e50;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .checkbox-container {
+            position: relative;
+            margin: 7px;
+        }
+        .checkbox-label {
+            position: relative;
+            z-index: 1;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 45px;
+            display: block;
+            color: white;
+            font-size: 20px;
+            line-height: 24px;
+        }
+        .checkbox-real {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .checkbox-standin {
+            transition: all 0.2s ease;
+            display: block;
+            position: absolute;
+            top: 50%;
+            margin-top: -17px;
+            left: 2px;
+            border-radius: 50px;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: 3px solid white;
+        }
+        .checkbox-standin:after {
+            transition: all 0.2s ease;
+            position: absolute;
+            content: "";
+            width: 30px;
+            height: 30px;
+            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/109450/checkmark.svg');
+            background-size: 20px;
+            background-repeat: no-repeat;
+            background-position: center;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+        .checkbox-real:checked + .checkbox-standin {
+            animation: checkbox-animation 0.7s ease-out alternate both;
+        }
+        .checkbox-real:checked + .checkbox-standin:after {
+            animation: checkbox-symbol-animation 0.7s ease-out alternate both;
+        }
+        @keyframes checkbox-animation {
+            0% {
+                border-top-color: #2ecc71;
+                border-right-color: white;
+                border-bottom-color: white;
+                border-left-color: white;
+                transform: rotate(0) scale(1);
+            }
+            20% {
+                border-top-color: #2ecc71;
+                border-right-color: white;
+                border-bottom-color: white;
+                border-left-color: white;
+            }
+            40% {
+                border-top-color: #2ecc71;
+                border-right-color: white;
+                border-bottom-color: white;
+                border-left-color: white;
+                background: transparent;
+                transform: rotate(360deg) scale(1);
+            }
+            60% {
+                border-top-color: #2ecc71;
+                border-right-color: #2ecc71;
+                border-bottom-color: #2ecc71;
+                border-left-color: #2ecc71;
+                background: #2ecc71;
+                transform: rotate(360deg) scale(1.2);
+            }
+            80% {
+                border-top-color: #2ecc71;
+                border-right-color: #2ecc71;
+                border-bottom-color: #2ecc71;
+                border-left-color: #2ecc71;
+                background: #2ecc71;
+            }
+            100% {
+                border-top-color: #2ecc71;
+                border-right-color: #2ecc71;
+                border-bottom-color: #2ecc71;
+                border-left-color: #2ecc71;
+                background: #2ecc71;
+                transform: rotate(360deg) scale(1);
+            }
+        }
+        @keyframes checkbox-symbol-animation {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 0;
+            }
+            40% {
+                opacity: 0;
+            }
+            60% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        </style>
+
+    <title>Document</title>
+</head>
+<body>
+    <div style="text-align:center;margin-top:0%">
+        <div class="checkbox-container">
+            <label for="checkbox-ferrari" class="checkbox-label">Ferrari</label>
+            <input type="checkbox" id="checkbox-ferrari" class="checkbox-real">
+            <span class="checkbox-standin"></span>
+        </div>
+        <div class="checkbox-container">
+            <label for="checkbox-porsche" class="checkbox-label">Porsche</label>
+            <input type="checkbox" id="checkbox-porsche" class="checkbox-real">
+            <span class="checkbox-standin"></span>
+        </div>
+        <div class="checkbox-container">
+            <label for="checkbox-lamborghini" class="checkbox-label">Lamborghini</label>
+            <input type="checkbox" id="checkbox-lamborghini" class="checkbox-real">
+            <span class="checkbox-standin"></span>
+        </div>
+    </div>
+</body>
+</html>

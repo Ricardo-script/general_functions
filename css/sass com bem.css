@@ -1,0 +1,80 @@
+
+<div class="e-popUp-LGPD">
+         <div class="e-popUp-LGPD__content">
+            <span class="e-popUp-LGPD__info">
+               Coletamos dados para melhorar o desempenho e segurança do site, além de personalizar conteúdo e anúncios.
+               Confira nossa <a href="/" class="e-popUp-LGPD__negrito">Política de privacidade.</a>
+            </span>
+            <div class="e-popUp-LGPD__btn js--closePopupLGPD">
+               <span>ENTENDI</span>
+            </div>
+         </div>
+      </div>
+
+.e-popUp-LGPD{
+        color: #000;
+        position: fixed;
+        bottom:0;
+        width:100%;
+        margin: auto auto;
+        height: 59px;
+        background: #FFFFFF;
+        border: 1px solid #D8D8D8;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__content {
+            width: 800px;
+            height: 37px;
+            display: flex;
+        }
+
+        &__info {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 12px;
+            line-height: 17px;
+            letter-spacing: 1px;
+
+        }
+
+        & a{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 17px;
+            color:#000;
+            text-decoration: underline; 
+        }
+
+        &__btn {
+            background: #000000;
+            color:#FFF;
+            width: 350px;
+            height: 37px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins';
+            font-weight: 700;
+            font-style: normal;
+            font-size: 12px;
+            line-height: 21px;
+            letter-spacing: 7%;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+        }
+
+        &__btn:active{
+            position: relative;
+            top:1.5px;
+        }
+
+    }
+
+

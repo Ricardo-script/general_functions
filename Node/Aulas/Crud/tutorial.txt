@@ -1,0 +1,22 @@
+iniciar projeto:
+
+npm init
+---------------------------------------------
+instalar express:
+
+npm install express
+---------------------------------------------
+instalar body-parser:
+
+npm install body-parser
+---------------------------------------------
+instalar nodemom:
+
+npm install nodemon
+---------------------------------------------
+criado arquivo index.js
+
+em package.json inserir dentro de scripts:
+"start": "node ./index.js"
+para funcionar com npm start
+---------------------------------------------

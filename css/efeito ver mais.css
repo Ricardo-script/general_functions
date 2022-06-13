@@ -1,0 +1,63 @@
+//exemplo:
+
+.e-content .e-gallery .e-description p {
+    font-family: 'Poppins';
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 22px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    height: 43px;
+    overflow: hidden;
+    position: relative;
+}
+
+.e-content .e-gallery .e-description p:after {
+    content: "";
+    background: #FFF;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    -webkit-box-shadow: 3px -17px 62px 21px white;
+    box-shadow: 3px -17px 62px 21px white;
+}
+
+.e-content .e-gallery .e-description p.is--visible { //para js
+    height: auto;
+}
+
+.e-content .e-gallery .e-description p.is--visible::after { //para js
+     display: none;
+}
+
+// html:
+//classe vazia, inserir is--visible com js
+<p class="">
+	"Amor ao Próximo é um projeto idealizado pelo designer Alexandre Pavão para auxiliar pessoas..."
+</p>
+
+
+//js
+ methods: {
+
+        verMais: function verMais() {
+            $('.title-history span').click(function (e) {
+                var _element = $(this);
+                _element.toggleClass('is--active');
+                _element.closest('.e-description').find('p').toggleClass('is--visible');
+            });
+        },
+
+        init: function init() {
+            this.verMais();
+        },
+
+
+
+
+
+
+

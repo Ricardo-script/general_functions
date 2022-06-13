@@ -1,0 +1,57 @@
+/* Largura da barra de rolagem */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Fundo da barra de rolagem */
+::-webkit-scrollbar-track-piece {
+    background-color: #EEE;
+    border-left: 1px solid #CCC
+}
+
+/* Cor do indicador de rolagem */
+::-webkit-scrollbar-thumb:vertical,
+::-webkit-scrollbar-thumb:horizontal {
+    background-color: #BAC0C4
+	border-radius:5px;
+}
+
+/* Cor do indicador de rolagem - ao passar o mouse */
+::-webkit-scrollbar-thumb:vertical:hover,
+::-webkit-scrollbar-thumb:horizontal:hover {
+    background-color: #717171
+}
+
+
+//exemplo com sass:
+
+div{
+	display: flex;
+	flex-direction: column;
+	height: 154px;
+	width: 335px;
+	margin-left: 15px;
+	margin-bottom: 16px;
+	overflow-y: scroll;
+
+	
+	&::-webkit-scrollbar {
+		width: 4px;
+
+		&-track-piece {
+			background-color: #EEE;
+		}
+
+		&-thumb:vertical,
+		&-thumb:horizontal {
+			background-color: #141414;
+			border-radius:5px;
+		}
+
+		&-thumb:vertical:hover,
+		&-thumb:horizontal:hover {
+			background-color: #717171;
+		}
+	}
+}
+

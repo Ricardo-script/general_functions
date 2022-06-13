@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar idioma</title>
+</head>
+
+
+<body>
+    <div style="margin-top: 300px;">
+        <a href="#eng" data-reload>ENGLISH</a>
+        <a href="#ita" data-reload>ITALIANO</a>
+        <a href="#pt" data-reload>PORTUGUÊS</a>
+        <p id="hi">
+            Welcome everyone!
+        </p>
+    </div>
+</body>
+
+
+<script>
+    const dataReload = document.querySelectorAll("a[data-reload]");
+    const hi = document.getElementById("hi");
+    const language = {
+        eng: {
+            welcome: "Welcome everyone!"
+        },
+
+        ita: {
+            welcome: "Benvenuti a tutti!"
+        },
+
+        pt: {
+            welcome: "Seja bem-vindo!"
+        }
+
+    };
+
+    const setLanguage = () => {
+
+        if (window.location.hash === "#ita") {
+            hi.textContent = language.ita.welcome;
+        } 
+        if (window.location.hash === "#eng"){
+            hi.textContent = language.eng.welcome
+        }
+        if (window.location.hash === "#pt"){
+            hi.textContent = language.pt.welcome;
+        }
+
+    }
+
+    for (i = 0; i < dataReload.length; i++) {
+        dataReload[i].onclick = function (e) {
+            window.location.hash = this.getAttribute("href");
+            setLanguage();
+        }
+    }
+
+    setLanguage();
+
+</script>
+
+</html>

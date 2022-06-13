@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Radio</title>
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            justify-content: center;
+            height: 100vh;
+            background: #333;
+        }
+
+        .radio{
+            font-size: 24px;
+            font-weight: 500;
+            text-transform: capitalize;
+            display: inline-block;
+            vertical-align: middle;
+            color: #FFF;
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+        }
+
+        .radio + .radio{
+            margin-left: 20px;
+        }
+
+        .radio input[type="radio"]{
+            display: none;
+        }
+
+        .radio span{
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            border: 3px solid #00aeef;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 7px;
+        }
+
+        .radio span:after{
+            content: '';
+            height: 8px;
+            width: 8px;
+            background: #00aeef;
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+            transition: 300ms ease-in-out 0s;
+        }
+
+        .radio input[type='radio']:checked ~ span:after{
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .radio input[type='radio']:checked ~ span{
+            border: 2px solid #00aeef;
+            transition: 1s ease-in-out;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="radio-group">
+        <label class="radio">
+            <input type="radio" value="male" name="gender">
+            male
+            <span></span>
+        </label>
+        <label class="radio">
+            <input type="radio" value="female" name="gender">
+            male
+            <span></span>
+        </label>
+    </div>
+</body>
+
+</html>

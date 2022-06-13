@@ -1,0 +1,47 @@
+
+no cmd : npm init
+-------------------------------------------
+instalar Electron:
+
+npm install --save-dev electron
+ou:
+yarn add --dev electron
+
+-------------------------------------------
+
+Finalmente, você deve ser capaz de executar o Electron. No campo scripts de sua package.json config, adicione um comando start assim:
+
+{
+  "scripts": {
+    "start": "electron ."
+  }
+}
+
+-------------------------------------------
+
+criar arquivos:
+
+index.html
+index.js
+
+---------------------------------------------
+
+index.js:
+
+const { app, BrowserWindow } = require('electron');
+
+const createWindow = () => {
+    const win = new BrowserWindow({
+      width: 800,
+      height: 600,
+      
+    })
+  
+    win.loadFile('index.html')
+}
+
+app.whenReady().then(() => {
+    createWindow()
+})
+
+-----------------------------------------------

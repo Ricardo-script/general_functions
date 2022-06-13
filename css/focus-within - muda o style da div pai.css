@@ -1,0 +1,6 @@
+/* usando para focus em um objeto que não seja um input*/
+
+&:focus-within {
+ /* Muda o background color da div pai(inserir no elemento que quer alterar o style) */
+    border: 2px solid ${props => props.outLine};
+  }

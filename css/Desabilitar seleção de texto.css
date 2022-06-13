@@ -1,0 +1,7 @@
+.texto-protegido {;      
+  user-select: none;  
+} 
+
+.click-seleciona-tudo {       
+  user-select: all;  
+}

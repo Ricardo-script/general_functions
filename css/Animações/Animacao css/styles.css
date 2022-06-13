@@ -1,0 +1,123 @@
+  
+.container{
+    margin-left: 200px;
+}
+.quadrado {
+    background: red;
+    width: 50px;
+    height: 50px;
+    animation: go-back 1s infinite; /* infinite alternate */
+}
+  
+@keyframes go-rigth {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(500px);
+    }
+}
+
+@keyframes go-left {
+    from {
+        transform: translateX(500px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes go-top {
+    from{
+        transform:  translateY(0);
+    }
+    to{
+        transform:  translateY(-355px);
+
+    }
+}
+
+@keyframes go-bottom {
+    0%{
+        transform:  translateY(-355px);
+    }
+    25%{
+        transform: translateY(-50px);
+    }
+    50%{
+        transform: translateY(-10px);
+        transform: rotate(-20deg);
+    }
+    75%{
+        transform: translateY(0);
+        transform: translateX(200px);
+        transform: rotate(-70deg);
+    }
+    100%{
+        transform: rotate(-90deg);
+    }
+}
+
+.esquerda{
+    margin-top: 50px;
+    width: 70px;
+    height: auto;
+    animation: go-left 1.5s infinite;
+}
+
+.esquerda img {
+    width: 100%;
+}
+
+/*-------------------------------------------------*/
+
+
+.direita{
+    margin-top: 50px;
+    width: 70px;
+    height: auto;
+    animation: go-rigth 4s infinite;
+}
+
+.direita img {
+    width: 100%;
+}
+
+/*-------------------------------------------------*/
+
+.subindo{
+    margin-top: 350px;
+    width: 30px;
+    height: auto;
+    animation: go-top 1.5s infinite;
+}
+
+.subindo img {
+    width: 100%;
+}
+
+/*-------------------------------------------------*/
+
+.descendo{
+    margin-left: 150px;
+    margin-top: -16px;
+    width: 30px;
+    height: auto;
+    animation: go-bottom 2s infinite;
+}
+
+.descendo img {
+    width: 100%;
+}
+
+/*--------------------------------------------------*/
+
+.walkRight{
+    margin-top: 50px;
+    width: 110px;
+    height: auto;
+}
+
+.walkRight img{
+    width: 100%;
+}

@@ -1,0 +1,18 @@
+Criar novo app:
+
+npx create-next-app
+
+CMD pergunta qual nome da pasta: What is your project named? ... my-app
+
+=========================================================================
+
+Start app:
+npm run dev
+ou
+yarn run dev
+
+===========================================================================
+
+abrir API:
+
+localhost:3000/api/hello

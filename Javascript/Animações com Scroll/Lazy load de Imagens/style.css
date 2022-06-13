@@ -1,0 +1,156 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 0;
+	min-height: 200vh;
+}
+
+main {
+	width: 100%;
+	flex: 1;
+	text-align: center;
+}
+
+
+header, footer {
+	color: white;
+	background: #ff6a00;
+	width: 100%;
+	padding: 30px;
+	text-align: center;
+	font-weight: bold;
+	font-family: Open Sans;
+}
+header {
+	margin-bottom: 15px;
+}
+
+div {
+	max-width: 500px;
+	width: 80%;
+	min-height: 300px;
+	display: block;
+	margin: auto;
+    margin-top: 20px;
+	margin-bottom: 350px;
+	padding: 15px;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+img.paraDireita[data-src] {
+	opacity: 0;
+	transform: translateX(-100%);
+}
+img.paraDireita[src] {
+	opacity: 1;
+	transform: translateX(0);
+	transition: .3s ease-in-out;
+}
+
+img.subir[data-src] {
+	opacity: 0;
+	transform: scale(0);
+}
+img.subir[src] {
+	opacity: 1;
+	transform: scale(1);
+	transition: .3s ease-in-out;
+}
+
+img.descer[data-src] {
+	opacity: 0;
+	transform: scale(3);
+}
+img.descer[src] {
+	opacity: 1;
+	transform: scale(1); 
+	transition: .3s ease-in-out;
+}
+
+/* Os efeitos para imsgens estão nessa parte do css, não precisa trocar o JS somente os estilos */
+
+/*Efeito para imagens aparecerem da esquerda para direita-----
+
+img[data-src] {
+	opacity: 0;
+	transform: translateX(-100%);
+}
+img[src] {
+	opacity: 1;
+	transform: translateX(0);
+	transition: .3s ease-in-out;
+}
+------------------------------------------------------------*/
+
+
+/* Efeito para imagens subirem---------------------
+
+img[data-src] {
+	opacity: 0;
+	transform: scale(0);
+}
+img[src] {
+	opacity: 1;
+	transform: scale(1);
+	transition: .3s ease-in-out;
+}
+
+
+-----------------------------------------------------*/
+
+/* Efeito para imagens descerem---------------------
+img[data-src] {
+	opacity: 0;
+	transform: scale(2);
+}
+img[src] {
+	opacity: 1;
+	transform: scale(1);
+	transition: .3s ease-in-out;
+}
+
+
+-----------------------------------------------------*
+
+
+
+/* Efeito para usar com classes ou ids----------------
+usar por exemplo, subir, aparecer da esquerda para direita e etc
+
+
+img.subir[data-src] {
+	opacity: 0;
+	transform: scale(0);
+}
+img.subir[src] {
+	opacity: 1;
+	transform: scale(1);
+	transition: .3s ease-in-out;
+}
+
+ou
+
+exemplo: 
+img.paraDireita[data-src] {
+	opacity: 0;
+	transform: translateX(-100%);
+}
+img.paraDireita[src] {
+	opacity: 1;
+	transform: translateX(0);
+	transition: .3s ease-in-out;
+}
+
+------------------------------------------------------*/
+
+

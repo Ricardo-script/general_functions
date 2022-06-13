@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./script.js"></script>
+    <title>Carrossel</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing:border-box;
+        }
+
+        .slider {
+            display: block;
+            margin: auto;
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .slider li {
+            list-style: none;
+        }
+
+        .slider input {
+            display: none;
+        }
+
+        .slider img {
+            margin: auto;
+            vertical-align: top;
+            opacity: 0;
+            visibility: hidden;
+            transition: 1s;
+            min-width: 100%;
+            max-height: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .slider li input:checked~img {
+            opacity: 1;
+            visibility: visible;
+            z-index: 1;
+        }
+	
+        .slider label {
+            background-color: orange;
+            bottom: 10px;
+            cursor: pointer;
+            display: block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .slider .dots label:first-child{
+            background: #040404;
+        }
+
+        button.avancar{
+            z-index: 2;
+            position: absolute;
+            right: 3%;
+        }
+
+        button.voltar {
+            z-index: 2;
+            position: absolute;
+            left: 3%;
+        }
+
+        .dots{
+            width: 100%;
+            height: 35px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8%;
+            bottom: 3%;
+        }
+
+        .slider li:nth-child(1) label {
+            left: 10px;
+        }
+
+        .slider li:nth-child(2) label {
+            left: 40px;
+        }
+
+        .slider li:nth-child(3) label {
+            left: 70px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <ul class="slider">
+        <button onclick="avancar()" class="avancar">Avançar</button>
+        <li>
+            <input type="radio" id="slide1" name="slide" checked>
+            <img src="01.jpg" alt="">
+        </li>
+        <li>
+            <input type="radio" id="slide2" name="slide">
+            <img src="02.jpg" alt="">
+        </li>
+        <li>
+            <input type="radio" id="slide3" name="slide">
+            <img src="03.jpg" alt="">
+        </li>        
+        <button onclick="voltar()" class="voltar">Voltar</button>
+        <div class="dots">
+            <label for="slide1" id="dot1" onclick="active('dot1')"></label>
+            <label for="slide2" id="dot2" onclick="active('dot2')"></label>
+            <label for="slide3" id="dot3" onclick="active('dot3')"></label>
+        </div>
+    </ul>
+</body>
+
+</html>
+
+
+
+

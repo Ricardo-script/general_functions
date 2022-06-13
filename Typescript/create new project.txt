@@ -1,0 +1,22 @@
+npm:
+npx create-react-app my-app --template typescript
+
+ou
+
+yarn:
+
+yarn create react-app my-app --template typescript
+------------------------------------------------------------------------------------------------
+
+//Para adicionar o TypeScript a um projeto Create React App existente, primeiro instale-o:
+
+npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+
+ou
+
+yarn add typescript @types/node @types/react @types/react-dom @types/jest
+
+------------------------------------------------------------------------------------------------
+
+obs: Na pasta src dos arquivos deixar somente App.tsx e index.tsx
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SetInterval</title>
+</head>
+<body>
+    <div id="relogio">Aguardando o setInterval ser Executado</div>
+    <div id="delay">Aguardando o setTimeout ser Executado</div>
+
+    <script>
+        const $watch = document.querySelector('#relogio');
+        const $timeout = document.querySelector('#delay');
+
+        const showCurrentTime = () => {
+        const date = new Date();
+        $watch.innerHTML = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+        };
+
+        setTimeout(() => {
+        $timeout.innerHTML = `setTimeout foi executado com sucesso.`;
+        }, 5000);
+
+        setInterval(showCurrentTime, 1000);
+    </script>
+    
+</body>
+</html>

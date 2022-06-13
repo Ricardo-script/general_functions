@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flip</title>
+
+    <style>
+        body,
+        html {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+        }
+
+        section {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .cube {
+            margin: 0 auto;
+            position: relative;
+            width: 300px;
+            height: 100px;
+            font-family: 'Titillium Web', sans-serif;
+            color: #FFF;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .cube h1 {
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 98px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cube h2 {
+            font-size: 21px;
+            font-weight: bold;
+            margin: 0;
+            padding: 16px 0 2px;
+        }
+
+        .cube p {
+            font-size: 13px;
+            padding: 5px 10px;
+            margin: 0;
+        }
+
+        .default,
+        .active {
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: transform 0.4s ease;
+            transform-origin: center center -50px;
+            -webkit-transform-origin: center center -50px;
+            width: 100%;
+        }
+
+        .default {
+            background-color: #563d7c;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+        }
+
+        .active {
+            background: #322348;
+            transform: perspective(1000px) rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
+        }
+
+        .cube:hover .default {
+            transform: perspective(1000px) rotateX(90deg) rotateY(0) rotateZ(0deg);
+        }
+
+        .cube:hover .active {
+            z-index: 99999;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(0);
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <section>
+        <div class="cube">
+            <div class="active">
+                <h2>CSS 3D Flip Box</h2>
+                <p>No JavaScript, pure CSS. Download CSS file. You can use every content inside the box.</p>
+            </div>
+            <div class="default">
+                <h1>Hover Me </h1>
+            </div>
+        </div>
+        </div>
+    </section>
+</body>
+
+</html>

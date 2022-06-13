@@ -1,0 +1,30 @@
+.e-title-produtos{
+            color: #E73A23;
+            font-family: 'Brandon Text';
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 21px;
+            letter-spacing: 0em;
+            text-align: center;
+            position: relative;
+
+            &::before {
+                content: '';
+                width: 40%;
+                border-bottom: solid 1px #F3F3F3;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                z-index: 1;
+            }
+            &::after {
+                content: '';
+                width: 40%;
+                border-bottom: solid 1px #F3F3F3;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                z-index: 1;
+            }
+        }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax</title>
+
+    <style>
+		h2 {
+   			font-family: "Roboto", Arial, Helvetica, sans-serif;
+		    font-weight: 900;
+		    font-size: 30px;
+		    text-align: center;
+		    margin: 90px 0 20px;
+		}
+		body {
+			padding: 0px 0 60px 0;
+		}
+
+		/* div que receberá o conteúdo */
+		.conteudo {
+			max-width: 1000px;
+			margin: auto;
+		}
+
+		.parallax {
+		    /* Coloque a imagem a ser usada como background */
+		    background-image: url("https://cdn.pixabay.com/photo/2017/09/26/15/13/computer-2788918_960_720.jpg");
+
+		    /* Defina uma altura para a visão que o usuário terá da imagem */
+		    min-height: 350px; 
+
+		    /* defina o background como fixo e posicione a imagem */
+		    background-attachment: fixed;
+		    background-position: center;
+		    background-repeat: no-repeat;
+		    background-size: cover;
+		}
+    </style>
+</head>
+<body>
+    <div class="conteudo">
+		<h2 style="text-align: center;">Como criar imagens com efeito parallax</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla finibus lacus ante, convallis feugiat libero auctor in. Morbi porttitor suscipit metus eget commodo. Integer ut enim neque. Praesent scelerisque tristique lorem ut sodales. Fusce ut dui nisi. Sed at volutpat felis. Mauris sagittis ligula lorem, sed aliquam augue feugiat at. Vestibulum placerat nisl et sem blandit, ut ultricies lectus maximus. Sed vel nunc bibendum, gravida enim in, porttitor mauris.</p>
+		<p>Pellentesque vulputate quis mauris vitae malesuada. Sed sem risus, ullamcorper eget odio eget, efficitur dignissim quam. Duis tincidunt magna ac magna mattis, dignissim tempus magna convallis. Nullam dignissim sem vitae massa vehicula egestas. Nullam a maximus mauris, in dictum justo. Sed lacus ligula, gravida at enim tempor, imperdiet ullamcorper quam. Vivamus lectus enim, rutrum non rutrum ut, scelerisque eu tellus. Donec aliquet nec lacus vel dapibus.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius neque vel consequat faucibus. Vivamus gravida justo lectus. Curabitur eget sodales turpis, eu malesuada libero. Vestibulum eget quam varius, eleifend enim quis, laoreet ante. Nulla purus ante, egestas sit amet imperdiet non, porttitor at sapien. Mauris rutrum eros id libero fringilla lobortis. Nam risus quam, dapibus nec tellus sit amet, pellentesque finibus dui. Etiam maximus facilisis diam, ac gravida diam consequat nec. Duis sed vehicula justo. Sed sit amet molestie metus, eu consequat enim. Fusce vel vehicula lorem. Aliquam dictum arcu risus, ac tristique turpis maximus et. Suspendisse id augue eget justo venenatis fringilla. Nunc non scelerisque ligula, at elementum nunc. Aliquam condimentum tellus at metus laoreet mollis.</p>
+		<p>Mauris ac rutrum nunc. Maecenas dapibus velit non nisl lacinia semper. Maecenas mauris nibh, sodales sed viverra ac, eleifend vel massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam elementum posuere neque in facilisis. Pellentesque non scelerisque lorem. Vestibulum vel tellus nec urna venenatis scelerisque eu at elit. Nunc euismod urna egestas turpis auctor, vel vestibulum lectus elementum.</p>
+		<p>Vestibulum ornare quam quis tincidunt aliquet. Sed nisi erat, dictum vitae mauris non, suscipit vestibulum quam. Nullam sed turpis quis dui aliquam mattis sit amet vel libero. Donec et ipsum eget nisl egestas egestas. Quisque laoreet euismod ex, id luctus elit mattis rhoncus. Etiam quis tortor a eros blandit condimentum. Ut tempus mauris eget ligula porttitor eleifend. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+		<div class="parallax"></div>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla finibus lacus ante, convallis feugiat libero auctor in. Morbi porttitor suscipit metus eget commodo. Integer ut enim neque. Praesent scelerisque tristique lorem ut sodales. Fusce ut dui nisi. Sed at volutpat felis. Mauris sagittis ligula lorem, sed aliquam augue feugiat at. Vestibulum placerat nisl et sem blandit, ut ultricies lectus maximus. Sed vel nunc bibendum, gravida enim in, porttitor mauris.</p>
+		<p>Pellentesque vulputate quis mauris vitae malesuada. Sed sem risus, ullamcorper eget odio eget, efficitur dignissim quam. Duis tincidunt magna ac magna mattis, dignissim tempus magna convallis. Nullam dignissim sem vitae massa vehicula egestas. Nullam a maximus mauris, in dictum justo. Sed lacus ligula, gravida at enim tempor, imperdiet ullamcorper quam. Vivamus lectus enim, rutrum non rutrum ut, scelerisque eu tellus. Donec aliquet nec lacus vel dapibus.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius neque vel consequat faucibus. Vivamus gravida justo lectus. Curabitur eget sodales turpis, eu malesuada libero. Vestibulum eget quam varius, eleifend enim quis, laoreet ante. Nulla purus ante, egestas sit amet imperdiet non, porttitor at sapien. Mauris rutrum eros id libero fringilla lobortis. Nam risus quam, dapibus nec tellus sit amet, pellentesque finibus dui. Etiam maximus facilisis diam, ac gravida diam consequat nec. Duis sed vehicula justo. Sed sit amet molestie metus, eu consequat enim. Fusce vel vehicula lorem. Aliquam dictum arcu risus, ac tristique turpis maximus et. Suspendisse id augue eget justo venenatis fringilla. Nunc non scelerisque ligula, at elementum nunc. Aliquam condimentum tellus at metus laoreet mollis.</p>
+		<p>Mauris ac rutrum nunc. Maecenas dapibus velit non nisl lacinia semper. Maecenas mauris nibh, sodales sed viverra ac, eleifend vel massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam elementum posuere neque in facilisis. Pellentesque non scelerisque lorem. Vestibulum vel tellus nec urna venenatis scelerisque eu at elit. Nunc euismod urna egestas turpis auctor, vel vestibulum lectus elementum.</p>
+		<p>Vestibulum ornare quam quis tincidunt aliquet. Sed nisi erat, dictum vitae mauris non, suscipit vestibulum quam. Nullam sed turpis quis dui aliquam mattis sit amet vel libero. Donec et ipsum eget nisl egestas egestas. Quisque laoreet euismod ex, id luctus elit mattis rhoncus. Etiam quis tortor a eros blandit condimentum. Ut tempus mauris eget ligula porttitor eleifend. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla finibus lacus ante, convallis feugiat libero auctor in. Morbi porttitor suscipit metus eget commodo. Integer ut enim neque. Praesent scelerisque tristique lorem ut sodales. Fusce ut dui nisi. Sed at volutpat felis. Mauris sagittis ligula lorem, sed aliquam augue feugiat at. Vestibulum placerat nisl et sem blandit, ut ultricies lectus maximus. Sed vel nunc bibendum, gravida enim in, porttitor mauris.</p>
+		<p>Pellentesque vulputate quis mauris vitae malesuada. Sed sem risus, ullamcorper eget odio eget, efficitur dignissim quam. Duis tincidunt magna ac magna mattis, dignissim tempus magna convallis. Nullam dignissim sem vitae massa vehicula egestas. Nullam a maximus mauris, in dictum justo. Sed lacus ligula, gravida at enim tempor, imperdiet ullamcorper quam. Vivamus lectus enim, rutrum non rutrum ut, scelerisque eu tellus. Donec aliquet nec lacus vel dapibus.</p>
+	</div>
+</body>
+</html>

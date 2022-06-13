@@ -1,0 +1,13 @@
+.service {
+	font-size: 0;
+    color:red; /* cor de texto que o filho ::after vai herdar */
+}
+.service::after {
+  content: " de Transfer";
+  font-size: 16px !important;
+}
+
+
+<label for="" class="service">
+  texto que some
+</label>

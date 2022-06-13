@@ -1,0 +1,56 @@
+ //Html
+    <header id="header" class="header">
+        <h2 class="title">Header</h2>
+        <a class="link" href="#main">
+            Main
+        </a>
+        <a class="link" href="#footer">
+            Footer
+        </a>
+    </header>
+    <main id="main" class="main">
+        <h2>Main</h2>
+        <a class="link" href="#header">
+            Header
+        </a>
+        <a class="link" href="#footer">
+            Footer
+        </a>
+    </main>
+    <footer id="footer" class="footer">
+        <h3>Footer</h3>
+        <a class="link" href="#header">
+            Header
+        </a>
+        <a class="link" href="#main">
+            Main
+        </a>
+    </footer>
+
+//css
+
+html{
+    scroll-behavior: smooth;
+ }
+
+ a{
+    margin: 0 10px 0 10px;
+ }
+ 
+ .header{
+   height: 900px;
+   background-color:#c01313;
+ }
+ .main{
+   height: 1500px;
+   background-color:#3614ce;
+ }
+ .footer{
+    height: 200px;
+    background-color:#13c047;
+ }
+ 
+ .link{
+   color:#FFF;
+   text-decoration:none;
+ }

@@ -1,0 +1,25 @@
+html{
+    scroll-behavior: smooth;
+ }
+
+ a{
+    margin: 0 10px 0 10px;
+ }
+ 
+ .header{
+   height: 900px;
+   background-color:#c01313;
+ }
+ .main{
+   height: 1500px;
+   background-color:#3614ce;
+ }
+ .footer{
+    height: 200px;
+    background-color:#13c047;
+ }
+ 
+ .link{
+   color:#FFF;
+   text-decoration:none;
+ }

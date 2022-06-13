@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./script.js"></script>
+    <title>Carrossel</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .slider {
+            display: block;
+            height: 293px;
+            width: 600px;
+            margin: auto;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .slider li {
+            list-style: none;
+            position: absolute;
+        }
+
+        .slider input {
+            display: none;
+        }
+
+        .slider img {
+            margin: auto;
+            height: 100%;
+            width: 100%;
+            vertical-align: top;
+
+            opacity: 0;
+            visibility: hidden;
+            transition: 1s;
+        }
+
+        .slider li input:checked~img {
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+        }
+
+        .slider label {
+            background-color: orange;
+            bottom: 10px;
+            cursor: pointer;
+            display: block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .dots{
+            width: 100%;
+            height: 35px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8%;
+            bottom: -126px;
+        }
+
+        .slider li:nth-child(1) label {
+            left: 10px;
+        }
+
+        .slider li:nth-child(2) label {
+            left: 40px;
+        }
+
+        .slider li:nth-child(3) label {
+            left: 70px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <ul class="slider">
+        <button onclick="avancar()" class="avancar">Avançar</button>
+        <li>
+            <input type="radio" id="slide1" name="slide" checked>
+            <img src="01.jpg" />
+        </li>
+        <li>
+            <input type="radio" id="slide2" name="slide">
+            <img src="02.jpg" />
+        </li>
+        <li>
+            <input type="radio" id="slide3" name="slide">
+            <img src="03.jpg" />
+        </li>        
+        <button onclick="voltar()" class="voltar">Voltar</button>
+        <div class="dots">
+            <label for="slide1" id="dot1"></label>
+            <label for="slide2" id="dot2"></label>
+            <label for="slide3" id="dot3"></label>
+        </div>
+    </ul>
+</body>
+
+</html>

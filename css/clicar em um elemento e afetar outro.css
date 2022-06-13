@@ -1,0 +1,23 @@
+/* Checkbox Hack */
+#toggle-1 {
+   display:none;
+}
+
+label { 
+  -webkit-appearance: push-button;
+  -moz-appearance: button; 
+  display: inline-block;
+  cursor: pointer;
+  padding: 5px;
+}
+
+
+/* CSS quando o checkbox está marcado */
+#toggle-1:checked ~ #cabecalho {
+   color:Red;
+}
+<label for="toggle-1">
+  Clique aqui
+</label>
+<input type="checkbox" id="toggle-1">
+<h1 id="cabecalho">Texto</h1>

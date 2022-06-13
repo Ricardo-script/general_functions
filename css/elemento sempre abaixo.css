@@ -1,0 +1,9 @@
+.popup{
+        background-color: gray;
+        color: #000;
+        position: fixed;
+        bottom:0;
+        width:100%;
+        margin: auto auto;
+        height: 59px;
+    }

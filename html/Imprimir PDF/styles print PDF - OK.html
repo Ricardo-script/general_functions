@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        input[type=text],
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        /*@media print {
+            div#div_print {
+                visibility: visible;
+                page-break-inside: auto !important;
+                display: block !important;
+                width: auto !important;
+                height: auto !important;
+                overflow: visible !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }*/
+
+        @media print {
+            body {
+                visibility: hidden;/* não imprir o resto*/
+            }
+
+            #div_print {
+                visibility: visible;
+                position: absolute;
+                visibility: visible;
+                page-break-inside: auto !important;
+                display: block !important;
+                width: 100vw !important;
+                height: auto !important;
+                overflow: visible !important;
+                -webkit-print-color-adjust: exact;
+            }
+
+            input[type=text],select {
+                background: aqua;
+            }
+
+            input[type=submit] {
+                background-color: #9e4caf;
+            }
+
+            form {
+                border: 1px solid red;
+                padding: 30px;
+            }
+        }
+		
+		@page { /* somente para remover cabeçalhos e rodapés */
+			size: auto;   /* auto is the initial value */
+			margin: 0mm;  /* this affects the margin in the printer settings */
+		}
+		
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="div_print">
+        <div>
+            <form action="/action_page.php">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                <label for="country">Country</label>
+                <select id="country" name="country">
+                    <option value="australia">Australia</option>
+                    <option value="canada">Canada</option>
+                    <option value="usa">USA</option>
+                </select>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+    <div>
+        <p>Não imprimir essa parte no pdf</p>
+    </div>
+    <button onclick="printFunction()">Print</button>​
+
+    <script>
+        function printFunction() {
+            window.print();
+        }
+    </script>
+
+</body>
+</html>

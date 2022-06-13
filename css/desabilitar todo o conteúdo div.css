@@ -1,0 +1,9 @@
+.desabilitar{
+	pointer-events: none;
+    opacity: 0.4;
+}
+
+ .habilitar{
+	pointer-events: auto;
+	opacity: 1;
+}

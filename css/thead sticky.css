@@ -1,0 +1,9 @@
+div{/* div que fica em volta da table*/
+    height: 200px;
+    overflow: scroll;
+}
+
+thead th {
+    position: sticky;
+    top: 0px;
+}

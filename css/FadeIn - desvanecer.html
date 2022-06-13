@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .caixa{
+            animation: fadein 2s; /* Padrão */
+            -webkit-animation: fadein 2s; /* Webkit */
+            -moz-animation: fadein 2s; /* Firefox */
+            -ms-animation: fadein 2s; /* IE */
+        }
+
+        @keyframes fadein{
+            0%{
+                background: #040404;
+                opacity: 1;
+                width: 100%;
+                height: 100vh;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 9;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+    </style>
+   
+</head>
+<body>
+    <div class="caixa"></div>
+    <div class="text">
+        <a href="index.html">voltar</a>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci consequatur,
+            rem, qui repellendus voluptatem numquam est sed ratione odit mollitia, delectus
+            facilis nihil cupiditate ad sit debitis ex accusamus laborum.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci consequatur,
+            rem, qui repellendus voluptatem numquam est sed ratione odit mollitia, delectus
+            facilis nihil cupiditate ad sit debitis ex accusamus laborum.
+        </p>
+    </div>
+</body>
+</html>
