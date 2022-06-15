@@ -11,6 +11,18 @@ server.get('/curso', (req,res) => {
 	return res.jon({ curso: `Aprendendo ${nome}`})
 });
 
+//exemplo 2:
+
+'https://api/curso?name=Javascript&classroom=true'
+
+app.get("/curso", (req, res)=>{
+  var name = req.query.name;
+  var classroom = req.query.classroom;
+  res.json({
+    name,classroom
+  })
+})
+
 
 //-----------------------------------------------------------------------------------------------------------
 
