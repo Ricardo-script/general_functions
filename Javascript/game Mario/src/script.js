@@ -34,3 +34,8 @@ const loop = setInterval(() => {
 },10);
 
 document.addEventListener('keydown', jump);
+
+// criado somente para funcionar o touch no mobile
+const pressScreen = () => {
+    jump();
+}

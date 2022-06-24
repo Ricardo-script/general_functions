@@ -74,3 +74,13 @@
         right: 100%;
     }
 }
+
+@media(max-width: 700px){
+    .game-board{
+        height: 360px;
+    }
+    
+    .pipe{
+        animation: pipe-animation 1.3s infinite linear;
+    }
+}
