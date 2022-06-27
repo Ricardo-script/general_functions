@@ -43,3 +43,34 @@ const feedbackTypes = {
         )
     })}
 </div>
+//-----------------------------------------------------------------------------------------------------------------------------
+
+// outro exemplo: 
+const saveData = () => {
+
+	// data objeto recebe states arrays: 
+	const data = {
+		carRight,
+		carTop,
+		carLeft,
+		carBottom,
+		carTopToRight,
+		carTopToLeft,
+		carRightToBottom,
+		carLeftToBottom,
+		carLeftToTop,
+		carRightToTop,
+		carBottomToLeft,
+		carBottomToRight,
+		objSemaforo,
+		objSemaforoLeft,
+		objSemaforoRight,
+		objBotoeira,
+		objOcupacao,
+		objDetector,
+	}
+
+	Object.entries(data).forEach((item, index) => {
+		console.log(item);
+	});
+}
