@@ -43,9 +43,49 @@ const feedbackTypes = {
         )
     })}
 </div>
+
+//Utilizando Object.values retorna:
+
+//Object.values(feedbackTypes)
+/*
+(3) [{…}, {…}, {…}]
+
+	0:
+		image: {source: 'teste', alt: 'Imagem de um inseto'}
+		title: "Problema"
+		[[Prototype]]: Object
+	1:
+		image: {source: 'teste', alt: 'Imagem de uma lampada'}
+		title: "Ideia"
+		[[Prototype]]: Object
+	2:
+		image: {source: 'teste', alt: 'Imagem de um balão de pensamento'}
+		title: "Outro"
+		[[Prototype]]: Object
+	
+length: 3
+[[Prototype]]: Array(0)
+
+*/
+
+
+//Utilizando Object.keys
+//Object.keys(feedbackTypes)
+/*
+	(3) ['BUG', 'IDEA', 'OTHER']
+		0: "BUG"
+		1: "IDEA"
+		2: "OTHER"
+		
+	length: 3
+	[[Prototype]]: Array(0)
+*/
+
+
+
 //-----------------------------------------------------------------------------------------------------------------------------
 
-// outro exemplo: 
+// outro exemplo: retornando: (2) ['carRight', Array(2)]
 const saveData = () => {
 
 	// data objeto recebe states arrays: 
@@ -74,3 +114,29 @@ const saveData = () => {
 		console.log(item);
 	});
 }
+
+//----------------------------------------------------------------------------------------------------------------------------------
+
+// outro exemplo: retornando somente o Array: (2) [{…}, {…}]
+
+Object.values(dataObjects).forEach(item => { 
+	console.log(item)
+});
+
+
+//---------------------------------------------------------------------------------------------------------------------------------
+
+//exemplo: 
+Object.values(dataObjects).forEach(item => {
+	if(item.length > 0){
+		item.forEach(item => {
+			data.push(item)
+		})
+	}
+});
+
+
+
+
+
+
