@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 
 function App() {
@@ -7,6 +7,8 @@ function App() {
 		firstName: string,
 		lastName: string;
 	}
+
+	type InputEvent = React.ChangeEvent<HTMLInputElement> // declarar o type do event
 	
 	const [inputFields, setInputFields] = useState<Data[]>([
 		{ firstName: '', lastName: '' }
@@ -27,7 +29,7 @@ function App() {
 	};
 
 	//recebe as informações do input
-	const handleInputChange = (index: number, e: any) => {
+	const handleInputChange = (index: number, e: InputEvent) : void => { //e: InputEvent => inserido type do event
 		const values = [...inputFields];
 		if (e.target.name === 'firstName') {
 			values[index].firstName = e.target.value;

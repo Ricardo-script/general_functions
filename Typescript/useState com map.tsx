@@ -34,3 +34,41 @@ function App() {
 }
 
 export default App;
+
+//----------------------------------------------------------------------------------------------------------
+
+import { useState } from "react";
+
+export default function App() {
+
+	interface Types {
+		nome: string,
+		preco: number,
+		caixa: number
+	}
+
+	const [frutas, setFrutas] = useState<Types[]>([
+		{ nome: 'Melancia', preco: 20, caixa: 150 },
+		{ nome: 'Laranja', preco: 15, caixa: 100 },
+
+	]);
+
+	return (
+		<div>
+			<table>
+				<tr>
+					<th>Nome</th>
+					<th>Preço</th>
+					<th>Caixa</th>
+				</tr>
+				{frutas.map((items) => (
+					<tr>
+						<td>{items.nome}</td>
+						<td>{items.preco}</td>
+						<td>{items.caixa}</td>
+					</tr>
+				))}
+			</table>
+		</div>
+	);
+}
