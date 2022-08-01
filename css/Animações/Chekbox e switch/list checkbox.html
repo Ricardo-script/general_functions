@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+	
+    .list {
+        margin: 0;
+        padding: 0 2px;
+        list-style: none;
+    }
+
+    .label--checkbox {
+        position: relative;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .checkbox {
+        position: relative;
+        margin: 0 1rem 0 0;
+        cursor: pointer;
+    }
+
+    .checkbox:before {
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        content: "";
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        width: 13px;
+        height: 13px;
+        border: 2px solid #f2f2f2;
+    }
+
+    .checkbox:checked:before {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        height: 0.5rem;
+        border-color: #009688;
+        border-top-style: none;
+        border-right-style: none;
+    }
+
+    .checkbox:after {
+        content: "";
+        position: absolute;
+        top: -0.125rem;
+        left: 0;
+        width: 1.1rem;
+        height: 1.1rem;
+        background: #fff;
+        cursor: pointer;
+    }
+
+    .button--round {
+
+        width: 2rem;
+        height: 2rem;
+        background: #5677fc;
+        border-radius: 50%;
+        box-shadow: 0 0.125rem 0.3125rem 0 rgba(0, 0, 0, 0.25);
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .button--round i {
+        font-size: 1rem;
+        line-height: 220%;
+        vertical-align: middle;
+    }
+
+    .button--round:hover {
+        background: #3b50ce;
+    }
+
+    .button--sticky {
+        position: fixed;
+        right: 2rem;
+        top: 16rem;
+    }
+
+    </style>
+
+</head>
+
+<body>
+    <section class="content">
+        <ul class="list">
+            <li>
+                <label class="label--checkbox">
+                    <input type="checkbox" class="checkbox">
+                    Item 1
+                </label>
+            </li>
+            <li>
+                <label class="label--checkbox">
+                    <input type="checkbox" class="checkbox">
+                    Item 2
+                </label>
+            </li>
+            <li>
+                <label class="label--checkbox">
+                    <input type="checkbox" class="checkbox">
+                    Item 3
+                </label>
+            </li>
+            <li>
+                <label class="label--checkbox">
+                    <input type="checkbox" class="checkbox">
+                    Item 4
+                </label>
+            </li>
+        </ul>
+    </section>
+</body>
+
+</html>
