@@ -1,0 +1,11 @@
+/*
+origem da rotação: por padrão o rotate rotaciona o objeto a partir do centro
+do objeto, no exemplo abaixo transform-origin foi alterado para rotacionar
+a partir da esquerda, como se fosse um ponteiro de um relório
+*/
+
+
+#objeto{
+	transform: rotate(-36deg);
+	transform-origin: left; /*origem da rotação */
+}
