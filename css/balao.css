@@ -1,5 +1,7 @@
 <div class="balao"></div>
 <div class="balao2"></div>
+<div class="balaoTop"></div>
+<div class="balaoLeft"></div>
 
 
 .balao{
@@ -7,72 +9,84 @@
     border-radius: 0 30px 30px 0;
     width: 300px;
     height: 100px;
-
-    /* Position relative para a seta não exceder os limites do balão, já que vamos usar position absolute nele */
     position: relative;
-
-    margin-bottom: 1em;
 }
 .balao:after{
-    /* content necessário para a criação de um elemento vazio */
     content: "";
-
     width: 0; 
     height: 0;
-
-    /* position: absolute para manipularmos a posição da seta */
     position: absolute;
-
-    /* Right com valor negativo para ele ficar para fora do balão de dialogo */
     right: -32px;
-
-    /* E aqui o truque com as bordas */
-    /* 50px é a metade da altura do elemento, assim temos uma seta da mesma altura que nosso elemento */
     border-top: 50px solid transparent;
     border-bottom: 50px solid transparent;
     border-left: 50px solid #000;
-
     border-radius: 50%;
-
 }
+
+/*------------------------ Ponta para baixo -------------------------------*/
+
 .balao2{
     background: #000;
     border-radius: 15px;
     width: 300px;
     height: 100px;
-
     position: relative;
 }
 .balao2:after{
-
     content: "";
-
     width: 0;
     height: 0;
-
     position: absolute;
-
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
     border-top: 20px solid #000;
-
     bottom: -20px;
     left: 20%;
 }
 
 
-//ou apontado para cima:
 
-:after{
-                content: "";
-                width: 0;
-                height: 0;
-                position: absolute;
-                border-left: 12px solid transparent;
-                border-right: 12px solid transparent;
-                border-bottom: 20px solid #E73A23;
-                bottom: 56px;
-                left: 114px;
-            
+/*----------------------- Ponta para cima -----------------------------------*/
+.balaoTop{
+    background: #000;
+    border-radius: 15px;
+    width: 300px;
+    height: 100px;
+    position: relative;
+}
+.balaoTop:after{
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-bottom: 22px solid #000;
+	top: -16px;
+    right: 50px;
+}
 
+
+/*----------------------- Ponta para esquerda -----------------------------------*/
+.balaoLeft{
+    background: #000;
+    border-radius: 15px;
+    width: 300px;
+    height: 100px;
+    position: relative;
+}
+
+.balaoLeft:after{
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent; 
+    border-right: 30px solid red; 
+    top: 45px;
+    left: -45px;
+}
 
