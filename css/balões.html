@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+
+body{
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+}
+
+.balao{
+    background: #000;
+    border-radius: 0 30px 30px 0;
+    width: 300px;
+    height: 100px;
+    position: relative;
+}
+.balao:after{
+    content: "";
+    width: 0; 
+    height: 0;
+    position: absolute;
+    right: -32px;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 50px solid #000;
+    border-radius: 50%;
+}
+
+/*------------------------ Ponta para baixo -------------------------------*/
+
+.balao2{
+    background: #000;
+    border-radius: 15px;
+    width: 300px;
+    height: 100px;
+    position: relative;
+}
+.balao2:after{
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #000;
+    bottom: -20px;
+    left: 20%;
+}
+
+
+
+/*----------------------- Ponta para cima -----------------------------------*/
+.balaoTop{
+    background: #000;
+    border-radius: 15px;
+    width: 300px;
+    height: 100px;
+    position: relative;
+}
+.balaoTop:after{
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-bottom: 22px solid #000;
+	top: -16px;
+    right: 50px;
+}
+
+
+/*----------------------- Ponta para direita -----------------------------------*/
+.balaoRight{
+    background: #000;
+    border-radius: 15px;
+    width: 300px;
+    height: 100px;
+    position: relative;
+}
+
+.balaoRight:after{
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent; 
+    border-right: 30px solid red; 
+    top: 45px;
+    left: -45px;
+}
+
+
+
+
+
+</style>
+
+
+
+<body>
+    <div class="balao"></div>
+    <div class="balao2"></div>
+    <div class="balaoTop"></div>
+    <div class="balaoRight"></div>
+</body>
+</html>
