@@ -8,22 +8,23 @@ import { socketIo } from './utils/socketIo';
 
 const app = express();
 
-socketIo();
-
-app.listen(80, () => {
+const server = app.listen(process.env.PORT || 80 , () => {
     console.log('local: http://localhost:80');
 });
+
+socketIo(server);
 
 //------------------------------------------------
 //src/utils/socketIo.ts
 
 import { Server } from "socket.io";
 
-const io = new Server(3001,{
-    cors:{ origin:"*" }
-});
+export const socketIo = (server: any) => {
 
-export const socketIo = () => {
+    const io = new Server(server,{
+        cors:{ origin:"*" }
+    });
+
     io.on('connection', socket => {
         //console.log('[IO] Connection => Server has a new connection')
         socket.on('chat.message', data => {
@@ -32,7 +33,7 @@ export const socketIo = () => {
         })
         socket.on('disconnect', () => {
             console.log('[SOCKET] Disconnect => A connection was disconnected')
-        })
+        });
     })
 }
 
@@ -40,27 +41,28 @@ export const socketIo = () => {
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------
+socket?.emit('Mensagem(evento)', 'conteudo da mensagem(dados)') -> enviar os dados
+socket?.emit('Mensagem(evento)', 'dados') -> recebe os dados
+
 */
 //--------------------------------Front-end-------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
 
 import { useEffect, useState } from 'react';
 import { Container, AreaMensagens, AreaSendMessage } from './styles';
+import fundo from '../assets/fundo.jpg';
 import io from 'socket.io-client';
-import { v4 as uuidv4 } from 'uuid'; // criar id diferente do outro usuário
-import './App.css';
 
 // declarar o socket antes do componente App, para não ficar sempre chamando a conexão toda vez que o component é montado
-const socket = io('ws://localhost:3001')
+const socket = io('https://support-chat-rick.herokuapp.com/') // back-end: ws://localhost:80 (https sem o certificado de segurança qnd na nuvem pode dar 'erro de segurança')
 socket.on('connect', () => console.log('[IO] Connect => A new connection has been established'))
 
+export default function Chat() {
 
-export default function App() {
-
-	const myId = uuidv4(); // criar id diferente do outro usuário
-
-	const [message, setMessage] = useState('')
-	const [messages, setMessages] = useState([])
+	const [message, setMessage] = useState('');
+	const [messages, setMessages] = useState([]);
+	
+	const user = sessionStorage.getItem('user');
 
 	useEffect(() => {
 		const handleNewMessage = socket.on('chat.message', (dados) => { // recebe os dados do back que foram enviados anteriormente pelo front
@@ -75,19 +77,26 @@ export default function App() {
 
 
 	const sendMessage = () => {
-		socket.emit('chat.message', {
-			id: myId,
-			message
-		})
-		setMessage('');
+		if(message === ''){
+			return;
+		}else{
+			socket.emit('chat.message', {
+				id: user,
+				message
+			})
+			setMessage('');
+		}
 	}
 
 	return (
 		<Container>
+			<img src={fundo} alt="" />
 			<AreaMensagens>
 				<ul>
-				{ messages.map((m, index) => (
-					<li className='mine'><span className={m.id === myId ? 'mine' : 'other'}>{ m.message }</span></li>
+				{messages.map((m, index) => (
+					<li key={index} className={m.id === user ? 'mine' : 'other'}>
+						<span className={m.id === user ? 'mine' : 'other'}>{ m.message }</span>
+					</li>
 				))}
 				</ul>
 			</AreaMensagens>
@@ -144,13 +153,45 @@ export const AreaMensagens = styled.div`
                     background: #89ddff;
                     border-color: #1abeff;
                     width: 300px;
-                    position: relative;
-                    right: -80vw;
+                    position: absolute;
+                    right: 0;
                 }
             }
         }
     }
 
+`;
+
+export const AreaSendMessage = styled.div`
+    background: #424374;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+
+    input{
+        width: 100%;
+        height: 30px;
+        font-size: 16px;
+        outline: none;
+        text-indent: 10px;
+        margin-right: 5px;
+    }
+
+    button{
+        width: 100px;
+        height: 31px;
+        border: 0;
+        cursor: pointer;
+
+        &:active{
+            position: relative;
+            top: 1px;
+        }
+    }
 `;
 
 export const AreaSendMessage = styled.div`

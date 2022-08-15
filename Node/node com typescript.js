@@ -38,7 +38,7 @@ yarn add express
 //Com o uso de typescript deve-se instalar tbm os tipos
 yarn add -D @types/express
 //------------------------------------------------------------------------------------------
-// typescript não reconhece o start comum do js então instalar:
+// typescript não reconhece o start comum do js então instalar: obs(o heroku precisa dele sem ser como -D)
 yarn add -D ts-node-dev
 /*
 	Em "scripts":{
