@@ -9,11 +9,11 @@ export default function App(){
         var i;
         var j = 0;
         var chave;
-        //chave = "assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm";
-        chave = "abcd123";
+        chave = "assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm";
+        //chave = "abcd123";
         for (i = 0; i < dados.length; i++) {
             j++;
-            l = (Asc(dados.substr(i, 1)) + (Asc(chave.substr(j, 1))));
+            l = (Asc(dados.substring(i, i+1)) + (Asc(chave.substring(j, j+1))));
             if (j === 50) {
                 j = 1;
             }
@@ -31,11 +31,11 @@ export default function App(){
         var i;
         var j = 0;
         var chave;
-        //chave = "assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm";
-        chave = "abcd123";
+        chave = "assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm";
+        //chave = "abcd123";
         for (i = 0; i < dados.length; i++) {
             j++;
-            l = (Asc(dados.substr(i, 1)) - (Asc(chave.substr(j, 1))));
+            l = (Asc(dados.substring(i, i + 1)) - (Asc(chave.substring(j, j+1))));
             if (j === 50) {
                 j = 1;
             }
@@ -61,4 +61,3 @@ export default function App(){
             <button onClick={() => Descripta(textCripto)}>Descriptografar</button>
         </div>
     );
-}
