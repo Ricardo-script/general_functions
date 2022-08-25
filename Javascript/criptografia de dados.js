@@ -1,3 +1,10 @@
+/*.ENV
+
+	REACT_APP_CHAVE_PERMISSION="assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm"
+	
+*/
+
+
 import { useState } from "react";
 export default function App(){
 
@@ -9,7 +16,7 @@ export default function App(){
         var i;
         var j = 0;
         var chave;
-        chave = "assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm";
+		chave = process.env.REACT_APP_CHAVE_PERMISSION;
         //chave = "abcd123";
         for (i = 0; i < dados.length; i++) {
             j++;
@@ -31,7 +38,7 @@ export default function App(){
         var i;
         var j = 0;
         var chave;
-        chave = "assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm";
+        chave = process.env.REACT_APP_CHAVE_PERMISSION;
         //chave = "abcd123";
         for (i = 0; i < dados.length; i++) {
             j++;
@@ -66,6 +73,14 @@ export default function App(){
 //---------------------------------------------------------------------------------------------------------------------------------------------------//
 //---------------------------------------------------------------------------------------------------------------------------------------------------//
 //---------------------------------------------------------------------------------------------------------------------------------------------------//
+
+/* 
+.ENV:
+
+REACT_APP_CHAVE_PERMISSION="assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm"
+REACT_APP_CHAVE_RANDOM="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+	
+*/
 	
 	//Adaptação:
 	
@@ -77,7 +92,7 @@ export default function App(){
         var i;
         var j = 0;
         var chave;
-        chave = "assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm";
+        chave = process.env.REACT_APP_CHAVE_PERMISSION;
         //chave = "abcd123";
         for (i = 0; i < dados.length; i++) {
             j++;
@@ -101,7 +116,7 @@ export default function App(){
         var i;
         var j = 0;
         var chave;
-        chave = "assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm";
+        chave = process.env.REACT_APP_CHAVE_PERMISSION;
         //chave = "abcd123";
         for (i = 0; i < aux.length; i++) {
             j++;
@@ -127,7 +142,7 @@ export default function App(){
 
     function geraStringAleatoria(tamanho) {
         var stringAleatoria = '';
-        var caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var caracteres = process.env.REACT_APP_CHAVE_RANDOM;
         for (var i = 0; i < tamanho; i++) {
             stringAleatoria += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
         }

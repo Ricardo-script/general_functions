@@ -1,3 +1,59 @@
+/* 
+	Exemplo simples:
+	
+	*****obs: Não funciona corretamente caso o input e select não possuirem o value
+
+*/
+
+import { useState } from "react";
+
+export default function App(){
+
+	const [list, setList] = useState([
+		{ firstInput: '', secondInput: '' }
+	]);
+
+	const add = () => {
+		const values = [...list];
+		values.push({ firstInput: '', secondInput: '' });
+		setList(values);
+	}
+
+	const handleChange = (e,index) => {
+		const values = [...list];
+
+		if(e.target.name === 'firstInput'){
+			values[index].firstInput = e.target.value;
+		}else{
+			values[index].secondInput = e.target.value;
+		}
+
+		setList(values);
+	}
+
+	const remove = (index) => {
+		const values = [...list];
+		values.splice(index,1);
+		setList(values);
+	}
+
+	return(
+		<div>
+			{list.map((item,index) => (
+				<div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '15px', width: '300px', border: '1px solid grey', padding: '25px'}}>
+					<input type="text" name='firstInput' value={item.firstInput} onChange={(e) => handleChange(e,index)}/>
+					<input type="text" name='secondInput' value={item.secondInput} onChange={(e) => handleChange(e,index)} />
+					<button onClick={() => remove(index)}>Remove</button>
+				</div>
+			))}
+			<button onClick={add}>Add</button>
+		</div>		
+	);
+}
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 import React, { useState, Fragment } from "react";
 import ReactDOM from "react-dom";
 
