@@ -20,3 +20,27 @@ yarn add typescript @types/node @types/react @types/react-dom @types/jest
 
 obs: Na pasta src dos arquivos deixar somente App.tsx e index.tsx
 
+------------------------------------------------------------------------------------------------
+
+React router dom:
+yarn add react-router-dom
+
+types: 
+yarn add @types/react-router-dom
+
+-----------------------------------------------------
+
+Axios:
+yarn add axios
+
+types:
+yarn add @types/axios
+
+-----------------------------------------------------
+
+styled components:
+yarn add styled-components
+
+types:
+yarn add @types/styled-components
+
