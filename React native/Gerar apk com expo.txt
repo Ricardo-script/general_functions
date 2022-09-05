@@ -1,0 +1,32 @@
+Documentação do expo: https://docs.expo.io/
+
+expo apk generator: https://docs.expo.io/distribution/building-standalone-apps/
+------------------------------------------------------------------------------------------
+
+Para gerar um apk para android, copiar essa parte para app.json: 
+
+	"android": {
+          "package": "com.yourcompany.yourappname",
+          "versionCode": 1
+         }
+
+no meu exemplo ficou assim:
+"android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.ricardoscript.meuApp"
+    },
+
+------------------------------------------------------------------------------------------
+Iniciar construção:
+
+expo build:android
+ou    
+expo build:ios
+------------------------------------------------------------------------------------------
+Se você escolher construir para Android:
+Ao construir para Android, você pode escolher construir APK 
+( expo build:android -t apk) ou Android App Bundle ( expo build:android -t app-bundle).
+

@@ -1,0 +1,85 @@
+Criar um novo projeto React-native:
+
+react-native init newapp
+
+Rodar:
+
+react-native run-android
+
+ 
+[
+   npx react-native init [+ o nome do projeto]
+   react-native init NewProject
+   Se você quiser iniciar um novo projeto com uma versão específica do React Native,
+   você pode usar o argumento –version:
+   react-native init MeuProjeto --version X.XX.X
+   react-native init MeuProjeto --version react-native@next
+   
+   Comando pra rodar o projeto:
+
+   npx react-native run-android
+
+   *Antes de rodar o projeto o emulador deve estar aberto e funcionando
+
+]
+
+=================================================================================================================
+
+Utilizando o Expo:
+----------------------------------------------------------------------
+Comando para instalar globalmente expo:
+
+npm install -g expo-cli
+yarn global add expo-cli
+
+----------------------------------------------------------------------
+Criar novo projeto com expo:
+
+expo init meuApp
+
+após escolher o template, por exemplo o blank em branco)
+
+abir pasta do projeto: cd [nome projeto]
+abrir no vscode: code . [code espaço ponto]
+
+----------------------------------------------------------------------
+Rodar projeto com Expo:
+
+yarn start
+
+----------------------------------------------------------------------
+Instalar picker:
+
+npm install @react-native-community/picker --save
+yarn add @react-native-community/picker
+
+com Expo: expo install @react-native-community/picker
+
+----------------------------------------------------------------------
+Instalar Slider:
+
+npm install@react-native-community/slider --save
+importar: import Slider from '@react-native-community/slider';
+
+com Expo: expo install @react-native-community/slider
+
+----------------------------------------------------------------------
+Instalar axios com expo:
+
+expo install axios
+
+----------------------------------------------------------------------
+Instalar pacotes de navegação:
+
+Instalação com Expo:
+	
+1- passo: expo install @react-navigation/native
+2- Passo: expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+3- Passo ( Instalar o tipo de navegação) : O primeiro que instalamos na aula é: expo install @react-navigation/stack
+
+As Tabs são instaladas a parte tbm: npm install @react-navigation/bottom-tabs
+
+----------------------------------------------------------------------
+
+
+
