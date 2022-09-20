@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criptografia</title>
+</head>
+
+<body>
+    <script>
+        function encryption() {
+            var inputString = document.getElementById("input")
+                .value;
+            var outputString = document.getElementById("enc");
+            var asciiArr = new Array();
+            var atozArr = new Array();
+            var encryptedString = new Array();
+            if (inputString.length != 0) {
+                outputString.innerHTML = "";
+                //Primeiro Passo: Converta todos os caracteres em código ASCII    
+                for (i = 0; i < inputString.length; i++) {
+                    asciiArr[i] = inputString[i].charCodeAt(0);
+                }
+                //Segundo Passo: Preencha o array AtoZ em letras maiúsculas ou minúsculas  
+                for (i = 0, code = 65; i < 26; i++, code++) {
+                    atozArr[i] = String.fromCharCode(code);
+                }
+                //Third Step: Choose random single character index from A to Z      
+                position = randomIndexFromInterval(0, atozArr.length - 1);
+                positionAscii = atozArr[position].charCodeAt(0);
+               //Terceira Etapa: Escolha um índice de caractere único aleatório de A a Z
+                for (i = 0; i < inputString.length; i++) {
+                    encryptedString[i] = parseInt(asciiArr[i]) + parseInt(atozArr[position].charCodeAt(0));
+                }
+                //Quinta Etapa: Anexar a chave à string criptografada     
+                encryptedString[asciiArr.length] = positionAscii;
+                //Sexta etapa: Finalmente sua criptografia está pronta para enviar     
+                for (i = 0; i < encryptedString.length; i++) {
+                    outputString.innerHTML = outputString.innerHTML + String.fromCharCode(encryptedString[i]);
+                }
+                document.getElementById("inputBox")
+                    .value = outputString.innerHTML;
+            }
+            else {
+                document.getElementById("enc")
+                    .innerHTML = "Error: Value can not be empty.";
+                return false;
+            }
+        }
+
+        function decryption() {
+            var inputBox = document.getElementById("inputBox");
+            var plainText = document.getElementById("dec");
+            if (inputBox.value != 0) {
+                var encryptedString = inputBox.value;
+                var key = encryptedString[encryptedString.length - 1];
+                var decryptedString = new Array();
+                for (i = 0; i < encryptedString.length - 1; i++) {
+                    decryptedString[i] = encryptedString[i].charCodeAt(0) - key.charCodeAt(0);
+                }
+                plainText.innerHTML = "";
+                for (i = 0; i < decryptedString.length; i++) {
+                    plainText.innerHTML = plainText.innerHTML + String.fromCharCode(decryptedString[i]);
+                }
+            }
+            else {
+                document.getElementById("dec")
+                    .innerHTML = "Error: Value can not be empty.";
+                return false;
+            }
+        }
+
+        function randomIndexFromInterval(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }   
+    </script>
+
+    <div>
+        <span>Encriptografar</span>
+        <input type="text" id="input">
+        <button onclick="encryption()">Criptografar</button>
+        <span id="enc"></span>
+    </div>
+    <br>
+    <br>
+    <div>
+        <span>Descriptografar</span>
+        <input type="text" id="inputBox">
+        <button onclick="decryption()">Criptografar</button>
+        <span id="dec"></span>
+    </div>
+
+</body>
+
+</html>

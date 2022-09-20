@@ -24,7 +24,7 @@ export const multerConfig = {
         if (error) {
           callback(error, file.filename)
         }
-        const filename = `${hash.toString('hex')}.png` // transforma o nome do arquivo em hexadecimal contendo letras e numeros
+        const filename = `${hash.toString('hex')}.png` // transforma o nome do arquivo em hexadecimal contendo letras e numeros // -> const filename = `${hash.toString('hex')}-${file.originalname}`
         callback(null, filename)
       })
     }
@@ -40,7 +40,7 @@ export const multerConfig = {
     ];
 
     if (formats.includes(file.mimetype)) { 
-      callback(null, true) // caso o arquivo selecionado esteja dentre os formatos definidos então retorna um callback de sucesso
+      callback(null, true) // caso o arquivo selecionado esteja dentre os formatos definidos então retorna um callback de sucesso // null o 1º parametro é sempre a resposta de erro, 2º parametro é o true qnd for sucesso
     }  else {
       callback(new Error('Format not accepted')) // se algum arquivo não for conforme os formatos definidos então retorna erro
     }
@@ -66,8 +66,8 @@ routes.get('/', (request: Request, response: Response) => {
 })
 
 routes.post('/upload', multer(multerConfig).single('file'), (request: Request, response: Response) => { // multer recebe como parametro as suas configurações, que esta em config/multer.ts
-																										// single é para upload de um unico arquivo, recebe como parametro o nome do campo ('file') que ira conter o arquivo
-    console.log(request.file)
+																										// single é para upload de um unico arquivo, recebe como parametro o nome do campo client ('file') que ira conter o arquivo
+    console.log(request.file)// request.file é onde o multer joga os dados do arquivo, é daqui que tira os dados para salvar no banco de dados
     
     return response.json({ message: 'Imagem enviada' })
 })
