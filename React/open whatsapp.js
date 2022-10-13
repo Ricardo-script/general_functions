@@ -17,8 +17,10 @@ export default function App() {
     );
 }
 
-/* 
+/* -----------------------------------------------------------------------------------*/
 whatsapp mobile
+
+
 function sendWA() {
     var tekst = document.getElementById("txtVoorbeeldtekst").value;
     var uriWA = "https://api.whatsapp.com/send?text=".concat(

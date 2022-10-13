@@ -21,3 +21,17 @@ var num3 = [7, 8, 9];
 // creates array [1, 2, 3, 4, 5, 6, 7, 8, 9]; num1, num2, num3 are unchanged
 var nums = num1.concat(num2, num3);
 
+//------------------------------------------------------------------------------
+//juntar dois arrays
+
+const arr1 = ["Cecilie", "Lone"];
+const arr2 = ["Emil", "Tobias", "Linus"];
+const children = arr1.concat(arr2);
+
+//juntar tres arrays:
+
+const arr1 = ["Cecilie", "Lone"];
+const arr2 = ["Emil", "Tobias", "Linus"];
+const arr3 = ["Robin"];
+const children = arr1.concat(arr2, arr3);
+

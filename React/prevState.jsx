@@ -9,3 +9,13 @@ const updateUser = () => {
 		return { ...prevState, name: "Julia"};
 	});
 }
+//--------------------------------------------------------------------
+// com Array:
+
+const [user, setUser] = useState([{ nome: 'teste', idade: ''}]);
+
+const update = () => {
+	setUser((prevState) => {
+	   return [{ ...prevState, nome: 'Ricardo'}]
+	});
+}
