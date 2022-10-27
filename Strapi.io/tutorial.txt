@@ -1,0 +1,205 @@
+Criação de um projeto Strapi
+
+1. Criar novo projeto:
+npm:
+npx create-strapi-app@latest my-project --quickstart
+
+yarn:
+yarn create strapi-app my-project --quickstart
+ou yarn create strapi-app (mysql ou postgress)
+ 
+-------------------------------------
+2. Running Strapi
+
+npm:
+npm run develop
+
+yarn
+yarn develop
+
+-----------------------------------------
+pagina: https://strapi.io/
+
+
+
+//------------------------------------------------------------------------//
+Filtros
+Ao usar filtros, você pode passar filtros simples na raiz dos parâmetros de consulta ou passá-los em um _whereparâmetro.
+
+Filtros são usados ​​como sufixo de um nome de campo:
+
+Filtro	Descrição
+Sem sufixo ou eq	Igual
+
+ne	Não igual
+lt	Menor que
+gt	Maior que
+lte	Menos que ou igual a
+gte	Melhor que ou igual a
+in	Incluído em uma matriz
+nin	Não incluído em uma matriz
+contains	Contém
+ncontains	Não contém
+containss	Contém, diferencia maiúsculas de minúsculas
+ncontainss	Não contém, diferencia maiúsculas de minúsculas
+null	É nulo ou não é nulo
+#Exemplos
+
+
+exemplo básico: rota: http://localhost:1337/products :
+
+[
+    {
+        "id": 3,
+        "alternative_id": "001",
+        "description": "teste",
+        "measure_unit_id": "1",
+        "sale_value": "1",
+    }
+]
+
+no objeto acima, para acessar usa-se ' ? ' --> products?alternative_id=001
+
+
+entre datas : pedidos?created_at_gte=${dataInicial}&created_at_lte=${dataFinal} 
+é igual a :   pedidos?descricao_eq=${descricao}
+
+
+
+//-----------------------------------------------------------------------//
+
+
+
+----------------------------------------------------------------------------
+1. Instale o Strapi e crie um novo projeto:
+
+yarn create strapi-app my-project --quickstart
+
+ou
+
+npx create-strapi-app my-project --quickstart
+
+---------------------------------------------------------------------------
+
+2. Crie um usuário administrador
+
+iniciar o projeto: 
+
+yarn develop 
+
+ou 
+
+npm run develop
+
+DICA
+
+Se você criou seu aplicativo usando --quickstartflag, ele executará 
+automaticamente o seu aplicativo.
+
+Navegue para http: // localhost: 1337 / admin (abre uma nova janela).
+
+Preencha o formulário para criar o primeiro usuário Administrador 
+
+--------------------------------------------------------------------------------------------
+3. Create a Restaurant Content Type
+Navigate to PLUGINS - Content Type Builder (opens new window), in the left-hand menu.
+
+Click the "+ Create new collection type" link
+Enter restaurant, and click Continue
+Click the "+ Add another Field" button
+Click the Text field
+Type name in the Name field
+Click over to the ADVANCED SETTINGS tab, and check the Required field and the Unique field
+Click the "+ Add another Field" button
+Click the Rich Text field
+Type description under the BASE SETTINGS tab, in the Name field
+Click Finish
+Click the Save button and wait for Strapi to restart
+----------------------------------------------------------------------------------------------
+#4. Create a Category Content type
+Navigate back to PLUGINS - Content Type Builder (opens new window), in the left-hand menu.
+
+Click the "+ Create new collection type" link
+Enter category, and click Continue
+Click the "+ Add another Field" button
+Click the Text field
+Type name under the BASE SETTINGS tab, in the Name field
+Click over to the ADVANCED SETTINGS tab, and check the Required field and the Unique field
+Click the "+ Add another field" button
+Click the Relation field
+On the right side, click the Category dropdown and select, Restaurant
+In the center, select the icon that represents many-to-many. The text should read, Categories 
+has and belongs to many Restaurants
+Click Finish
+Click the Save button and wait for Strapi to restart
+-----------------------------------------------------------------------------------------------
+#5. Add content to "Restaurant" Content Type
+Navigate to COLLECTION TYPES - Restaurants (opens new window), in the left-hand menu.
+
+Click on + Add New Restaurant button. Type Biscotte Restaurant in the Restaurant field. 
+Type Welcome to Biscotte restaurant! Restaurant Biscotte offers a cuisine based on fresh,
+quality products, often local, organic when possible, and always produced by passionate producers. 
+into the Description field.
+Click Save.
+You will see your restaurant listed in the entries.
+
+-------------------------------------------------------------------------------------------------
+#6. Add categories to the "Category" Content Type
+Navegue até COLLECTION TYPES - Categories (abre uma nova janela).
+
+Clique no botão + Adicionar nova categoria . Digite French Foodno campo Categoria . Selecione 
+Biscotte Restaurant, à direita em Restaurante (0) .
+Clique em Salvar .
+Você verá a categoria de comida francesa listada nas entradas.
+
+Clique no botão + Adicionar nova categoria . Digite Brunchno campo Categoria . 
+NÃO ADICIONE AQUI a Biscotte Restaurant.
+Clique em Salvar .
+Você verá a categoria Brunch listada nas entradas.
+
+Navegue de volta para TIPOS DE COLEÇÃO - Restaurantes (abre uma nova janela).
+
+Clique em Biscotte Restaurant.
+À direita, sob Categorias (1) , selecto Add an item...e adicionar Brunch como uma categoria 
+para este restaurante, e clique no Salvar botão.
+Agora você viu duas maneiras diferentes de usar o tipo de campo de relação para adicionar e 
+conectar relações entre Tipos de Conteúdo.
+
+---------------------------------------------------------------------------------------------------
+
+#7. Definir funções e permissões
+Navegue até CONFIGURAÇÕES - Funções do usuário (abre uma nova janela).
+
+Clique na função pública .
+Role para baixo em Permissões , abra a guia Aplicativo e encontre Restaurante . Clique na caixa 
+de seleção ao lado para encontrar e encontrar um .
+Repita e encontre a categoria . Clique na caixa de seleção ao lado para encontrar e encontrar um .
+Clique em Salvar .
+
+---------------------------------------------------------------------------------------------------
+#8. Publique o conteúdo
+Por padrão, qualquer conteúdo que você cria é salvo como um rascunho. Para publicar seu conteúdo:
+
+Navegue de volta para TIPOS DE COLEÇÃO - Categorias(abre uma nova janela)
+
+Clique no botão Rascunho na categoria Brunch .
+Clique no botão Publicar .
+Na caixa de diálogo Confirme , clique em Sim, botão publicar .
+Repita para a categoria de comida francesa e o Restaurante Biscotte .
+
+-----------------------------------------------------------------------------------------------------
+#9. Consuma a API do Tipo de Conteúdo
+Aqui estamos! A lista de restaurantes está acessível emhttp://localhost:1337/restaurants (abre uma nova janela).
+
+PARABÉNS
+
+👏 Parabéns, agora você concluiu o Início rápido do Strapi . Para onde ir a seguir?
+
+Consuma sua API com seus frameworks favoritos, linguagens de programação front-end ou back-end logo abaixo.
+Aprenda a usar Strapi com React ( Gatsby (abre uma nova janela)ou Next.js (abre uma nova janela)) ou Vue.js ( Nuxt.js (abre uma nova janela))
+Leia os conceitos e faça o tutorial para se aprofundar no Strapi.
+Obtenha ajuda em nosso fórum da comunidade (abre uma nova janela).
+Leia o código fonte (abre uma nova janela), contribuir (abre uma nova janela)ou dê uma estrela (abre uma nova janela)no GitHub.
+Siga-nos no Twitter (abre uma nova janela)para obter as últimas notícias.
+Junte-se à vibrante e ativa comunidade Strapi (abre uma nova janela)no Slack.
+
