@@ -4,6 +4,13 @@ yarn add sequelize
 // instalar drive postgres
 yarn add pg
 yarn add pg-hstore
+
+// ou com MySQL
+//instalar drive MySQL
+
+yarn add mysql2
+
+
 //------------------------------------------------------------------------------------------------------------------
 //Configurar o .env:
 DATABASE_HOST='localhost'
@@ -19,7 +26,7 @@ export const db = new Sequelize(     //usar as configurações do .env
     process.env.DATABASE_NAME,
     process.env.DATABASE_USER,
     process.env.DATABASE_PASS,{      //nesse ponto passar algumas opções
-        dialect:'postgres',
+        dialect:'postgres',			 // ou mysql
         host: process.env.DATABASE_HOST,
         port: +process.env.DATABASE_PORT // o sinal de + foi inserido pois a porta deve ser do tipo int
     }
@@ -52,6 +59,8 @@ export const UserModel = db.define('user', { // dizer qual é a tabela no banco 
         type: DataTypes.INTEGER,
     },
 });  
+
+//types = <any>db.define('user', {'
 
 //------------------------------------------------------------------------------------------------------------------
 //Criar as rotas
@@ -156,7 +165,7 @@ async create(req:Request , res:Response){
 }
 
 //FINDONE 
-async findOne(req:Request , res:Response){
+async findOne(req:Request , res:Response){ // a função assincrona aqui no exemplo nomeada com findone pode receber qualquer nome
 	const { userId } = req.params; // userId é o parametro enviado pela url
 	const user = await UserModel.findOne({
 		where:{
