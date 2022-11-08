@@ -35,3 +35,12 @@ model ProductCategory {
 
     @@map("products_categories")
 }
+
+model Users {
+    id       String @id @default(uuid())
+    email    String
+    password String
+    foto     String
+
+    @@map("users")
+}
