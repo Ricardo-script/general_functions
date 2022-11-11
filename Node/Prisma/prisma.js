@@ -351,7 +351,7 @@ model MovieRent {
 
 //Crud
 
-export class CreateProductController {
+class CreateProductController {
 	
 	//post
     async handle(request: Request, response: Response) {
@@ -374,14 +374,14 @@ export class CreateProductController {
     }
 }
 
+export default new CreateProductController();
+
 //routes:
 
 import { Router } from "express";
 import { CreateProductController } from "./controllers/CreateProductController";
 
 const router = Router();
-
-const createProduct = new CreateProductController();
 
 router.post('/product', createProduct.handle);
 router.get('/list', createProduct.getList);
