@@ -1,3 +1,10 @@
+/*
+useMemo => memoriza um valor
+useCallback => memoriza uma função
+memo => memoriza um componente (qual é o componente que esta renderizando de forma desnecessária? ) -> export default memo(nomeComponente)
+
+*/
+
 import React, { useState, useMemo } from 'react';
 
 export default function App(){

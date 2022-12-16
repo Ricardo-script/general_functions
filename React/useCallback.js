@@ -1,4 +1,8 @@
 /* 
+	useMemo => memoriza um valor
+	useCallback => memoriza uma função
+	memo => memoriza um componente (qual é o componente que esta renderizando de forma desnecessária? ) -> export default memo(nomeComponente)
+
 	UseCallback - memoriza a declaração de uma função
 	e só altera a mesma se for necessário
 */
