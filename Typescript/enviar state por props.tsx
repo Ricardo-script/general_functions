@@ -22,6 +22,7 @@ export default function App(){
 interface NumProps{
     numero: number;
     setNumero: (e: number) => void;
+ // setStatus: (newState: boolean) => void;	
 }
 
 export default function Numeros({numero, setNumero}: NumProps){
