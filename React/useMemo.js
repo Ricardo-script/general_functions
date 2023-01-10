@@ -3,6 +3,11 @@ useMemo => memoriza um valor
 useCallback => memoriza uma função
 memo => memoriza um componente (qual é o componente que esta renderizando de forma desnecessária? ) -> export default memo(nomeComponente)
 
+// UseCallback não executa a função novamente
+// UseMemo executa a função e memoriza o return da função
+useCallback(funcao, [dependencias]); //-- memoriza somente a função
+useMemo(() => funcao, [dependencias]); //-- executa a função e memoriza o retorno
+
 */
 
 import React, { useState, useMemo } from 'react';

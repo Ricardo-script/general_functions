@@ -5,6 +5,13 @@
 
 	UseCallback - memoriza a declaração de uma função
 	e só altera a mesma se for necessário
+	
+	
+	// UseCallback não executa a função novamente
+	// UseMemo executa a função e memoriza o return da função
+
+	useCallback(funcao, [dependencias]); //-- memoriza somente a função
+	useMemo(() => funcao, [dependencias]); //-- executa a função e memoriza o retorno
 */
 // Exemplo a função abaixo:
 

@@ -1,4 +1,13 @@
-	
+//Ordenar strings:
+
+const lista = ['laranja', 'melão', 'abacaxi', 'uva', 'banaca', 'mexirica', 'caju'];
+function ordenacao() {
+	const listaOrder = lista.sort((itemA, itemB) => itemA > itemB ? 1 : -1);
+	console.log(listaOrder);
+}
+
+//saída:  [abacaxi', 'banaca', 'caju', 'laranja', 'melão', 'mexirica', 'uva']
+//------------------------------------------------------------------------------------------------------------------------------------------------------
 /* 
 	A função passada para sort recebe dois parâmetros que representam pares de elementos, isso porque toda comparação envolve um par de elementos. 
 	A regra é a seguinte: com o critério selecionado, se o valor retornado for 0 não há alteração a ser feita, se o valor retornado for positivo, 
@@ -87,5 +96,30 @@ const callReqCadastro = async () => { //listar numero de bobinas cadastradas
 		console.log('Erro ao carregar numero de bobinas');
 	})
 }
+
+// ordem crescente com .map
+
+const falhas = [//todas as mensagens de falhas que podem ser enviadas do controlador
+	{
+		value: 'Normal',
+		label: 'Normal',
+	},
+	{
+		value: 'Apagado',
+		label: 'Apagado',
+	},
+	{
+		value: 'Manutenção',
+		label: 'Manutenção',
+	},
+];
+
+{
+	falhas.sort((falhaA, falhaB) => falhaA.value > falhaB.value ? 1 : -1).map((itens) => (
+	<MenuItem key={itens.value} value={itens.value}>
+		<Checkbox checked={valorName.indexOf(itens.value) > -1} />
+		<ListItemText primary={itens.value} />
+	</MenuItem>
+))}
 	
 	
