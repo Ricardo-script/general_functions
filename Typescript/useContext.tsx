@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react";
-import { Dispatch, SetStateAction } from "react"; //para o uso de setState
 
 export type ContextTypes = {
     openMenu?: boolean;
@@ -9,7 +8,6 @@ export type ContextTypes = {
     openUsuario?: boolean;
     setOpenUsuario: (newState: boolean) => void;
 }
-
 
 export const GlobalState = createContext({} as ContextTypes); // {} as ContextProps ou as any é o modo para mascarar o objeto se ele estiver vazio
 
