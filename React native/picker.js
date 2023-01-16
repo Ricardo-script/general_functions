@@ -1,5 +1,5 @@
 // intalar picker: expo install @react-native-picker/picker
-// import {Picker} from '@react-native-picker/picker';
+// import {Picker} from '@react-native-picker/picker'
 
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
@@ -9,7 +9,7 @@ import {Picker} from '@react-native-picker/picker';
 export default class App extends Component{
     
     state = {
-        // escolaridade:''s
+        // escolaridade:'' 
     }
 
     render(){

@@ -1,3 +1,3 @@
-import { useRef } from 'react'
+import { useRef } from 'react';
 
 const ref = useRef<HTMLInputElement>(null);
