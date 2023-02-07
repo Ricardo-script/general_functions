@@ -1,0 +1,8 @@
+.accordion-content{
+  transition: max-height 1s;
+  overflow: hidden;
+  max-height: 0;
+}
+
+.accordion-content.active{
+  max-height: 300px;

@@ -16,7 +16,7 @@ export default function GetFormData() {
         const password = form.current.password.value;
 
         setFormInfo({ name, email, password })
-        e.target.reset()
+        e.target.reset() // reseta os valores dos campos
     }
 
     console.log(formInfo)

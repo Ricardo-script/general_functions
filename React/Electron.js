@@ -4,45 +4,8 @@
  - 2. yarn add cross-env electron-is-dev                                 //ou// npm install --save cross-env electron-is-dev
  - 3. yarn add --dev concurrently electron electron-builder wait-on     //ou// npm install concurrently electron electron-builder wait-on
  */
-
-//criar um arquivo “ electron.js ” dentro da pasta Public do diretório do seu projeto e cole o código abaixo dentro dele:
  
-const electron = require("electron");
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
-const path = require("path");
-const isDev = require("electron-is-dev");
-
-let mainWindow;
-
-function createWindow() {
-    mainWindow = new BrowserWindow({ width: 900, height: 680 });
-    mainWindow.loadURL(
-    isDev
-        ? "http://localhost:3000"
-        : `file://${path.join(__dirname, "../build/index.html")}`
-    );
-    mainWindow.on("closed", () => (mainWindow = null));
-    mainWindow.setMenuBarVisibility(false);//ocultar menu padrão
-    mainWindow.maximize();//abrir maximizado
-}
-
-app.on("ready", createWindow);
-
-app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") {
-        app.quit();
-    }
-});
-
-app.on("activate", () => {
-    if (mainWindow === null) {
-        createWindow();
-    }
-});
-//--------------------------------------------------------------------------------------------------------------------------
-
-
+ 
 /*mudanças em  arquivo package.json.
 Adicione as informações abaixo em seu arquivo package.json:*/
 
@@ -69,6 +32,39 @@ Adicione as informações abaixo em seu arquivo package.json:*/
 
 //---------------------------------------------------------------------------------------------------------------------------
 
+//criar um arquivo “ electron.js ” dentro da pasta Public do diretório do seu projeto e cole o código abaixo dentro dele:
+ 
+const { app, BrowserWindow } = require("electron");
+const path = require("path");
+const isDev = require("electron-is-dev");
+
+let mainWindow;
+
+function createWindow() {
+    mainWindow = new BrowserWindow({ width: 900, height: 680 });
+    mainWindow.loadURL(
+        isDev
+            ? "http://localhost:3000"
+            : `file://${path.join(__dirname, "../build/index.html")}`
+    );
+    mainWindow.setMenuBarVisibility(false);//ocultar menu padrão
+    mainWindow.maximize();//abrir maximizado
+}
+
+app.whenReady().then(() => {
+    createWindow();
+
+    app.on("active", () => {
+        if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    });
+});
+
+app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") app.quit();
+});
+
+//--------------------------------------------------------------------------------------------------------------------------
+
 /*yarn start
 or
 npm run start*/
@@ -85,22 +81,35 @@ Navegue dentro dessa pasta e você encontrará o arquivo do instalador do seu ap
 
 //---------------------------------------------------------------------------------------------------------------------------
 
-
 //***********************************IMPORTANTE
 //Em rotas, BrowserRouter não funciona, trocar por HashRouter:
 //BrowserRouter destina-se a ambientes baseados em solicitação, ao passo que HashRouterse destina a ambientes baseados em arquivo.
 
-import {
-  HashRouter,
-  Route
-} from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import Home from "./Home";
 
- <HashRouter>
-	<Switch>
-		<Route exact path="/" component={Home} />
-		<Route path="/Cadastro" component={Cadastro} />
-	</Switch>
-</HashRouter>
+const MainNavigation = () => {
+    return (
+        <HashRouter>
+            <Routes>
+                <Route path='/' element={<Home />} />
+            </Routes>
+        </HashRouter>
+    );
+}
+
+export default MainNavigation;
+
+//-----------------------------------------------------------------
+
+//App.jsx
+import MainNavigation from "./routes";
+
+const App = () => <MainNavigation />
+
+export default App;
+
+//-----------------------------------------------------------------
 
 //exemplos de link:
 
@@ -119,27 +128,6 @@ export default function Home(){
 
 
 //---------------------------------------------------------------------------------------------------------------------------
-
-
-//mainWindow.setMenuBarVisibility(false) //ocultar menu
-
-// código basico:
-const { app, BrowserWindow } = require('electron');
-
-function createWindow() {
-
-    const win = new BrowserWindow({ width: 800, height: 600 });
-    win.loadURL('http://localhost:3000');
-}
-
-app.on('ready', createWindow);
-
-/* No arquivo package.json:
- - inserir no objeto scripts => "electron": "electron .",
- - o arquivo será executado como: yarn start em um cmd e yarn electron em outro cmd
- */
-
-//-----------------------------------------------------------------------------------------------------------------------------
 
 //trocar icone da barra:
 
@@ -165,3 +153,26 @@ app.on('ready', createWindow);
     "buildResources": "public" <---------- folder where placed icons
   }
 },
+
+
+
+//------------------------------------------------------------------------------------------------------------------
+//mainWindow.setMenuBarVisibility(false) //ocultar menu
+
+// código basico:
+const { app, BrowserWindow } = require('electron');
+
+function createWindow() {
+
+    const win = new BrowserWindow({ width: 800, height: 600 });
+    win.loadURL('http://localhost:3000');
+}
+
+app.on('ready', createWindow);
+
+/* No arquivo package.json:
+ - inserir no objeto scripts => "electron": "electron .",
+ - o arquivo será executado como: yarn start em um cmd e yarn electron em outro cmd
+ */
+
+//-----------------------------------------------------------------------------------------------------------------------------

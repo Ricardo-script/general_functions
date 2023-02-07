@@ -17,7 +17,7 @@ npm i typescript -D
 //criar o setup - config.json
 npx tsc --init
 
-//no arquivo, trocar o target para "target": es2020,
+//no arquivo, trocar o target para "target": es2020, o node ja suporta 2020
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 // instalar a tsx que automatiza o processo de compilação do código

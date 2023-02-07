@@ -48,6 +48,16 @@ export const isAuthenticated = () => {
 };
 
 //-------------------------------------------------------------------------------------------------------------------------
+//App.tsx
+
+import Navigation from './routes';
+
+const App = () => <Navigation />
+
+export default App;
+
+
+//-------------------------------------------------------------------------------------------------------------------------------
 
 //Navigation:
 
@@ -71,8 +81,12 @@ function Home() {
 
 //USENAVIGATE:
 
+import { useNavigate } from 'react-router-dom';
+
 function Redirect() {
+	
 	let navigate = useNavigate();
+	
 	function handleClick() {
 		navigate('/home')
 	}
