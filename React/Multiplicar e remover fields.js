@@ -174,27 +174,32 @@ ReactDOM.render(<App />, rootElement);
 //fonte: https://www.codeisbae.com/dynamic-form-fields-in-react/
 
 
-//No caso de usar um select deve-se iserir o value no select e no option, select recebendo o value declarado no map com o state dos campos criados inputFields e o option com o valor de seu map com o seu state que será inserido em tela
+//No caso de usar um select deve-se iserir algum tipo de referencia (um value se os valores forem do mesmo state, ou então um id, classe, para referenciar ) 
+//no select e values no options, select recebendo o value declarado no map com o state dos campos criados inputFields e o option com o valor de seu map com o 
+//seu state que será inserido em tela
 /* 
 
-	const [inputFields, setInputFields] = useState([
-    { rota: nameRoute, id_cruzamento: '', grupo: '' }
-  ]);  
+	{
+		dominios.length !== 0 ?
+			<AreaMultiplyFields>
+				{dominios.map((item, index) => (
+					<div className='fields' key={index}>
+						<label htmlFor="">Dominios:</label>
+						<div className='areaInputs'>
+							<select name='licenca' id={item + index} onClick={() => HandlelistTownhall()}> // referenciando o select com o id
+								<option value={item}>{item}</option>
+								{listTownhall.sort((itemA, itemB) => itemA > itemB ? 1 : -1).map((townhalls) => (
+									<option value={townhalls} key={townhalls}>{townhalls}</option>
+								))}
+							</select>
 
- {inputFields.map((inputField, index) => {
-                  return ( ...
-	<select name="id_cruzamento"
-		value={inputField.id_cruzamento} onChange={event => handleInputChange(index, event)} 
-	>
-		<option value="">Selecione um Id...</option>
-		{dataControlers.map((items) => {
-		  return(
-			<option key={items.id_cruzamento} value={items.id_cruzamento}>
-				{items.id_cruzamento}
-			</option>
-		  );
-		})}
-	</select>
+							<div className='btnRemove' onClick={(e) => handleDeleteLicenca(e, index)}><IconRemove /></div>
+						</div>
+					</div>
+				))}
+			</AreaMultiplyFields>
+		: null
+	}
 */
 
 /* exemplo de handleInputChange com varios inputs:

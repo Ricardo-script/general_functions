@@ -1,6 +1,11 @@
 Criar novo app:
 
 npx create-next-app
+ou
+yarn create next-app
+
+typescript:
+yarn create next-app --typescript--
 
 CMD pergunta qual nome da pasta: What is your project named? ... my-app
 
