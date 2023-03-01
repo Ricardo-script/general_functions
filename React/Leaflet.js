@@ -39,6 +39,11 @@
 		width: 100vw;
 		height: 100vh;
 	}
+	
+	ou então importar os estilos: 
+	import 'leaflet/dist/leaflet.css';
+	
+	
 */
 
 
