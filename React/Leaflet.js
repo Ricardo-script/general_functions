@@ -40,28 +40,35 @@
 		height: 100vh;
 	}
 	
-	ou então importar os estilos: 
+	importar os estilos: 
 	import 'leaflet/dist/leaflet.css';
 	
 	
 */
 
 
-import { MapContainer, TileLayer, Marker, Popup  } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
 
-export default function App() {
-	return (
-		<MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
-			<TileLayer
-				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-			/>
-			<Marker position={[51.505, -0.09]}>
-				<Popup>
-					A pretty CSS3 popup. <br /> Easily customizable.
-				</Popup>
-			</Marker>
-		</MapContainer>
-	);
+export default function Leaflet() {
+    return (
+        <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} zoomControl={false}>
+            <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <ZoomControl position='bottomright' />
+            <Marker position={[51.505, -0.09]}>
+                <Popup>
+                    A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+            </Marker>
+        </MapContainer>
+    );
 }
+
+//Inserir emoji no Zoomcontrol
+
+<ZoomControl position="bottomright" zoomInText="🧐" zoomOutText="🗺️" />
+
 

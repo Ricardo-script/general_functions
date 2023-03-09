@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .relative-wrap {
+        /*relative no segundo pai*/
+        position: relative;
+    }
+
+    .overflow-wrap {
+        height: 250px;
+        width: 250px;
+        overflow: hidden;
+        background: lightblue;
+
+        /*sem relative no pai imediato*/
+    }
+
+    .respect-overflow {
+        position: relative;
+        top: 75px;
+        left: 225px;
+        height: 50px;
+        width: 50px;
+        background: green;
+    }
+
+    .norespect-overflow {
+        position: absolute;
+        top: 150px;
+        left: 225px;
+        height: 50px;
+        width: 50px;
+        background: red;
+    }
+</style>
+
+<body>
+    <div class="relative-wrap">
+
+        <div class="overflow-wrap">
+            <div class="respect-overflow"></div>
+            <div class="norespect-overflow"></div>
+        </div>
+
+    </div>
+</body>
+
+</html>

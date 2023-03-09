@@ -47,16 +47,17 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 //src/components/Leaflet
 
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css';
+import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
 
 export default function Leaflet() {
     return (
-        <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+        <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} zoomControl={false}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            <ZoomControl position='bottomright' />
             <Marker position={[51.505, -0.09]}>
                 <Popup>
                     A pretty CSS3 popup. <br /> Easily customizable.
@@ -65,6 +66,9 @@ export default function Leaflet() {
         </MapContainer>
     );
 }
+
+// Inserir emoji no ZoomControl
+<ZoomControl position="bottomright" zoomInText="🧐" zoomOutText="🗺️" />
 
 //---------------------------------------------------------------------------------------------------------------------------------
 /* 
