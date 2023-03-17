@@ -1,5 +1,11 @@
- import voz from '../../assets/apresentacao.mp3';
- import mic from '../../assets/mic.png';
+
+const audio = new Audio('meu_audio.mp3');
+audio.play();
+
+//-----------------------------------------------------------------------
+
+import voz from '../../assets/apresentacao.mp3';
+import mic from '../../assets/mic.png';
 
 class Ouvidoria extends Component{
   constructor(props){

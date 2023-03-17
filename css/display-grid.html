@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .areagrade {
+        width: 154px;
+        height: 251px;
+        display: flex;
+        gap: 11px;
+    }
+
+    .dias-semana {
+        display: grid;
+        align-items: center;
+        gap: 7px;
+    }
+
+    .grade {
+        width: 100%;
+        display: grid;
+        grid-template-rows: repeat(7, minmax(0, 1fr));
+        grid-auto-flow: column;
+        gap: 7px;
+    }
+
+    .quadro {
+        width: 25px;
+        height: 25px;
+        background: #272525;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="areagrade">
+            <div class="dias-semana">
+                <div>D</div>
+                <div>S</div>
+                <div>T</div>
+                <div>Q</div>
+                <div>Q</div>
+                <div>S</div>
+                <div>S</div>
+            </div>
+            <div class="grade">
+                <div class="quadro">1</div>
+                <div class="quadro">2</div>
+                <div class="quadro">3</div>
+                <div class="quadro">4</div>
+                <div class="quadro">5</div>
+                <div class="quadro">6</div>
+                <div class="quadro">7</div>
+                <div class="quadro">8</div>
+                <div class="quadro">9</div>
+                <div class="quadro">10</div>
+                <div class="quadro">11</div>
+                <div class="quadro">12</div>
+                <div class="quadro">13</div>
+                <div class="quadro">14</div>
+                <div class="quadro">15</div>
+                <div class="quadro">16</div>
+                <div class="quadro">17</div>
+                <div class="quadro">18</div>
+                <div class="quadro">19</div>
+                <div class="quadro">20</div>
+                <div class="quadro">21</div>
+                <div class="quadro">22</div>
+                <div class="quadro">23</div>
+                <div class="quadro">24</div>
+                <div class="quadro">25</div>
+                <div class="quadro">26</div>
+                <div class="quadro">27</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
