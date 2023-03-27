@@ -15,7 +15,8 @@ export async function getStaticProps() {
     const todos: [] = await data.json()
 
     return {
-        props: { todos }
+        props: { todos },
+		revalidate: 60 // seria revalidado a cada 60 segundos
     }
 
 }

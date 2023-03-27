@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@media(max-width: 1080px) {
+    html {
+        font-size: 93.75%; //converte o tamanho da font para 15px por causa do 1rem
+    }
+}
+
+@media(max-width: 720px) {
+    html {
+        font-size: 87.5%; //converte o tamanho da font para 14px por causa do 1rem
+    }
+}
+
+body {
+    background: #f2f6fc;
+}
+
+body,
+input,
+textarea,
+select,
+button {
+    font: 400 1rem sans-serif; //1rem = 16px
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
