@@ -1,0 +1,34 @@
+
+<style>
+    @keyframes shake {
+        0% {
+            margin-left: 0rem;
+        }
+
+        25% {
+            margin-left: 0.5rem;
+        }
+
+        75% {
+            margin-left: -0.5rem;
+        }
+
+        100% {
+            margin-left: 0rem;
+        }
+    }
+
+
+    input:invalid {
+        animation: shake .2s ease-in-out 0s 2;
+        box-shadow: 0 0 0.4em red;
+    }
+</style>
+
+
+
+<body>
+    <form action="">
+        <input type="text" pattern="[a-z]+">
+    </form>
+</body>

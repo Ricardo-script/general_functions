@@ -1,93 +1,121 @@
 /* 
 # Tutorial
 
-## Install packagescd
 
-### `yarn add react-big-calendar`   || com typescript instalar os types: yarn add @types/react-big-calendar
+### `yarn add react-big-calendar` 
+### `yarn add @types/react-big-calendar`
 
 ### `yarn add moment`
 
 */
 
-import { useState, useEffect } from "react";
-import { Calendar, momentLocalizer, Views } from "react-big-calendar";
-import moment from "moment";
+import { useState, useEffect } from 'react'
+import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
+import moment from 'moment'
 import 'moment/locale/pt-br'
-import './big-calendar.css'
-//import 'react-big-calendar/lib/css/react-big-calendar.css'; //style padrão
+import './assets/big-calendar.css'
 
-export default function App() {
-
-	const localizer = momentLocalizer(moment);
-	const [events, setEvents] = useState([]);
-
-	useEffect(() => {
-		const myEventsList = [
-			{
-				title: "Cortar cabelo",
-				start: new Date('Wed Mar 14 2023 23:30:00 GMT-0300 (Hora padrão de Brasília)'),
-				end: new Date('Wed Mar 14 2023 23:30:00 GMT-0300 (Hora padrão de Brasília)'),
-
-			},
-			{
-				title: "Lavar cabelo",
-				start: new Date('Wed Mar 15 2023 23:30:00 GMT-0300 (Hora padrão de Brasília)'),
-				end: new Date('Wed Mar 15 2023 23:30:00 GMT-0300 (Hora padrão de Brasília)'),
-
-			}
-		];
-		setEvents(myEventsList);
-	}, []);
-
-	const handleSelect = (eventItem) => {
-		const title = window.prompt("New Event name");
-		if (title) {
-			let data = { title: title, start: eventItem.start, end: eventItem.end };
-			setEvents((events) => [...events, data]);
-			console.log(data)
-		}
-	};
-
-	const defaultMessages = {
-		date: 'Data',
-		time: 'Hora',
-		event: 'Evento',
-		allDay: 'All Day',
-		week: 'Semana',
-		work_week: 'Work Week',
-		day: 'Dia',
-		month: 'Mês',
-		previous: 'Voltar',
-		next: 'Próximo',
-		yesterday: 'Ontem',
-		tomorrow: 'Amanhã',
-		today: 'Hoje',
-		agenda: 'Agenda',
-		noEventsInRange: 'Não há eventos neste intervalo.',
-		showMore: function showMore(total) {
-			return "+" + total + " mais";
-		}
-
-	};
-
-	return (
-		<div>
-			<Calendar
-				selectable
-				localizer={localizer}
-				events={events}
-				startAccessor="start"
-				endAccessor="end"
-				onSelectSlot={handleSelect}
-				onSelectEvent={(event) => alert(event.title)}
-				defaultView={Views.WEEK}
-				defaultDate={new Date()}
-				style={{ height: 500 }}
-				messages={defaultMessages}
-			/>
-		</div>
-	);
+interface TypeEventsList {
+    title: string
+    start: Date
+    end: Date
 }
+
+interface EventType {
+    start: Date
+    end: Date
+}
+
+interface TypeMessages {
+    date: string
+    time: string
+    event: string
+    allDay: string
+    week: string
+    work_week: string
+    day: string
+    month: string
+    previous: string
+    next: string
+    yesterday: string
+    tomorrow: string
+    today: string
+    agenda: string
+    noEventsInRange: string
+    showMore: (total: number) => string
+}
+
+export default function App(): JSX.Element {
+    const localizer = momentLocalizer(moment)
+    const [events, setEvents] = useState<TypeEventsList[]>([])
+
+    useEffect(() => {
+        const myEventsList: TypeEventsList[] = [
+            {
+                title: 'Cortar cabelo',
+                start: new Date('Wed Mar 14 2023 23:30:00 GMT-0300 (Hora padrão de Brasília)'),
+                end: new Date('Wed Mar 14 2023 23:30:00 GMT-0300 (Hora padrão de Brasília)')
+            },
+            {
+                title: 'Lavar cabelo',
+                start: new Date('Wed Mar 15 2023 23:30:00 GMT-0300 (Hora padrão de Brasília)'),
+                end: new Date('Wed Mar 15 2023 23:30:00 GMT-0300 (Hora padrão de Brasília)')
+            }
+        ]
+        setEvents(myEventsList)
+    }, [])
+
+    const handleSelect = (eventItem: EventType): void => {
+        const title = window.prompt('New Event name')
+        if (title) {
+            const data = { title: title, start: eventItem.start, end: eventItem.end }
+            setEvents((events) => [...events, data])
+            console.log('clicado', data)
+        }
+    }
+
+    const defaultMessages: TypeMessages = {
+        date: 'Data',
+        time: 'Hora',
+        event: 'Evento',
+        allDay: 'All Day',
+        week: 'Semana',
+        work_week: 'Work Week',
+        day: 'Dia',
+        month: 'Mês',
+        previous: 'Voltar',
+        next: 'Próximo',
+        yesterday: 'Ontem',
+        tomorrow: 'Amanhã',
+        today: 'Hoje',
+        agenda: 'Agenda',
+        noEventsInRange: 'Não há eventos neste intervalo.',
+        showMore: function showMore(total: number): string {
+            return '+' + total + 'mais'
+        }
+    }
+
+    return (
+        <div>
+            <Calendar
+                selectable
+                localizer={localizer}
+                events={events}
+                startAccessor="start"
+                endAccessor="end"
+                onSelectSlot={handleSelect}
+                onSelectEvent={(event: TypeEventsList): void => alert(event.title)}
+                defaultView={Views.WEEK}
+                defaultDate={new Date()}
+                style={{ height: 500 }}
+                messages={defaultMessages}
+            />
+        </div>
+    )
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------
 //Styles personalizado---------------------------------------------------------------------------------------------------------------------------------------------------:
 
 @charset "UTF-8";
