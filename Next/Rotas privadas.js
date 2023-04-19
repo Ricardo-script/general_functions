@@ -77,7 +77,7 @@ const PrivateRoute = ({ children }: PrivateRouteProps) => {
     const isUserAuthenticated = checkUserAuthenticated(); // verifica se o usuário esta autenticado checando os cookies
 
     useEffect(() => {
-        if (!isUserAuthenticated) {
+        if (!isUserAuthenticated) { //'(!)'avalia se a variável isUserAuthenticated é falsa ou nula. Se verdadeira, o usuário não está autenticado e, portanto, o código dentro do bloco do if é executado.
             router.push(APP_ROUTES.public.login);
         }
     }, [isUserAuthenticated, router]);
