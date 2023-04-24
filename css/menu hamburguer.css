@@ -1,0 +1,41 @@
+/*<div class="menu-toggle" onclick="viewMenu()">
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+</div>*/
+/*----------------------------------------------------------*/
+
+.menu-toggle {
+    width: 40px;
+    height: 30px;
+    display: none;
+}
+
+.one,
+.two,
+.three {
+    background: #FFF;
+    height: 5px;
+    width: 100%;
+    margin: 6px auto;
+    transition: .5s;
+}
+
+.menu-toggle.on .one {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.menu-toggle.on .two {
+    opacity: 0;
+}
+
+.menu-toggle.on .three {
+    transform: rotate(-45deg) translate(8px, -9px);
+}
+
+/*----------------------------------------------------------*/
+
+const viewMenu=()=> {
+    const menuToggle=document.querySelector('.menu-toggle');
+    menuToggle.classList.toggle('on');
+}
