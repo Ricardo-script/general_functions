@@ -36,63 +36,42 @@ export const checkIsPublicRoute = (asPath: string) => {  // asPath é o endereç
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
-
-// Verificando se o usuário esta autenticado com o JWT salvo em cookies
-
-//src/functions checkUserAuthenticated.ts
-
-import { checkCookieExists } from "@/services/utils";
-
-/**
- * 
- * @returns true ou false
- */
-
-export const checkUserAuthenticated = () => {
-    const userToken = checkCookieExists('token'); //process.env.NEXT_PUBLIC_USER_TOKEN
-
-    return !!userToken   //se conter o JWT em cookie então retorna true
-}
-
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------
-
 // Componente com logica para verificar se a rota é privada:
 
 //src/components/PrivateRoute.tsx
 
-import { useRouter } from 'next/router'
-import { ReactNode, useEffect } from 'react'
-import { APP_ROUTES } from '@/constants/app-routes'
-import { checkUserAuthenticated } from '@/functions/checkUserAuthenticated'
+import { useRouter } from 'next/router';
+import { ReactNode, useEffect } from 'react';
+import { APP_ROUTES } from '@/constants/app-routes';
 
+import { useState } from 'react';
 
 type PrivateRouteProps = {
-    children: ReactNode
-}
+	children: ReactNode;
+};
 
 const PrivateRoute = ({ children }: PrivateRouteProps) => {
-    const router = useRouter();
+	const router = useRouter();
+	const [cookieExists, setCookieExists] = useState(false);
 
-    const isUserAuthenticated = checkUserAuthenticated(); // verifica se o usuário esta autenticado checando os cookies
+	useEffect(() => { // uso de useEffect para evitar dar erro de hidratação
+		if (document.cookie.indexOf('token=') !== -1) { // 'token' -> é o nome do cookie
+			setCookieExists(true);
+		} else {
+			router.push(APP_ROUTES.public.login);
+		}
+	}, [router]);
 
-    useEffect(() => {
-        if (!isUserAuthenticated) { //'(!)'avalia se a variável isUserAuthenticated é falsa ou nula. Se verdadeira, o usuário não está autenticado e, portanto, o código dentro do bloco do if é executado.
-            router.push(APP_ROUTES.public.login);
-        }
-    }, [isUserAuthenticated, router]);
+	return (
+		<>
+			{!cookieExists && null}
+			{/*se não estiver autenticado retorna nulo */}
+			{cookieExists && children}
+		</>
+	);
+};
 
-    return (
-        <>
-            {!isUserAuthenticated && null} {/*se não estiver autenticado retorna nulo */} // obs importante nao usar operador ternario, pois por poucos segundo a tela pisca mostrando a tela privada
-            {isUserAuthenticated && children}
-        </>
-    );
-}
-
-export default PrivateRoute
-
-
+export default PrivateRoute;
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -145,28 +124,6 @@ export const createCookie = (cookieName: string, cookieValue: string, hourToExpi
 
 export const deleteCookie = (name: string) => {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
-}
-
-export const checkCookieExists = (cookieName: string) => {
-    if (typeof window !== "undefined") {
-
-        const cookies = document.cookie.split(';');
-
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-
-            // verifica se o nome do cookie é igual ao nome fornecido
-            if (cookie.startsWith(`${cookieName}=`)) {
-                // se o nome do cookie for encontrado, significa que ele existe
-                return true;
-            }
-        }
-        // se o nome do cookie não for encontrado, significa que ele não existe
-        return false;
-
-    } else {
-        return null // caso não seja typeof window undefined
-    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------
