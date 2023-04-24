@@ -1,37 +1,44 @@
-//Components/Forms/Select.tsx:
-import { useState, ReactNode, Children, ReactElement, cloneElement } from 'react';
-import { AreaSelect, SelectField, AreaIcon, BoxList } from './styles';
+import { useState, Children, ReactElement, cloneElement, ReactNode } from 'react';
+import { AreaSelect, SelectField, Value, AreaIcon, BoxList } from './styles';
 import { IoMdArrowDropdown } from 'react-icons/io';
 
-type PropsSelect = {
-	onChange: (value: string | number) => void;
+type PropsSelectOnChange = {
 	children: ReactNode;
+	onChange?: (value: string | undefined) => void;
+	name?: string | undefined;
 };
 
 /**
  * Componente estilizado para o < select /> do html
- * @param param0
+ * @param onChange
  * Para pegar o valor selecionado do select declarar a props 'onChange' que recebe no parametro
  * um value, exemplo: onChange={value => console.log('selecionado =>', value)}
- * @param param1
+ * @param children
  * recebe como parametro o children => < Options/>
+ * @param name
+ * recebe o name para utiliza-lo ao usar useRef
  * @returns
  */
 
-export default function Select({ onChange, children }: PropsSelect): JSX.Element {
-	const [openSelect, setOpenSelect] = useState(true);
+export default function Select({ onChange, children, name }: PropsSelectOnChange): JSX.Element {
+	const [openSelect, setOpenSelect] = useState(false);
+	const [value, setValue] = useState<string>('Selecione...');
 
 	const handleSelect = () => {
 		setOpenSelect(!openSelect);
 	};
 
-	const handleOptionClick = (value: string | number) => {
-		onChange(value);
+	const handleOptionClick = (value: string) => {
+		if (onChange) {
+			onChange(value);
+		}
+		setValue(value);
 	};
 
 	return (
 		<AreaSelect>
 			<SelectField onClick={handleSelect}>
+				<Value type="text" value={value} name={name} readOnly /> {/* usado um input para pegar a propriedade nativa name a ser usado no useRef no component <Select name=''/>*/}
 				<AreaIcon open={openSelect}>
 					<IoMdArrowDropdown size={25} />
 				</AreaIcon>
@@ -73,16 +80,11 @@ export default function Option({ children, onClick }: propsOptions): JSX.Element
 }
 
 
+
 //--------------------------------------------------------------------------------------------------------------------------
 // Uso:
 
-<Select onChange={value => console.log(value)}>
-	<Option value="Item 1">Item 1</Option>
-	<Option value="Item 2">Item 2</Option>
-	<Option value="Item 3">Item 3</Option>
-	<Option value="Item 1">Item 1</Option>
-	<Option value="Item 2">Item 2</Option>
-	<Option value="Item 3">Item 3</Option>
+<Select name="departamento">
 	<Option value="Item 1">Item 1</Option>
 	<Option value="Item 2">Item 2</Option>
 	<Option value="Item 3">Item 3</Option>
