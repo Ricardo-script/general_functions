@@ -1,5 +1,7 @@
 //Create context:
 
+'use client'
+
 type ContextSideBarTypes = {
 	openMenu?: boolean;
 	setOpenMenu: (newState: boolean) => void;
@@ -42,16 +44,22 @@ const composeProviders = (...providers: ProviderType[]) => ({ children }: PropsP
 export const AllProviders = composeProviders(GlobalSideBarProvider);
 
 //----------------------------------------------------------------------------------------------------------------
+// layout.tsx
 
-import type { AppProps } from 'next/app';
+'use client';
+import StyledComponentsRegistry from '../lib/registry';
 import GlobalStyles from '@/styles/GlobalStyles';
 import { AllProviders } from '@/context/Providers';
 
-export default function App({ Component, pageProps }: AppProps): JSX.Element {
+export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
 	return (
-		<AllProviders>
-			<Component {...pageProps} />
-			<GlobalStyles />
-		</AllProviders>
+		<html lang="pt-br">
+			<body>
+				<AllProviders>
+					<GlobalStyles />
+					<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+				</AllProviders>
+			</body>
+		</html>
 	);
 }

@@ -1,3 +1,30 @@
+// cookie do next:
+
+import { cookies, headers } from 'next/headers';
+
+export default function Home(): JSX.Element {
+	const userCookies = cookies();
+	const userHeaders = headers();
+
+	return (
+		<div>
+			<h1>Home</h1>
+			{JSON.stringify(userCookies.get('auth'), null, 2)}
+			{JSON.stringify(userHeaders.entries(), null, 2)}
+		</div>
+	);
+}
+
+
+
+
+
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//Cookies nativo do javascript
 // gerenciamento dos cookies:
 
 //src/services/utils.ts

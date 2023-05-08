@@ -1,3 +1,16 @@
+Pacotes para next com eslint pré instalado:
+
+yarn add eslint-plugin-typescript
+yarn add @typescript-eslint/eslint-plugin
+
+yarn add eslint-config-prettier -D
+yarn add @types/prettier -D
+yarn add eslint-plugin-prettier -D
+yarn add prettier -D
+
+
+
+//--------------------------------------------------------------------------------------------------------
 
 .eslintrc.json:
 
