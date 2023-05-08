@@ -1,0 +1,45 @@
+
+.eslintrc.json:
+
+{
+	"extends": [
+		"next/core-web-vitals",
+		"prettier",
+		"plugin:@typescript-eslint/eslint-plugin/recommended"
+	],
+	"plugins": ["prettier"],
+	"rules": {
+		"prettier/prettier": "off",
+		"@typescript-eslint/no-explicit-any": "error",
+		"@typescript-eslint/explicit-module-boundary-types": "error",
+		"@typescript-eslint/no-non-null-assertion": "off"
+	}
+}
+
+
+
+.prettierrc:
+
+{
+	"singleQuote": true,
+	"trailingComma": "none",
+	"tabWidth": 4,
+	"useTabs": true,
+	"printWidth": 100,
+	"arrowParens": "avoid",
+	"overrides": [
+		{
+			"files": "*.ts",
+			"options": {
+				"parser": "@typescript-eslint/parser",
+				"plugins": ["@typescript-eslint/eslint-plugin"],
+				"rules": {
+					"@typescript-eslint/no-explicit-any": "error",
+					"@typescript-eslint/explicit-module-boundary-types": "error"
+				}
+			}
+		}
+	]
+}
+
+

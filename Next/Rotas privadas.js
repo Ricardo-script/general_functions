@@ -29,7 +29,7 @@ import { APP_ROUTES } from "@/constants/app-routes";
  * @returns boolean
  */
 
-export const checkIsPublicRoute = (asPath: string) => {  // asPath é o endereço da rota, ex: '/empresa'
+export const checkIsPublicRoute = (asPath: string): boolean => {  // asPath é o endereço da rota, ex: '/empresa'
     const appPublicRoutes = Object.values(APP_ROUTES.public);
     return appPublicRoutes.includes(asPath);
 }
@@ -50,12 +50,15 @@ type PrivateRouteProps = {
 	children: ReactNode;
 };
 
-const PrivateRoute = ({ children }: PrivateRouteProps) => {
+const PrivateRoute = ({ children }: PrivateRouteProps): JSX.Element => {
 	const router = useRouter();
 	const [cookieExists, setCookieExists] = useState(false);
 
-	useEffect(() => { // uso de useEffect para evitar dar erro de hidratação
-		if (document.cookie.indexOf('token=') !== -1) { // 'token' -> é o nome do cookie
+	useEffect(() => {
+		// uso de useEffect para evitar dar erro de hidratação
+		const isUserAuthenticated = document.cookie.indexOf('token=') !== -1; // 'token' -> é o nome do cookie
+
+		if (isUserAuthenticated) {
 			setCookieExists(true);
 		} else {
 			router.push(APP_ROUTES.public.login);
