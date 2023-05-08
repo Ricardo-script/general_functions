@@ -2,6 +2,80 @@
 	yarn add styled-components
 	yarn add @types/styled-components
 */
+//**********************************************************************************************************************
+//versão do next 13 com a pasta App
+//**********************************************************************************************************************
+
+//Crie o arquivo src/lib/registry:
+
+'use client';
+import { useState } from 'react';
+import { useServerInsertedHTML } from 'next/navigation';
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
+
+export default function StyledComponentsRegistry({ children }: { children: React.ReactNode }) {
+
+    const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
+
+    useServerInsertedHTML(() => {
+        const styles = styledComponentsStyleSheet.getStyleElement();
+        //@ts-ignore
+        styledComponentsStyleSheet.instance.clearTag();
+        return <>{styles}</>;
+    });
+
+    if (typeof window !== 'undefined') return <>{children}</>;
+
+    return (
+        <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+            {children}
+        </StyleSheetManager>
+    );
+}
+
+//-------------------------------------------------------------------------------------------------------------------
+//No arquivo layout dentro da pasta app:
+//Envolva o children com RootLayout com o componente de registro(registry) de estilo:
+
+'use client'
+import StyledComponentsRegistry from '../lib/registry';
+
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return (
+        <html lang='pt-br'>
+            <body>
+                <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+            </body>
+        </html>
+    );
+}
+
+//-----------------------------------------------------------------------------------------------------------------------
+//styled-components ficará assim:
+
+'use client'
+import styled from "styled-components";
+
+export const Container = styled.div`
+    border: 2px solid red;
+    background: #b1acac;
+`;
+
+//------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+//*******************************************************************************************************************
+//versão antiga sem a pasta app:
+//*******************************************************************************************************************
+
 // src/pages/_document.tsx
 // _document.tsx:
 
