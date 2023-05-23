@@ -10,8 +10,15 @@ cd server
 //abrir no vscode: code .
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
+npm init -y
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Instalar typescript:
 npm i typescript -D
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+//instalar types do node
+npm i @types/node -D
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 //criar o setup - config.json
@@ -49,6 +56,78 @@ npm i fastify
 //Criar pasta src que ira conter toda a aplicação
 //Criar arquivo server.ts:
 
+import fastify from "fastify";
+
+//const app = fastify();
+const app = fastify({
+	logger: true, // logger: essa propriedade permite que de para ver os logs de tudo oque esta acontecendo na aplicação, erro, requisição e etc,
+});
+
+
+app.listen({ port: 3333 })
+	.then(() => {
+		console.log("🚀HTTP server running on http://localhost:3333");
+	})
+	.catch();
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+//post simples
+/*
+app.post("/hello", () => {
+	return { msg: "Hello world" };
+});*/
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// importando router
+
+import fastify, { FastifyInstance } from 'fastify';
+import { router } from './routes';
+
+const app: FastifyInstance  = fastify();
+
+app.register(router);
+
+
+app.listen(3333, (err, address) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+  console.log("🚀HTTP server running on http://localhost:3333");
+});
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+//routes/users.js
+
+import { FastifyInstance } from 'fastify';
+
+export default function router(app: FastifyInstance) {
+
+  app.get('/users', (request, reply) => {
+    reply.send({ message: 'Lista de usuários' });
+  });
+
+  app.get('/users/:id', (request, reply) => {
+    const userId = request?.params?.id;
+    reply.send({ message: `Detalhes do usuário ${userId}` });
+  });
+
+
+}
+
+
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Outras maneiras***
+/* ---
+
 	import Fastify from "fastify";
 
 	async function bootstrap(){   // nome start | ou bootstrap, alguns frameworks o chamam de bootstrap(é a 1ª função a ser executada)
@@ -84,4 +163,4 @@ import Fastify from "fastify";
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+*/

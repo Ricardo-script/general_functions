@@ -1,6 +1,5 @@
 /* 
 	yarn add styled-components
-	yarn add @types/styled-components
 */
 //**********************************************************************************************************************
 //versão do next 13 com a pasta App
