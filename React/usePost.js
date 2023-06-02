@@ -1,3 +1,26 @@
+
+interface TypeGrupo {
+	grupo: string;
+	tipo: string;
+	modelo: string;
+	verdeSeguranca: number;
+	descricao: string;
+}
+
+type TypeUsePost = {
+	execute: (data: TypeGrupo) => void
+}
+
+export const usePost = (): TypeUsePost => {
+	
+	const execute = (data: TypeGrupo) => {
+		console.log(data);
+	};
+
+	return { execute };
+};
+
+//-----------------------------------------------------------------
 // src/hooks/usePost.jsx
 
 import { useState } from 'react';
