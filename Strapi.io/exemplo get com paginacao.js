@@ -1,0 +1,1 @@
+ let url = `registro-ensaio-vacuos?filters[licenca][$eq]=${licenca}&filters[numero_projeto][$eq]=${projeto}&pagination[page]=3&pagination[pageSize]=10`;

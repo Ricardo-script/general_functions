@@ -31,10 +31,15 @@
 
 //Em seguida, adicione o seguinte script ao seu arquivo package.json:
 	"scripts": {
-	  "start": "parcel index.html & watch 'sass/**/*.scss' -c 'yarn run build:sass'",
-	  "build": "parcel build index.html",
-	  "build:sass": "parcel build sass/style.scss -d dist/css"
-	}
+        "start": "parcel index.html --port 3000",
+        "build": "parcel build index.html && sass sass/style.scss dist/css/style.css"
+    },
+	
+	
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// //Obs:
+//Verifique se os arquivos HTML estão corretamente referenciados em outros arquivos ou partes do código. 
+//Se um arquivo HTML não estiver sendo usado em nenhum lugar, o Parcel pode não incluí-lo na compilação.
 
 
 
