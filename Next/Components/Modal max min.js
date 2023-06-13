@@ -37,7 +37,14 @@ import { FaRegWindowMaximize, FaRegWindowRestore } from 'react-icons/fa'; //FaRe
 import { MdOutlineMinimize } from 'react-icons/md';
 import { PropsModal } from '@/types';
 
-export const Modal = ({ title, children }: PropsModal): JSX.Element => {
+export type PropsModal = {
+	title?: string
+	children?: ReactNode
+	open?: boolean
+	onClose: () => void
+}
+
+export const Modal = ({ title, children, open, onClose }: PropsModal): JSX.Element => {
 	const refModal: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
 	const refHeader: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
 
@@ -151,36 +158,56 @@ export const Modal = ({ title, children }: PropsModal): JSX.Element => {
 			return title || '';
 		}
 	};
+	
+	const onCloseModal = (): void => {
+		onClose();
+	};
 
-	return (
-		<AreaModal
-			ref={refModal}
-			onMouseOver={() => dragElement()}
-			$statusMinimize={statusMinimize}
-		>
-			<Header ref={refHeader} $statusMinimize={statusMinimize}>
-				<span>{getTitle(title)}</span>
-				<AreaIcons>
-					<Icon onClick={minimize} title="Minimizar">
-						<MdOutlineMinimize size={17} color="#FFF" />
-					</Icon>
-					<Icon onClick={maximize} title="Maximizar">
-						{statusMaximize ? (
-							<FaRegWindowRestore size={12} color="#FFF" />
-						) : (
-							<FaRegWindowMaximize size={12} color="#FFF" />
-						)}
-					</Icon>
-					<Icon title="Fechar">
-						<AiOutlineCloseSquare size={18} color="#FFF" />
-					</Icon>
-				</AreaIcons>
-			</Header>
-			<ContentModal $statusMinimize={statusMinimize}>{children}</ContentModal>
-		</AreaModal>
-	);
+	if (open) {
+		return (
+			<AreaModal
+				ref={refModal}
+				onMouseOver={() => dragElement()}
+				$statusMinimize={statusMinimize}
+			>
+				<Header ref={refHeader} $statusMinimize={statusMinimize}>
+					<span>{getTitle(title)}</span>
+					<AreaIcons>
+						<Icon onClick={minimize} title="Minimizar">
+							<MdOutlineMinimize size={17} color="#FFF" />
+						</Icon>
+						<Icon onClick={maximize} title="Maximizar">
+							{statusMaximize ? (
+								<FaRegWindowRestore size={12} color="#FFF" />
+							) : (
+								<FaRegWindowMaximize size={12} color="#FFF" />
+							)}
+						</Icon>
+						<Icon title="Fechar" onClick={onCloseModal}>
+							<AiOutlineCloseSquare size={18} color="#FFF" />
+						</Icon>
+					</AreaIcons>
+				</Header>
+				<ContentModal $statusMinimize={statusMinimize}>{children}</ContentModal>
+			</AreaModal>
+		);
+	} else {
+		return <></>;
+	}
 };
 
+
+/*
+	Chamada: 
+	
+	<Modal
+		title="Cadastro"
+		open={statusModal}
+		onClose={() => setStatusModal(false)}
+	>
+		...
+	</Modal>
+*/
 
 // styles:
 

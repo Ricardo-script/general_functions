@@ -126,7 +126,13 @@ import { AiOutlineCloseSquare } from 'react-icons/ai';
 import { FaRegWindowMaximize } from 'react-icons/fa'; //FaRegWindowRestore
 import { PropsModal } from '@/types';
 
-export const Modal = ({ title, children }: PropsModal): JSX.Element => {
+export type PropsModal = {
+	title?: string
+	children?: ReactNode
+	open?: boolean
+}
+
+export const Modal = ({ title, children, open }: PropsModal): JSX.Element => {
 	const refModal: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
 	const refHeader: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
 
@@ -200,27 +206,30 @@ export const Modal = ({ title, children }: PropsModal): JSX.Element => {
 			}
 		}
 	};
-
-	return (
-		<AreaModal
-			ref={refModal}
-			onMouseOver={() => dragElement()}
-			onMouseLeave={() => closeDragElement2()}
-		>
-			<Header ref={refHeader}>
-				<span>{title}</span>
-				<AreaIcons>
-					<Icon onClick={maximize}>
-						<FaRegWindowMaximize size={18} color="#FFF" />
-					</Icon>
-					<Icon>
-						<AiOutlineCloseSquare size={22} color="#FFF" />
-					</Icon>
-				</AreaIcons>
-			</Header>
-			<ContentModal>{children}</ContentModal>
-		</AreaModal>
-	);
+	if (open) {
+		return (
+			<AreaModal
+				ref={refModal}
+				onMouseOver={() => dragElement()}
+				onMouseLeave={() => closeDragElement2()}
+			>
+				<Header ref={refHeader}>
+					<span>{title}</span>
+					<AreaIcons>
+						<Icon onClick={maximize}>
+							<FaRegWindowMaximize size={18} color="#FFF" />
+						</Icon>
+						<Icon>
+							<AiOutlineCloseSquare size={22} color="#FFF" />
+						</Icon>
+					</AreaIcons>
+				</Header>
+				<ContentModal>{children}</ContentModal>
+			</AreaModal>
+		);
+	} else {
+		return <></>;
+	}
 };
 
 	
