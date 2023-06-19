@@ -37,6 +37,8 @@ Criar novo projeto com expo:
 
 expo init meuApp
 
+typescript: npx create-expo-app -t expo-template-blank-typescript
+
 após escolher o template, por exemplo o blank em branco)
 
 abir pasta do projeto: cd [nome projeto]

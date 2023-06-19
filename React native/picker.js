@@ -1,6 +1,35 @@
-// intalar picker: expo install @react-native-picker/picker
+// intalar picker: expo install @react-native-picker/picker ou yarn add @react-native-picker/picker
 // import {Picker} from '@react-native-picker/picker'
 
+import { Picker } from '@react-native-picker/picker';
+import { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default function App() {
+
+	const [selectedLanguage, setSelectedLanguage] = useState();
+
+	return (
+		<View style={styles.container}>
+			<Picker
+				selectedValue={selectedLanguage}
+				onValueChange={(itemValue, itemIndex) =>
+					setSelectedLanguage(itemValue)
+				}>
+				<Picker.Item label="Java" value="java" />
+				<Picker.Item label="JavaScript" value="js" />
+			</Picker>
+		</View>
+	);
+}
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
+});
+
+//------------------------------------------------------------------------------------------------------------------------------
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-community/picker'; //esse não funciona com o expo
