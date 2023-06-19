@@ -89,6 +89,7 @@ export default function App() {
 //src/screens/Home.tsx-------------------------------------------------------------------------------------------------------------------------------------------------------
 import { View, Text, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { DrawerActions } from "@react-navigation/native";
 
 export default function Home() {
     const navigation = useNavigation();
@@ -96,8 +97,8 @@ export default function Home() {
     return (
         <View>
             <Text>Tela Home</Text>
-             <Button title='Go to Notifications' onPress={() => navigation.navigate('Notification')} />
-            <Button title='OpenDrawer' />
+            <Button title='Go to Notifications' onPress={() => navigation.navigate('Notification')} />
+            <Button title='OpenDrawer' onPress={() => navigation.dispatch(DrawerActions.openDrawer())} />
             <Button title='Details' onPress={() => navigation.navigate('Details', { name: 'Ricardo Teixeira' })} />
         </View>
     );
