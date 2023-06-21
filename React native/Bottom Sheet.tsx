@@ -16,7 +16,7 @@ const Home = () => { // precisa inserir o export default no final para usar o ge
 	
 	return(														      					
 		<Button title='mostrar' onPress={() => { bottomSheetRef.current?.expand() }} /> 
-		<BottomSheet ref={bottomSheetRef} index={1} snapPoints={[20, '60%']}>// snapPoints: recebe o tamanho inicial e final index: 1 aberto e 0 fechado
+		<BottomSheet ref={bottomSheetRef} index={1} snapPoints={[20, '60%']}>// snapPoints: recebe o tamanho inicial e final index: 1 aberto e 0 fechado 
 			<View>
 				<Text>Teste</Text>
 			</View>
