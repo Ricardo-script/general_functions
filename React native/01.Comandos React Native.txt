@@ -1,29 +1,3 @@
-Criar um novo projeto React-native:
-
-react-native init newapp
-
-Rodar:
-
-react-native run-android
-
- 
-[
-   npx react-native init [+ o nome do projeto]
-   react-native init NewProject
-   Se você quiser iniciar um novo projeto com uma versão específica do React Native,
-   você pode usar o argumento –version:
-   react-native init MeuProjeto --version X.XX.X
-   react-native init MeuProjeto --version react-native@next
-   
-   Comando pra rodar o projeto:
-
-   npx react-native run-android
-
-   *Antes de rodar o projeto o emulador deve estar aberto e funcionando
-
-]
-
-=================================================================================================================
 
 Utilizando o Expo:
 ----------------------------------------------------------------------
@@ -35,6 +9,16 @@ yarn global add expo-cli
 ----------------------------------------------------------------------
 Criar novo projeto com expo:
 
+npx create-expo-app [nome do app] --template
+
+após isso escolher uma opção desejada:
+
+-Blank
+-Blank (Typescript)
+-Navigation (Typescript)
+-Blank (Bare)
+
+---ou---
 expo init meuApp
 
 typescript: npx create-expo-app -t expo-template-blank-typescript

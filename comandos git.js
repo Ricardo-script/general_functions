@@ -17,3 +17,7 @@ remova a credencial git.
 na próxima vez em que você enviar o repositório, ele solicitará credenciais.
 Referência de resposta para explicação detalhada*/
 
+//criar credenciais: configurar o Git para usar o token como método de autenticação:
+
+git config --global credential.helper wincred
+
