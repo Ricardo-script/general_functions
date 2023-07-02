@@ -1,6 +1,7 @@
 /* 
 	instalar: npm install @react-native-community/async-storage --save; import AsyncStorage from '@react-native-community/async-storage';
 	com expo: expo install @react-native-async-storage/async-storage;   import AsyncStorage from '@react-native-async-storage/async-storage';
+	// yarn add @react-native-async-storage/async-storage
 */
 
 import React,{ Component } from 'react';
