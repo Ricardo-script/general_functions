@@ -33,7 +33,7 @@ export default function App() {
     return (
         <View style={styles.container}>
             <Text>Camera!</Text>
-            <Camera style={styles.camera} type={type} ref={cameraRef} />
+            <Camera style={styles.camera} type={type} ref={cameraRef} ratio="16:9"/>
             <Button title='Flip camera' onPress={toggleCamera} />
             <Button title='Take Picture' onPress={takePicture} />
             {photoUri && <Image style={styles.preview} source={{ uri: photoUri }} />}
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     camera: {
-        width: 350,
-        height: 350,
+        height: height,
+        width: "100%",
     },
     preview: {
         width: 350,
@@ -57,3 +57,25 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
 });
+
+// editar imagem, modo retrato:
+
+import * as React from "react";
+import { Camera } from "expo-camera";
+import { useWindowDimensions } from "react-native";
+
+const CameraComponent = () => {
+    const { width } = useWindowDimensions();
+    const height = Math.round((width * 16) / 9);
+    return (
+        <Camera
+            ratio="16:9"
+            style={{
+                height: height,
+                width: "100%",
+            }}
+        ></Camera>
+    );
+};
+
+export default CameraComponent;

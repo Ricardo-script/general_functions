@@ -17,10 +17,17 @@
 |          |                      | caso contrário,  |
 |          |                      | retorna a expr2  |
 ------------------------------------------------------
-|   ??     |                      | Retorna valor1   |
-|          |                      | se não for null  |
-|          |   valor1 ?? valor2   | nem undefined,   |
-|          |                      | caso contrário,  |
-|          |                      | retorna valor2   |
+|   ??     | retorna o primeiro   | Retorna valor1   |
+|          | operando se ele for  | se não for null  |
+|          | falsy, caso contrário| nem undefined,   |
+|          | retorna o segundo    | caso contrário,  |
+|          | operando.            | retorna valor2   |
+|          | valor1 ?? valor2     |                  |
+|          | ex: const age = 25;  |                  |
+|          |const isAdult = age>= |                  |
+|          | 18 && "Adulto";      |                  |
+|          | console.log(isAdult);|                  |
+|          | // "Adulto"          |                  |
+|          |                      |                  |
 ------------------------------------------------------
 */
