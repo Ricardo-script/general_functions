@@ -1,9 +1,38 @@
 ## Instalando Electron-vite
+#doc: https://electron-vite.github.io/
+
+```bash
+  npm create electron-vite
+```
+-ou-
+
+```bash
+  yarn create electron-vite
+```
+
+```bash
+✔ Project name: … <electron-app>
+✔ Select a framework: › react
+✔ cd <electron-app>
+```
+### instalar dependencias: cd [project]
+
+```bash
+    yarn
+```
+### startar app
+
+```bash
+$ yarn dev
+```
+
+
+## Outra configuração para Electron----------------------------------------------:
+#Doc:https://electron-vite.org/
 
 ```bash
   yarn create @quick-start/electron
 ```
-
 
 ### Siga as instruções
 
