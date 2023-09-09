@@ -1,113 +1,219 @@
-'use client';
+//uso:
 
-import { useState, Children, ReactElement, cloneElement, ReactNode } from 'react';
-import { AreaSelect, SelectField, Value, AreaIcon, BoxList } from './styles';
-import { IoMdArrowDropdown } from 'react-icons/io';
+'use client'
 
-interface SintheticEvent {
-	event: {
-		target: {
-			value?: string;
-			name?: string;
-		};
-	};
+import { Option } from "@/components/Option"
+import { Select } from "@/components/Select"
+
+export default function Home() {
+    return (
+        <div style={{ width: '400px' }}>
+            <Select label="Selecione" onChange={(value) => console.log(value)}>
+                <Option value='123'>123</Option>
+                <Option value='456'>456</Option>
+                <Option value='789'>789</Option>
+            </Select>
+        </div>
+
+    )
 }
 
-type PropsSelectOnChange = {
-	children: ReactNode;
-	onChange?: (value: SintheticEvent) => void;
-	name?: string;
-	index?: number;
-};
+//Select.tsx
+
+'use client'
+
+import { useState, InputHTMLAttributes, ReactElement, forwardRef, ReactNode, Children, isValidElement, cloneElement } from 'react';
+import { Content, Label, AreaInput, InputComponent, IconLeft, Icon, BoxList } from './styles'
+
+type InputTypes = {
+    label: string
+    placeholder?: string
+    iconRight?: ReactElement
+    iconLeft?: ReactElement
+    children?: ReactNode
+    onChange?: (value: string) => void
+} & InputHTMLAttributes<HTMLInputElement>
 
 type OptionProps = {
-	value: string;
-	onClick?: () => void;
+    value: string;
+    onClick?: () => void;
 };
 
-/**
- * ## Componente estilizado para o < select /> do html
- * @param onChange
- * Para pegar o valor selecionado do select declarar a props 'onChange' que recebe no parametro
- * um value, exemplo: onChange={value => console.log(value)} 
- * ```jsx
- * 	return event: {
-		target: {
-			value?: '123';
-			name?: 'grupo';
-		};
-	};
- * -   uso: <Select name="grupo" onChange={value => console.log(value)}>
- * -   uso do componente chamando uma função:
- * -   <Select name="grupo" onChange={value => myCustomFunction(index,value)}>...options</Select>									
- * ```
- * @param children
- * recebe como parametro o children => < Options/>
- * @param name
- * recebe o name para utiliza-lo ao usar useRef
- * @returns
- */
+export const Select = forwardRef<HTMLInputElement, InputTypes>((props, ref) => {
 
-export default function Select({ onChange, children, name }: PropsSelectOnChange): JSX.Element {
-	const [openSelect, setOpenSelect] = useState(false);
-	const [valueSelect, setValueSelect] = useState<SintheticEvent>({
-		event: {
-			target: {
-				value: 'Selecione...',
-				name: name
-			}
-		}
-	});
+    const { label, placeholder, iconLeft, iconRight, children, onChange = () => null, ...rest } = props;
+    const [valueSelect, setValueSelect] = useState('');
+    const [openSelect, setOpenSelect] = useState(false);
 
-	const handleSelect = () => {
-		setOpenSelect(!openSelect);
-	};
+    const getValues = (value: string) => {
+        onChange(value)
+        setValueSelect(value)
+    }
 
-	const handleOptionClick = (value: string) => {
-		setValueSelect({ // setState para poder mostrar o valor selecionado no value do input
-			event: {
-				target: {
-					value: value,
-					name: name
-				}
-			}
-		});
-		onChange?.({ // sera o retorno dos valores
-			event: {
-				target: {
-					value: value,
-					name: name
-				}
-			}
-		});
-	};
+    return (
+        <Content>
+            <Label>{label}</Label>
+            <AreaInput>
+                {iconLeft &&
+                    <IconLeft>
+                        {iconLeft}
+                    </IconLeft>
+                }
+                <InputComponent
+                    placeholder={placeholder}
+                    {...rest}
+                    ref={ref}
+                    value={valueSelect}
+                    disabled={false}
+                    onChange={(e) => {
+                        getValues(e.target.value)
+                    }}
+                />
+                <Icon onClick={() => setOpenSelect(!openSelect)}>
+                    ▼
+                </Icon>
+            </AreaInput>
+            <BoxList open={openSelect}>
+                {Children.map(children, (child, index) => {
+                    if (isValidElement<OptionProps>(child)) {
+                        const optionProps = child.props as OptionProps;
+                        return cloneElement(child, {
+                            key: index,
+                            onClick: () => {
+                                getValues(optionProps.value);
+                                if (optionProps.onClick) {
+                                    optionProps.onClick();
+                                }
+                            }
+                        });
+                    }
+                    return child;
+                })}
+            </BoxList>
+        </Content>
+    )
+});
 
-	return (
-		<AreaSelect>
-			<SelectField onClick={handleSelect}>
-				<Value type="text" value={valueSelect.event.target.value} name={name} readOnly />
-				<AreaIcon open={openSelect}>
-					<IoMdArrowDropdown size={25} />
-				</AreaIcon>
-				<BoxList open={openSelect}>
-					{Children.map(children, (child, index) => {
-						return cloneElement(child as ReactElement<OptionProps>, {
-							key: index,
-							onClick: () =>
-								handleOptionClick((child as ReactElement<OptionProps>).props.value)
-						});
-					})}
-				</BoxList>
-			</SelectField>
-		</AreaSelect>
-	);
-}
+Select.displayName = 'Select';
 
 
 
-//---------------------------------------------------------------------------------------------------------------------
+//Select - styles -------------------------------------------------------------------------------------------------------------
 
-//components/Form/Option
+'use client'
+
+type PropsOpen = {
+    open: boolean;
+};
+
+import { styled } from "styled-components";
+
+export const Content = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    @media(max-height: 580px){
+        gap: 0;
+    }
+`;
+
+export const AreaInput = styled.div`
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    border: 1px solid #575555;
+    transition: border-color 0.3s; 
+
+    &:focus-within {
+        border-color: #3ea8d1;
+    }
+
+    @media(max-height: 580px){
+        height: 34px;
+    }
+`;
+
+export const InputComponent = styled.input`
+    width: 95%;
+    height: 30px;
+    outline: none;
+    border: 0;
+    text-indent: 10px;
+    color: #9b9191;
+    font-size: 12px;
+    font-weight: 300;
+
+    @media(max-height: 580px){
+        height: 50%;
+    }
+`;
+
+export const Label = styled.label`
+    color: #9b9191;
+    font-size: 13px;
+    font-weight: 400;
+`;
+
+export const Icon = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    user-select: none;
+    color: #575555;
+    cursor: pointer;
+`;
+
+export const IconLeft = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    padding-left: 15px;
+`;
+
+export const BoxList = styled.ul<PropsOpen>`
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: ${props =>
+        props.open === true ? '0px 4px 6px 1px rgb(150 150 150 / 75%)' : 'none'};
+    list-style-type: none;
+    max-height: ${props => (props.open === true ? '225px' : '0')};
+    transition: max-height 0.1s ease-out;
+    overflow-y: scroll;
+    z-index: 2;
+    padding: 0;
+    cursor: pointer;
+
+    &::-webkit-scrollbar {
+        width: 7px;
+
+        &-track-piece {
+            background-color: #eee;
+        }
+
+        &-thumb:vertical,
+        &-thumb:horizontal {
+            background-color: #178368;
+            border-radius: 5px;
+        }
+
+        &-thumb:vertical:hover,
+        &-thumb:horizontal:hover {
+            background-color: #717171;
+        }
+    }
+`;
+//=================================================================================================================
+// option
+
+'use client'
 
 import { ReactNode } from 'react';
 import { Item } from './styles';
@@ -120,22 +226,31 @@ import { Item } from './styles';
  */
 
 type propsOptions = {
-	children: ReactNode;
-	value: string | number;
-	onClick?: () => void;
+    children: ReactNode;
+    onClick?: () => void;
+    value?: string;
 };
 
-export default function Option({ children, onClick }: propsOptions): JSX.Element {
-	return <Item onClick={onClick}>{children}</Item>;
-}
+export const Option = ({ children, onClick, value }: propsOptions): JSX.Element => {
+    return <Item onClick={onClick} value={value}>{children}</Item>;
+};
 
 
+// styles options
 
-//--------------------------------------------------------------------------------------------------------------------------
-// Uso:
+'use client'
 
-<Select name="departamento">
-	<Option value="Item 1">Item 1</Option>
-	<Option value="Item 2">Item 2</Option>
-	<Option value="Item 3">Item 3</Option>
-</Select>
+import styled from "styled-components";
+
+export const Item = styled.li`
+    height: 27px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    padding: 5px 15px;
+    cursor: pointer;
+
+    &:hover {
+        background: #cacaca;
+    }
+`;

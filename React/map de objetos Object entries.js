@@ -136,6 +136,31 @@ Object.values(dataObjects).forEach(item => {
 });
 
 
+//---------------------------------------------------------------------------------
+
+const objeto = {
+    'Registro de liberação de Termofusão': { cod_registro: '', revisao: '' },
+    'Registro de liberação de Extrusão': { cod_registro: '', revisao: '' },
+    'Registro de Solda por Termofusão': { cod_registro: '', revisao: '' },
+    'Registro de Teste de Pressurização': { cod_registro: '', revisao: '' },
+    'Registro de Reparos': { cod_registro: '', revisao: '' },
+    'Registro de Ensaio destrutivo de Cunha': { cod_registro: '', revisao: '' },
+    'Registro de Ensaio destrutivo de extrusão': { cod_registro: '', revisao: '' },
+    'Registro de spark test /vacuo test': { cod_registro: '', revisao: '' },
+    'Disposição de Geomenbrana': { cod_registro: '', revisao: '' },
+    'Disposição de Geotextil': { cod_registro: '', revisao: '' },
+    'Disposição de Geocelula': { cod_registro: '', revisao: '' },
+    'Disposição Geocomposto': { cod_registro: '', revisao: '' },
+    'Disposição de GCL': { cod_registro: '', revisao: '' },
+    'Disposição de Greogrelha': { cod_registro: '', revisao: '' },
+    'Relatorios de Qualidade': { cod_registro: '', revisao: '' },
+    'Registro de Ensaio destrutivo de termofusão': { cod_registro: '', revisao: '' },
+};
+
+const arrayDeObjetos = Object.entries(objeto).map(([key, value]) => ({ nome: key, ...value }));
+console.log(arrayDeObjetos);
+
+
 
 
 
