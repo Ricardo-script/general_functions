@@ -82,12 +82,12 @@ import axios from "axios"
 type UsePostReturnType<T> = {
     executePost: (postData: T) => Promise<void>,
     loading: boolean,
-    error: string
+    error: AxiosError | null
 }
 
 export function usePost<T>(url: string): UsePostReturnType<T> {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    const [error, setError] = useState<AxiosError | null>(null);
 
     const executePost = async (postData: T) => {
         setLoading(true);
@@ -96,8 +96,12 @@ export function usePost<T>(url: string): UsePostReturnType<T> {
             const response = await axios.post(url, postData);
             console.log('Response:', response);
         } catch (error) {
-            console.error('Error posting data:', error);
-            //setError(error)
+            if (axios.isAxiosError(error)) {
+                setError(error);
+                console.error('Error updating data:', error);
+            } else {
+                throw error;
+            }
         } finally {
             setLoading(false);
         }
@@ -150,3 +154,160 @@ export default function Home(): JSX.Element {
         </section>
     );
 }
+
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+
+//PUT:
+
+import { useState } from 'react';
+import axios, { AxiosError } from 'axios';
+
+type UsePutReturnType<T> = {
+    executePut: (id: string | number, data: T) => Promise<void>,
+    loading: boolean,
+    error: AxiosError | null
+}
+
+export function usePut<T>(url: string): UsePutReturnType<T> {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<AxiosError | null>(null);
+
+    const executePut = async (id: string | number, data: T) => {
+        setLoading(true);
+
+        try {
+            const response = await axios.put(`${url}/${id}`, data);
+            console.log('Response:', response);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                setError(error);
+                console.error('Error updating data:', error);
+            } else {
+                throw error;
+            }
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    return { executePut, loading, error };
+}
+
+
+// arquivo de chamada:
+
+'use client'
+
+import { useRef } from "react";
+import { usePut } from "./hooks";
+
+type PostType = {
+    nome: string
+    email: string
+    password: string
+}
+
+export default function Home(): JSX.Element {
+
+    const formRef = useRef<HTMLFormElement>(null);
+
+    const {
+        executePut,
+        loading,
+        error
+    } = usePut<PostType>('https://jsonplaceholder.typicode.com/posts');
+
+    const sendData = async () => {
+
+        const id = '1'
+        const putData: PostType = {
+            nome: formRef.current?.nome?.value,
+            email: formRef.current?.email?.value,
+            password: formRef.current?.password?.value
+        };
+
+        await executePut(id, putData);
+    }
+
+    return (
+        <section>
+            <form ref={formRef}>
+                <input type="text" name="nome" />
+                <input type="email" name="email" />
+                <input type="password" name="password" />
+            </form>
+            <button onClick={sendData}>Send</button>
+        </section>
+    );
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+
+//DELETE:
+
+// useDelete.tsx
+
+import { useState } from 'react';
+import axios, { AxiosError } from 'axios';
+
+type UseDeleteReturnType = {
+    executeDelete: (id: string | number) => Promise<void>,
+    loading: boolean,
+    error: AxiosError | null
+}
+
+export function useDelete(url: string): UseDeleteReturnType {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<AxiosError | null>(null);
+
+    const executeDelete = async (id: string | number) => {
+        setLoading(true);
+
+        try {
+            const response = await axios.delete(`${url}/${id}`);
+            console.log('Response:', response);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                setError(error);
+                console.error('Error deleting data:', error);
+            } else {
+                throw error;
+            }
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    return { executeDelete, loading, error };
+}
+
+// arquivo de chamada:
+
+'use client'
+
+import { useDelete } from "./hooks";
+
+export default function Home(): JSX.Element {
+    const {
+        executeDelete,
+        loading,
+        error
+    } = useDelete('https://jsonplaceholder.typicode.com/posts');
+
+    const handleDelete = async (id: string | number) => {
+        await executeDelete(id);
+    }
+
+    return (
+        <button onClick={() => handleDelete('1')} disabled={loading}>
+            {loading ? 'Excluindo...' : 'Excluir'}
+            {error && <p>Ocorreu um erro ao excluir o post.</p>}
+        </button>
+    )
+}
+
