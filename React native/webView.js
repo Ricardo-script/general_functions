@@ -25,6 +25,36 @@ const styles = StyleSheet.create({
   },
 });
 
+// Exemplo de uso ------------------------------------------------------------------------------------------------------------------
+
+import * as React from 'react';
+import { WebView } from 'react-native-webview';
+import { StyleSheet, SafeAreaView, StatusBar, Dimensions } from 'react-native';
+
+export default function App() {
+    return (
+        <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor='#1c64ff' barStyle='light-content' />
+            <WebView
+                style={styles.view}
+                bounces={false}
+                source={{ uri: 'https://tradeappone.com.br/' }}
+            />
+        </SafeAreaView>
+
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#1c64ff'
+    },
+    view: {
+        width: Dimensions.get('window').width,
+    }
+});
+
 
 // uso inline HTML: ----------------------------------------------------------------------------------------------------------------
 
