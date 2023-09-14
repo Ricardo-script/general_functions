@@ -10,4 +10,8 @@
 	exemplo:
 	Build details: https://expo.dev/accounts/ricardo-script/projects/notification/builds/a82c80f9-62dd-4fd6-976d-c5c79d7beec8
 
+ 	Visualizar Preview
+
+   	- eas update
+
 */
