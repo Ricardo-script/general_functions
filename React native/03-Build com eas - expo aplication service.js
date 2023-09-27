@@ -14,4 +14,11 @@
 
    	- eas update
 
+
+       build all:
+       npx eas build --plataform all
+
+	enviar para a apple-store:
+	eas submit --plataform ios
+
 */
