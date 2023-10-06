@@ -26,7 +26,7 @@
 $ yarn dev
 ```
 
-### startar app
+### Build
 
 ```bash
 $ yarn build
