@@ -26,6 +26,12 @@
 $ yarn dev
 ```
 
+### startar app
+
+```bash
+$ yarn build
+```
+
 
 ## Outra configuração para Electron----------------------------------------------:
 #Doc:https://electron-vite.org/
@@ -33,6 +39,8 @@ $ yarn dev
 ```bash
   yarn create @quick-start/electron
 ```
+
+Esse comando de build ira gerar a pasta realease com o executável
 
 ### Siga as instruções
 
