@@ -31,8 +31,7 @@ $ yarn dev
 ```bash
 $ yarn build
 ```
-
-##Esse comando de build ira gerar a pasta realease com o executável
+Esse comando de build ira gerar a pasta realease com o executável
 
 
 ## Outra configuração para Electron----------------------------------------------:
