@@ -1,23 +1,23 @@
 {
+    "workbench.colorTheme": "Transylvania",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Dracula",
-    "diffEditor.renderSideBySide": false,
-    "diffEditor.ignoreTrimWhitespace": false,
     "editor.fontFamily": "Fira Code, 'Courier New', monospace",
+    "editor.fontSize": 14,
     "editor.fontWeight": "normal",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontFamily": "Consolas",
     "editor.fontLigatures": true,
-    "editor.fontSize": 13.2,
-    "terminal.integrated.fontSize": 12,
-    "terminal.integrated.fontFamily": "MesloLGM Nerd Font",
-   
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "material-icon-theme.activeIconPack": "react_redux",
+    "workbench.tree.indent": 16,
     "workbench.colorCustomizations": {
-        "terminal.background": "#1d192e",
-        "editor.background": "#242035",
-        "panel.background": "#1d192e",
-        "sideBar.background": "#141022",
+        "terminal.background": "#0f0d18",
+        "editor.background": "#0f0d18",
+        "panel.background": "#0f0d18",
+        "sideBar.background": "#0a0811",
         "activityBar.background": "#22212C",
         "titleBar.activeBackground": "#22212C",
-
         "focusBorder": "#a394f033",
         "foreground": "#edecee",
         "errorForeground": "#ff6767",
@@ -53,8 +53,6 @@
         "editorLineNumber.foreground": "#a394f033",
         "editorIndentGuide.activeBackground": "#6d6d6d",
         "editorCursor.foreground": "#a277ff",
-        "editor.selectionBackground": "#4c3bac7f", //"#3d375e7f",
-        "editor.selectionHighlightBackground": "#362a7e7f", //"#3d375e7f",
         "editor.inactiveSelectionBackground": "#3d375e7f",
         "editor.wordHighlightBackground": "#3d375e7f",
         "editor.wordHighlightStrongBackground": "#3d375e7f",
@@ -116,12 +114,10 @@
         "scrollbarSlider.activeBackground": "#3d375e7f",
         "scrollbarSlider.background": "#a394f033",
         "scrollbarSlider.hoverBackground": "#a394f033",
-        "terminal.foreground": "#e4dfe9", //#e4dfe9
         "terminal.ansiBlack": "#15141b",
         "terminal.ansiBlue": "#a277ff",
-        "terminal.ansiBrightBlack": "#a277ff", //#2d2d2d
         "terminal.ansiBrightBlue": "#a277ff",
-        "terminal.ansiBrightCyan": "#2b745b",
+        "terminal.ansiBrightCyan": "#61ffca",
         "terminal.ansiBrightGreen": "#a277ff",
         "terminal.ansiBrightMagenta": "#61ffca",
         "terminal.ansiBrightRed": "#ffca85",
@@ -133,19 +129,22 @@
         "terminal.ansiRed": "#ff6767",
         "terminal.ansiWhite": "#cdccce",
         "terminal.ansiYellow": "#ffca85",
-        "terminal.selectionBackground": "#ee73737f",
+        "terminal.selectionBackground": "#3d375e7f",
         "terminalCursor.background": "#2d2d2d",
-        "terminalCursor.foreground": "#a277ff", //#aeacae
         "gitDecoration.modifiedResourceForeground": "#ffca85",
         "gitDecoration.deletedResourceForeground": "#ff6767",
-        "gitDecoration.untrackedResourceForeground": "#61ffca", //#065f41
         "gitDecoration.ignoredResourceForeground": "#4d4d4d",
         "gitDecoration.conflictingResourceForeground": "#a277ff",
-        "diffEditor.insertedTextBackground": "#d8000023",
+        "diffEditor.insertedTextBackground": "#00d89023",
         "diffEditor.removedTextBackground": "#ff474720",
         "tree.indentGuidesStroke": "#4d4d4d",
+        "editor.selectionBackground": "#4c3bac7f", //"#3d375e7f",
+        "editor.selectionHighlightBackground": "#362a7e7f", //"#3d375e7f",
+        "terminal.foreground": "#e4dfe9", //#e4dfe9
+        "gitDecoration.untrackedResourceForeground": "#61ffca", //#065f41
+        "terminal.ansiBrightBlack": "#a277ff", //#2d2d2d
+        "terminalCursor.foreground": "#a277ff", //#aeacae
     },
-
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
@@ -159,8 +158,6 @@
             },
         ]
     },
-    "workbench.startupEditor": "none"
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "git.openRepositoryInParentFolders": "never"
 }
-
-// também foi instalado o Dracula
-

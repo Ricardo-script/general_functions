@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .walk {
+            width: 240px;
+            height: 240px;
+            background: url(./walk_sprit.png) no-repeat;
+            animation: play .8s steps(6) infinite;
+        }
+
+        @keyframes play {
+            100% {
+                background-position: -1400px;
+                /* width = 240 (tamanho do quadro),  steps = 6 (x quadros diferentes) = 1400px*/
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="walk"></div>
+</body>
+
+</html>
