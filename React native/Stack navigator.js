@@ -1,6 +1,6 @@
 /*
-1- passo: expo install @react-navigation/native
-2- Passo: expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+1- passo: yarn add @react-navigation/native
+2- Passo: yarn add react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
 3- Passo: yarn add @react-navigation/native-stack
 */
 
