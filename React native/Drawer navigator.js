@@ -133,3 +133,30 @@ export default function CustomDrawer(props) { // em props eu posso receber toda 
 }
 
 
+// Abrir Drawer com DrawerActions:
+
+import { Hamburguer } from 'src/assets/icons'
+import { Container, ContentHeader, Title } from './styles';
+import { Avatar } from '../Avatar';
+import { TouchableOpacity } from 'react-native';
+import { HeaderProps } from 'src/types';
+import { useNavigation, DrawerActions } from '@react-navigation/native';
+
+export const Header = ({ title }: HeaderProps): JSX.Element => {
+
+    const navigation = useNavigation();
+
+    return (
+        <Container>
+            <ContentHeader>
+                <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
+                    <Hamburguer />
+                </TouchableOpacity>
+                <Title>{title}</Title>
+                <Avatar />
+            </ContentHeader>
+        </Container>
+    );
+}
+
+
