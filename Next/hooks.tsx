@@ -311,3 +311,50 @@ export default function Home(): JSX.Element {
     )
 }
 
+
+//----------------------------------------------------------------------------------------------------------
+
+export type UseGetIdReturnType<T> = {
+    executeGetParams: (url: string) => Promise<void>,
+    loading: boolean,
+    data: { response: T }
+}
+
+// --------------------------------------------------------------------------------------
+
+hooks.tsx
+
+export function useGetParams<T>(): UseGetIdReturnType<T> {
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState<{ response: T }>({ response: {} as T });
+
+    const executeGetParams = useCallback(async (url: string) => {
+        setLoading(true);
+
+        try {
+            await api.get(url)
+                .then((res) => {
+                    setData(res.data);
+                })
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        } finally {
+            setLoading(false);
+        }
+    }, [])
+
+    return { executeGetParams, loading, data };
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------
+
+const handleGetCEP = async (cep: string) => {
+	if (cep.length === 0) {
+	    return
+	}
+	await executeGetParams(`api/address/${cep}`);
+
+	console.log('data', data)
+}
+
+<Input name='cep' label='*CEP' placeholder='Digite o número do CEP' required type='text' onBlur={(e) => handleGetCEP(e.target.value)} />
