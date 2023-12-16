@@ -1,32 +1,51 @@
-//uso:
+// Arquivo de uso:
 
-'use client'
-
-import { Option } from "@/components/Option"
-import { Select } from "@/components/Select"
+import { useRef } from "react"
+import { Option } from "./components/Option"
+import { Select } from "./components/Select"
 
 export default function Home() {
+
+    const form = useRef<HTMLFormElement>(null)
+
+    const formData = () => {
+        const number = form.current?.number.value
+
+        return { number }
+    }
+
+    const getValues = () => {
+        console.log(formData())
+    }
+
+
     return (
         <div style={{ width: '400px' }}>
-            <Select label="Selecione" onChange={(value) => console.log(value)}>
-                <Option value='123'>123</Option>
-                <Option value='456'>456</Option>
-                <Option value='789'>789</Option>
-            </Select>
+            <form action="" ref={form}>
+                <Select name='number' label="Selecione" required value={15800}>
+                    <Option value='123'>123</Option>
+                    <Option value='456'>456</Option>
+                    <Option value='789'>789</Option>
+                </Select>
+            </form>
+            <button onClick={getValues}>getValue</button>
         </div>
 
     )
 }
 
-//Select.tsx
+//------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------
 
-'use client'
+//src/components/Select:
 
-import { useState, InputHTMLAttributes, ReactElement, forwardRef, ReactNode, Children, isValidElement, cloneElement } from 'react';
-import { Content, Label, AreaInput, InputComponent, IconLeft, Icon, BoxList } from './styles'
+import { useState, InputHTMLAttributes, ReactElement, useRef, ReactNode, Children, isValidElement, cloneElement } from 'react';
+import { Content, Label, AreaInput, InputComponent, IconLeft, Icon, BoxList, Message } from './styles'
 
 type InputTypes = {
     label: string
+    required?: boolean
+    value?: string | number | boolean
     placeholder?: string
     iconRight?: ReactElement
     iconLeft?: ReactElement
@@ -39,21 +58,33 @@ type OptionProps = {
     onClick?: () => void;
 };
 
-export const Select = forwardRef<HTMLInputElement, InputTypes>((props, ref) => {
+export const Select = (props: InputTypes): JSX.Element => {
 
-    const { label, placeholder, iconLeft, iconRight, children, onChange = () => null, ...rest } = props;
-    const [valueSelect, setValueSelect] = useState('');
+    const { label, required, value, placeholder, iconLeft, children, onChange = () => null, ...rest } = props;
+    const [valueSelect, setValueSelect] = useState(value);
     const [openSelect, setOpenSelect] = useState(false);
+
+    const SelectRef = useRef<HTMLInputElement>(null);
+    const [error, setError] = useState<string>('');
 
     const getValues = (value: string) => {
         onChange(value)
         setValueSelect(value)
     }
 
+    const handleValidation = () => {
+        //setOpenSelect(false);
+        if (required && SelectRef.current?.value === '') {
+            setError('O campo é obrigatório');
+        } else {
+            setError('');
+        }
+    };
+
     return (
         <Content>
             <Label>{label}</Label>
-            <AreaInput>
+            <AreaInput onClick={() => setOpenSelect(!openSelect)}>
                 {iconLeft &&
                     <IconLeft>
                         {iconLeft}
@@ -62,28 +93,31 @@ export const Select = forwardRef<HTMLInputElement, InputTypes>((props, ref) => {
                 <InputComponent
                     placeholder={placeholder}
                     {...rest}
-                    ref={ref}
+                    ref={SelectRef}
+                    onBlur={handleValidation}
                     value={valueSelect}
                     disabled={false}
                     onChange={(e) => {
                         getValues(e.target.value)
                     }}
                 />
-                <Icon onClick={() => setOpenSelect(!openSelect)}>
+                <Icon>
                     ▼
                 </Icon>
             </AreaInput>
+            {error && <Message>{error}</Message>}
             <BoxList open={openSelect}>
                 {Children.map(children, (child, index) => {
                     if (isValidElement<OptionProps>(child)) {
                         const optionProps = child.props as OptionProps;
                         return cloneElement(child, {
                             key: index,
-                            onClick: () => {
+                            onClick: (): void => {
                                 getValues(optionProps.value);
                                 if (optionProps.onClick) {
                                     optionProps.onClick();
                                 }
+                                setOpenSelect(!openSelect)
                             }
                         });
                     }
@@ -92,15 +126,11 @@ export const Select = forwardRef<HTMLInputElement, InputTypes>((props, ref) => {
             </BoxList>
         </Content>
     )
-});
-
-Select.displayName = 'Select';
+}
 
 
+//---- Styles : --------
 
-//Select - styles -------------------------------------------------------------------------------------------------------------
-
-'use client'
 
 type PropsOpen = {
     open: boolean;
@@ -113,6 +143,7 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     gap: 5px;
+    position: relative;
 
     @media(max-height: 580px){
         gap: 0;
@@ -121,16 +152,18 @@ export const Content = styled.div`
 
 export const AreaInput = styled.div`
     width: 100%;
-    height: 40px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 9px;
-    border: 1px solid #575555;
+    border-radius: 4px;
+    border: 1px solid #ccc;
     transition: border-color 0.3s; 
 
     &:focus-within {
-        border-color: #3ea8d1;
+        border-color: #66afe9;
+        outline: 0;
+        box-shadow: inset 0 1px 1px #00000013, 0 0 8px #66AFE999;
     }
 
     @media(max-height: 580px){
@@ -139,8 +172,8 @@ export const AreaInput = styled.div`
 `;
 
 export const InputComponent = styled.input`
-    width: 95%;
-    height: 30px;
+    width: 100%;
+    height: 26px;
     outline: none;
     border: 0;
     text-indent: 10px;
@@ -163,7 +196,8 @@ export const Icon = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
+    width: 25px;
+    height: 25px;
     user-select: none;
     color: #575555;
     cursor: pointer;
@@ -182,13 +216,15 @@ export const BoxList = styled.ul<PropsOpen>`
     background: #fff;
     border-radius: 5px;
     box-shadow: ${props =>
-        props.open === true ? '0px 4px 6px 1px rgb(150 150 150 / 75%)' : 'none'};
+        props.open === true ? '0px 3px 5px -1px #96969675' : 'none'};
     list-style-type: none;
     max-height: ${props => (props.open === true ? '225px' : '0')};
     transition: max-height 0.1s ease-out;
     overflow-y: scroll;
     z-index: 2;
     padding: 0;
+    position: absolute;
+    top: 42px;
     cursor: pointer;
 
     &::-webkit-scrollbar {
@@ -210,10 +246,22 @@ export const BoxList = styled.ul<PropsOpen>`
         }
     }
 `;
-//=================================================================================================================
-// option
 
-'use client'
+export const Message = styled.span`
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16.41px;
+    color: red;
+    text-align: end;
+    margin-top: 2px;
+    position: absolute;
+    right: 4px;
+    bottom: -17px;
+`;
+
+//-----------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------
+//src/components/Option:
 
 import { ReactNode } from 'react';
 import { Item } from './styles';
@@ -236,14 +284,14 @@ export const Option = ({ children, onClick, value }: propsOptions): JSX.Element 
 };
 
 
-// styles options
-
-'use client'
+//--- Styles ----
 
 import styled from "styled-components";
 
 export const Item = styled.li`
-    height: 27px;
+    height: 15px;
+    font-size: 13px;
+    color: #494848;
     display: flex;
     align-items: center;
     user-select: none;
@@ -254,3 +302,4 @@ export const Item = styled.li`
         background: #cacaca;
     }
 `;
+
