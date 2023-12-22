@@ -18,6 +18,17 @@
 import NextAuth, { NextAuthOptions } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 
+type TokenType = { // tipagem referente a resposta da requisição do login
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    gender: string;
+    image: string;
+    username: string;
+    token: string;
+}
+
 const nextAuthOptions: NextAuthOptions = {
     providers: [                       // tipo de autenticação a se fazer ex github, facebook, google ou credentials (email e senha própria)
         Credentials({                 // passar para dentro de Credentials as configurações do provedor
@@ -49,6 +60,15 @@ const nextAuthOptions: NextAuthOptions = {
     ],
     pages: {         // pages recebe qual sera a url que consigo acessar essa pagina no exemplo signIn é a pagina de Login que se encontra em '/' diretorio raiz
         signIn: '/' // para que o next-auth possa identificar qual é a url base precisa criar o .env com as chaves
+    },
+	callbacks: {
+        async jwt({ token, user, account }) {
+            return { ...token, ...user }
+        },
+        async session({ session, token, user }) {
+            session.user = token as TokenType;
+            return session
+        }
     }
 }
 
@@ -217,17 +237,22 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
 //----------------------------------------------------------------------------------------------------------------------------------------
 
 // Obtendo os dados da sessão, token e entre outros:
-// Crie dentro de src uma pasta chamada types, e dentro ela crie um arquivo chamado next-auth.d.ts que é um arquivo de tipo
+// Crie dentro de src uma pasta chamada types, e dentro ela crie um arquivo chamado next-auth.d.ts que é um arquivo de tipo p/ o Session do next-auth
 //src/types.next-auth.d.ts:
 
 import NextAuth from "next-auth/next";
 
 declare module 'next-auth' {
-    interface Session {
+    interface Session { //inserir o objeto que vem da resposta da requisição de login
         user: {
             id: string
+            firstName: string
+            lastName: string
             email: string
-            name: string
+            gender: string
+            image: string
+            username: string
+            token: string
         }
     }
 }
@@ -268,3 +293,69 @@ import { useRouter } from "next/navigation";
         router.replace('/');
     }
 
+// loading com next-auth (na chamada do signIn) -------------------------------------------------------------------------------------
+
+const [loading, setLoading]= useState(false)
+
+const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          setLoading(true);
+          const res = await signIn("credentials", {
+            username: input.username,
+            password: input.password,
+            redirect: false
+          });
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+        }
+};
+
+//------------------------------------------------------------------------------------------------------------------------------------
+// requisição do authorize com axios:
+
+async authorize(credentials, req) { // authorize é a chamada da api, credentials e req se quiser usar os dados da requisição
+	try {
+	    const response = await axios.post('https://dummyjson.com/auth/login', {
+		username: credentials?.username,
+		password: credentials?.password
+	    });
+
+	    const user = response.data;
+
+	    if (user && response.status === 200) {
+		return user;
+	    }
+
+	    return null;
+	} catch (error) {
+	    // Trate os erros adequadamente, por exemplo, log ou gerencie de acordo com sua lógica de aplicativo
+	    console.error('Erro ao autenticar:', error);
+	    return null;
+	}
+},
+
+//-------------------------------------------------------------------------------------------------------------------------
+//Axios interceptors com next-auth
+
+import axios from 'axios';
+import { getSession } from 'next-auth/react';
+
+const api = axios.create({
+    baseURL: 'https://dummyjson.com'
+});
+
+api.interceptors.request.use(async (config) => {
+    const session = await getSession();
+
+    if (session) {
+        config.headers.Authorization = `Bearer ${session?.user.token}`
+    }
+
+    return config;
+}, (error) => {
+    return Promise.reject(error);
+});
+
+export default api;

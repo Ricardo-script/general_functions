@@ -1,22 +1,19 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const api = axios.create({
-    baseUrl: 'http://localhost:3333/',
+    baseURL: 'https://dummyjson.com'
 });
 
-api.interceptors.request.use(async (config) => {
-    try {
-        const token = await localStorage.getItem('@token');
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem('@token');
 
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`
-        }
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+    }
 
-        return config;
-    }
-    catch (error) {
-        console.log(error)
-    }
+    return config;
+}, (error) => {
+    return Promise.reject(error);
 });
 
 export default api;
