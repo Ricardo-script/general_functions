@@ -1,0 +1,12 @@
+/* 
+	Regra de redirecionamento SPA ausente: uma variedade de ferramentas como Create React App, Vite, Angular, etc. 
+	Esses aplicativos não possuem uma página HTML por caminho, mas dependem de JavaScript para lidar com a navegação. 
+	Para tais aplicativos, é importante ter o seguinte conteúdo:
+*/
+
+
+/* /index.html 200
+
+
+//como o conteúdo do _redirects arquivo que deve existir na public pasta (ou similar),
+ para que seja copiado para o diretório de publicação quando o site estiver sendo construído.
