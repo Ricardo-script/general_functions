@@ -1,61 +1,49 @@
-// com Form
+//adicionar no arquivo que esta na pasta React
 
-import React, { ReactNode, FormHTMLAttributes, forwardRef } from 'react';
-import { AreaForm, FormComponent } from './styles';
+import { forwardRef, InputHTMLAttributes } from "react"
 
-type FormProps = {
-    children: ReactNode;
-} & FormHTMLAttributes<HTMLFormElement>;
-
-export const Form = forwardRef<HTMLFormElement, FormProps>((props, ref) => {
-    const { children, ...rest } = props;
-
-    return (
-        <AreaForm>
-            <FormComponent {...rest} ref={ref}>
-                {children}
-            </FormComponent>
-        </AreaForm>
-    );
-});
-
-Form.displayName = 'Form'; // Define o displayName do componente
-
-
-//------------------------------------------------------------------------------
-
-import { InputHTMLAttributes, ReactElement, forwardRef } from 'react';
-import { Content, Label, AreaInput, InputComponent, IconLeft, IconRight } from './styles'
-
-type InputTypes = {
+type InputProps = {
+    name: string
     label: string
-    placeholder?: string
-    iconRight?: ReactElement;
-    iconLeft?: ReactElement;
 } & InputHTMLAttributes<HTMLInputElement>
 
-export const Input = forwardRef<HTMLInputElement, InputTypes>((props, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(({ name, label, ...rest }, ref): JSX.Element => {
+    return (
+        <div>
+            <label htmlFor={name}>{label}</label>
+            <input
+                type="text"
+                placeholder='Digite seu nome'
+                ref={ref}
+                {...rest}
+            />
+        </div>
+    )
+})
 
-    const { label, placeholder, iconLeft, iconRight, ...rest } = props;
+//------------------------------------------------------------------------------------------------------------------
+
+Uso:
+
+import { FormEvent, useCallback, useRef } from "react";
+import { Input } from "./components/Input";
+
+function App(): JSX.Element {
+
+    const inputRef = useRef<HTMLInputElement>(null)
+
+    const handleSubmit = useCallback((e: FormEvent) => {
+        e.preventDefault();
+        console.log(inputRef.current?.value)
+    }, []);
 
     return (
-        <Content>
-            <Label>{label}</Label>
-            <AreaInput>
-                {iconLeft &&
-                    <IconLeft>
-                        {iconLeft}
-                    </IconLeft>
-                }
-                <InputComponent placeholder={placeholder} {...rest} ref={ref} />
-                {iconRight &&
-                    <IconRight>
-                        {iconRight}
-                    </IconRight>
-                }
-            </AreaInput>
-        </Content>
-    )
-});
+        <form onSubmit={handleSubmit}>
+            <Input ref={inputRef} name='name' label='Nome completo' />
+            <button>Enviar</button>
+        </form>
+    );
+}
 
-Input.displayName = 'Input'; // Define o displayName do componente
+export default App
+
