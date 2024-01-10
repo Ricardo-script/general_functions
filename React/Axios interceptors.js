@@ -18,6 +18,27 @@ api.interceptors.request.use((config) => {
 
 export default api;
 
+//-----------------------------------------------------------------------------------
+// Verifica se o token é válido
+api.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        // Verifica se o erro é de autenticação (código de status 401)
+        if (error.response.data.message === 'Token inválido ou não autorizado') {
+            // Limpa os tokens do localStorage ou sessionStorage
+            localStorage.removeItem('@tokenDecoder');
+            localStorage.removeItem('@token');
+
+            // Redireciona para a tela de login
+            window.location.href = '/';
+        }
+        return Promise.reject(error);
+    }
+);
+
+
 //----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 

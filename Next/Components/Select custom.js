@@ -1,12 +1,12 @@
 // Arquivo de uso:
 
-import { useRef } from "react"
-import { Option } from "./components/Option"
-import { Select } from "./components/Select"
+import { Select } from "./components/Select";
+import { Option } from "./components/Option";
+import { useRef } from "react";
 
-export default function Home() {
+function App(): JSX.Element {
 
-    const form = useRef<HTMLFormElement>(null)
+    const form = useRef<HTMLFormElement>(null);
 
     const formData = () => {
         const number = form.current?.number.value
@@ -18,28 +18,29 @@ export default function Home() {
         console.log(formData())
     }
 
-
     return (
-        <div style={{ width: '400px' }}>
+        <div>
             <form action="" ref={form}>
-                <Select name='number' label="Selecione" required value={15800}>
+                <Select name='number' label="Selecione" required> {/*onChange={(e) => console.log(e)}*/}
+                    <Option value=''>Selecione...</Option>
                     <Option value='123'>123</Option>
                     <Option value='456'>456</Option>
                     <Option value='789'>789</Option>
                 </Select>
             </form>
-            <button onClick={getValues}>getValue</button>
+            <button onClick={getValues}>ok</button>
         </div>
-
-    )
+    );
 }
+
+export default App
 
 //------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
 
 //src/components/Select:
 
-import { useState, InputHTMLAttributes, ReactElement, useRef, ReactNode, Children, isValidElement, cloneElement } from 'react';
+import { useState, useEffect, InputHTMLAttributes, ReactElement, useRef, ReactNode, Children, isValidElement, cloneElement } from 'react';
 import { Content, Label, AreaInput, InputComponent, IconLeft, Icon, BoxList, Message } from './styles'
 
 type InputTypes = {
@@ -60,29 +61,44 @@ type OptionProps = {
 
 export const Select = (props: InputTypes): JSX.Element => {
 
-    const { label, required, value, placeholder, iconLeft, children, onChange = () => null, ...rest } = props;
-    const [valueSelect, setValueSelect] = useState(value);
+    const { label, required, placeholder, iconLeft, children, onChange = () => null, ...rest } = props;
     const [openSelect, setOpenSelect] = useState(false);
-
-    const SelectRef = useRef<HTMLInputElement>(null);
+    const selectRef = useRef<HTMLInputElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
     const [error, setError] = useState<string>('');
 
     const getValues = (value: string) => {
         onChange(value)
-        setValueSelect(value)
+        if (selectRef.current) {
+            selectRef.current.value = value
+            handleValidation()
+        }
     }
 
     const handleValidation = () => {
-        //setOpenSelect(false);
-        if (required && SelectRef.current?.value === '') {
-            setError('O campo é obrigatório');
-        } else {
-            setError('');
-        }
+        setTimeout(() => {
+            if (required && selectRef.current?.value === '') {
+                setError('O campo é obrigatório');
+            } else {
+                setError('');
+            }
+        }, 300)
     };
 
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            if (contentRef.current && !contentRef.current.contains(event.target as Node)) {
+                setOpenSelect(false);
+            }
+        };
+        document.addEventListener('mousedown', handleOutsideClick);
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, []);
+
     return (
-        <Content>
+        <Content ref={contentRef} onBlur={handleValidation}>
             <Label>{label}</Label>
             <AreaInput onClick={() => setOpenSelect(!openSelect)}>
                 {iconLeft &&
@@ -93,13 +109,8 @@ export const Select = (props: InputTypes): JSX.Element => {
                 <InputComponent
                     placeholder={placeholder}
                     {...rest}
-                    ref={SelectRef}
-                    onBlur={handleValidation}
-                    value={valueSelect}
-                    disabled={false}
-                    onChange={(e) => {
-                        getValues(e.target.value)
-                    }}
+                    ref={selectRef}
+                    readOnly
                 />
                 <Icon>
                     ▼
@@ -127,7 +138,6 @@ export const Select = (props: InputTypes): JSX.Element => {
         </Content>
     )
 }
-
 
 //---- Styles : --------
 
