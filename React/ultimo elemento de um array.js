@@ -18,3 +18,11 @@ console.log(response.data[response.data.length-1].id);
 ]
 
 console.log(response.data[response.data.length-1].id); // =4
+
+//------------------------------------------------------------
+
+array[array.length - 1] 
+
+//ou da melhor maneira
+
+array.at(-1)
