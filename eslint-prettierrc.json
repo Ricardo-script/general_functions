@@ -22,7 +22,6 @@ yarn add prettier -D
 	],
 	"plugins": ["prettier"],
 	"rules": {
-		"prettier/prettier": "off",
 		"@typescript-eslint/no-explicit-any": "error",
 		"@typescript-eslint/explicit-module-boundary-types": "error",
 		"@typescript-eslint/no-non-null-assertion": "off"
@@ -35,24 +34,11 @@ yarn add prettier -D
 
 {
 	"singleQuote": true,
-	"trailingComma": "none",
+	"trailingComma": "all",
 	"tabWidth": 4,
 	"useTabs": true,
 	"printWidth": 100,
 	"arrowParens": "avoid",
-	"overrides": [
-		{
-			"files": "*.ts",
-			"options": {
-				"parser": "@typescript-eslint/parser",
-				"plugins": ["@typescript-eslint/eslint-plugin"],
-				"rules": {
-					"@typescript-eslint/no-explicit-any": "error",
-					"@typescript-eslint/explicit-module-boundary-types": "error"
-				}
-			}
-		}
-	]
 }
 
 
