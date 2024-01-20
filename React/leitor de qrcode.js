@@ -4,6 +4,14 @@ import jsQR, { QRCode } from 'jsqr';
 export function QRCodeReader(): JSX.Element {
     const videoRef = useRef<HTMLVideoElement>(null);
     const videoStream = useRef<MediaStream | null>(null);
+	
+	/* 
+		const stopCamera = () => {
+			if (videoStream.current) {
+				videoStream.current.getTracks().forEach(track => track.stop());
+			}
+		};
+	*/
 
     useEffect(() => {
         const handleQRCode = (qrCode: QRCode | null) => {
