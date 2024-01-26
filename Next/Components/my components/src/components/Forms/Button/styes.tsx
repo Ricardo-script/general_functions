@@ -96,6 +96,11 @@ export const Container = styled.div<ButtonProps>`
                     : "#FFF"};
         }
     }
+
+    @media (max-width: 768px) {
+        user-select: none;
+        -moz-user-select: none;
+    }
 `;
 
 export const spinAnimation = keyframes`
