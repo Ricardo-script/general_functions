@@ -1,29 +1,28 @@
-import { LottieCarrying, LottieDispatching } from "@/assets/lotties";
-
-import { Container, Message } from "./styles";
-import { DotsAnimate } from "./DotsAnimate";
+import { Container, Message } from './styles';
+import { DotsAnimate } from './DotsAnimate';
 
 type LoadingProps = {
-    open: boolean;
-    message?: string;
-    Lottie?: JSX.Element;
+	open: boolean;
+	message?: string;
+	lottie?: JSX.Element;
 };
 
 export const Loading = ({
-    open,
-    message = "Aguarde Carregando",
+	open,
+	message = 'Aguarde Carregando',
+	lottie,
 }: LoadingProps): JSX.Element | null => {
-    if (!open) {
-        return null;
-    }
+	if (!open) {
+		return null;
+	}
 
-    return (
-        <Container>
-            <LottieDispatching width={250} height={250} />
-            <Message>
-                {message}
-                <DotsAnimate />
-            </Message>
-        </Container>
-    );
+	return (
+		<Container>
+			{lottie && lottie}
+			<Message>
+				{message}
+				<DotsAnimate />
+			</Message>
+		</Container>
+	);
 };

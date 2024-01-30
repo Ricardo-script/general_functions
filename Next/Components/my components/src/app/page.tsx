@@ -132,7 +132,9 @@ export default function Home(): JSX.Element {
                     removePullToReflesh
                 />
             </Modal>
-            <button onClick={() => Toast.show({ message: "Teste" })}>
+            <button
+                onClick={() => Toast.show({ message: "Teste", time: 5000 })}
+            >
                 Toast
             </button>
         </Container>

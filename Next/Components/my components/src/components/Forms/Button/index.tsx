@@ -1,14 +1,14 @@
-import { HTMLAttributes } from "react";
-import { Container, Title, Spinner } from "./styes";
+import { HTMLAttributes } from 'react';
+import { Container, Title, Spinner } from './styes';
 
 type ButtonProps = {
-    children: React.ReactNode;
-    variant?: "contained" | "outlined";
-    color?: "neutral" | "success" | "info" | "alert" | "danger";
-    width?: number;
-    iconRight?: JSX.Element;
-    iconLeft?: JSX.Element;
-    loading?: boolean;
+	children: React.ReactNode;
+	variant?: 'contained' | 'outlined';
+	color?: 'neutral' | 'success' | 'info' | 'alert' | 'danger';
+	width?: number;
+	iconRight?: JSX.Element;
+	iconLeft?: JSX.Element;
+	loading?: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 
 /**
@@ -24,28 +24,29 @@ type ButtonProps = {
  * @param {JSX.Element} [props.iconRight] - Ícone à direita do texto do botão.
  * @param {JSX.Element} [props.iconLeft] - Ícone à esquerda do texto do botão.
  * @param {boolean} [props.loading=false] - Insere um spinner de carregando durante o loading.
+ *  @param {boolean} [props.background='#040404'] - Caso queira um background estilizavel
  *
  * @returns {JSX.Element} O componente de botão.
  */
 
 export const Button = ({
-    children,
-    variant = "contained",
-    color = "success",
-    width = 0,
-    iconRight,
-    iconLeft,
-    loading,
-    ...rest
+	children,
+	variant = 'contained',
+	color = 'success',
+	width = 0,
+	iconRight,
+	iconLeft,
+	loading,
+	...rest
 }: ButtonProps): JSX.Element => {
-    return (
-        <Container $variant={variant} $color={color} $width={width} {...rest}>
-            {iconLeft && iconLeft}
-            <Title $variant={variant} $color={color}>
-                {children}
-            </Title>
-            {iconRight && iconRight}
-            {loading && <Spinner $variant={variant} $color={color} />}
-        </Container>
-    );
+	return (
+		<Container $variant={variant} $color={color} $width={width} {...rest}>
+			{iconLeft && iconLeft}
+			<Title $variant={variant} $color={color}>
+				{children}
+			</Title>
+			{iconRight && iconRight}
+			{loading && <Spinner $variant={variant} $color={color} />}
+		</Container>
+	);
 };

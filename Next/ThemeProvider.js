@@ -11,23 +11,56 @@ const theme = {
 
 export default theme
 
+//---------------------------------------------------------------------------------------
+
+Crie um arquivo chamado 'NextThemeProvider.tsx', pois podera user o use client
+
+'use client';
+import theme from './theme';
+import { ThemeProvider } from 'styled-components';
+
+const NextThemeProvider = ({ children }: { children: React.ReactNode }): JSX.Element => {
+	return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+};
+
+export default NextThemeProvider;
+
 //----------------------------------------------------------------------------------------
-//Agora em pages/_app.tsx importar do styled-components o ThemeProvider
+//Agora em src/app/layout.tsx:
 //src/pages/_app.tsx:
 
-import type { AppProps } from 'next/app'
-import GlobalStyle from '../styles/global';
-import { ThemeProvider } from 'styled-components';
-import theme from '@/styles/theme';
+import type { Metadata } from 'next';
+import StyledComponentsRegistry from '@/lib/registry';
+import GlobalStyles from '@/styles/GlobalStyles';
+import NextThemeProvider from '@/styles/NextThemeProvider';
+import { Inter } from 'next/font/google';
 
-export default function App({ Component, pageProps }: AppProps) {
+const inter = Inter({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+	title: 'Carga PRO',
+	description: 'Gestão de Cargas',
+};
+
+export default function RootLayout({
+	children,
+}: Readonly<{
+	children: React.ReactNode;
+}>): JSX.Element {
 	return (
-		<ThemeProvider theme={theme}>
-			<Component {...pageProps} />
-			<GlobalStyle />
-		</ThemeProvider>
-	)
+		<html lang="pt-br">
+			<body className={inter.className}>
+				<StyledComponentsRegistry>
+					<NextThemeProvider>
+						<GlobalStyles />
+						{children}
+					</NextThemeProvider>
+				</StyledComponentsRegistry>
+			</body>
+		</html>
+	);
 }
+
 
 //-----------------------------------------------------------------------------------------
 /*

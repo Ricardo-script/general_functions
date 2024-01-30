@@ -2,23 +2,23 @@
 
 import React, {
     useState,
-    useEffect,
     useRef,
     useImperativeHandle,
     useLayoutEffect,
     MutableRefObject,
-    Fragment,
 } from "react";
-import { Container, AreaIcon, Body, Message, AreaClose } from "./styles";
+import { ToastMessage } from "./ToastMessage";
 
-type ToastProps = {
+export type ToastProps = {
     message: string;
-    id?: number;
+    id: number;
+    time?: number;
 };
 
+type ShowToast = Omit<ToastProps, "id">;
+
 type ToastRef = {
-    show: (data: ToastProps) => void;
-    close: (index: number) => void;
+    show: (data: ShowToast) => void;
 };
 
 export const ToastContainer = (): JSX.Element => {
@@ -26,20 +26,22 @@ export const ToastContainer = (): JSX.Element => {
 
     const toastRef = useRef<ToastRef>({
         show: () => {},
-        close: () => {},
     });
 
-    const handleShowToast = (data: ToastProps) => {
+    const handleShowToast = (data: ShowToast) => {
         setToasts((prevToasts) => [
             ...prevToasts,
-            { id: toasts.length + 1, message: data.message },
+            {
+                id: Math.random(),
+                message: data.message,
+                time: data.time,
+            },
         ]);
     };
 
     useImperativeHandle(toastRef, () => {
         return {
             show: handleShowToast,
-            close: closeSpecificToast,
         };
     });
 
@@ -47,45 +49,25 @@ export const ToastContainer = (): JSX.Element => {
         Toast.setToastRef(toastRef);
     }, []);
 
-    const closeSpecificToast = (index: number): void => {
-        setTimeout(() => {
-            const allToasts = [...toasts];
-            allToasts.splice(index, 1);
-            setToasts(allToasts);
-        }, 100);
-    };
-
-    const removeToast = (id: number) => {
-        setToasts((prevToasts) =>
-            prevToasts.filter((toast) => toast.id !== id)
-        );
-    };
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (toasts.length > 0) {
-                removeToast(toasts[0].id || 0);
-            }
-        }, 1500);
-
-        return () => clearInterval(interval);
-    }, [toasts]);
-
     return (
         <div>
             {toasts.length > 0 &&
                 toasts.map((items, index) => (
-                    <Container key={index} index={index}>
-                        <AreaIcon>
-                            <span>x</span>
-                        </AreaIcon>
-                        <Body>
-                            <Message>{items.message + " " + items.id}</Message>
-                        </Body>
-                        <AreaClose onClick={() => closeSpecificToast(index)}>
-                            x
-                        </AreaClose>
-                    </Container>
+                    <ToastMessage
+                        key={items.id}
+                        index={index}
+                        message={items.message}
+                        id={items.id}
+                        time={items.time}
+                        onHide={() => {
+                            setToasts((prev) => {
+                                const filter = prev.filter(
+                                    (item) => item.id !== items.id
+                                );
+                                return filter;
+                            });
+                        }}
+                    />
                 ))}
         </div>
     );
@@ -113,11 +95,7 @@ export class Toast {
         this.toastRef = ref;
     }
 
-    static show(data: ToastProps) {
+    static show(data: ShowToast) {
         this.toastRef.current.show(data);
-    }
-
-    static close(index: number) {
-        this.toastRef.current.close(index);
     }
 }

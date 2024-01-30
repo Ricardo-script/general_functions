@@ -65,3 +65,30 @@ node_modules
 .env
 dist
 //-------------------------------------------------------------------------------------------
+
+//Instalando e ESLint e Prettier:
+
+yarn add -D eslint
+yarn eslint --init
+
+yarn add prettier eslint-config-prettier eslint-plugin-prettier babel-eslint -D
+
+// agora que instalou todas as dependencias configurar o prettier no elsint.json:
+
+{
+    "env": {
+        "es2021": true,
+        "node": true
+    },
+    "extends": ["standard-with-typescript", "prettier"],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint", "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": "error"
+    }
+}

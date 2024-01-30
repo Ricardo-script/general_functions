@@ -8,3 +8,4 @@ export { AlertDialog } from "./AlertDialog";
 export { UploadDialog } from "./UploadDialog";
 export { FileDialog } from "./FileDialog";
 export { ImageDialog } from "./ImageDialog";
+export { Curve } from "./Curve";

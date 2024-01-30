@@ -123,4 +123,5 @@ router.post('/auth', auth);
 router.post('/newuser', CreateUserController.create);
 router.get('/list', isAuthenticated, createProduct.getList); // isAuthenticated é middleware de autenticação
 
+export { router };
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,14 +1,16 @@
-import styled from "styled-components";
+'use client';
+
+import styled from 'styled-components';
 
 type AreaRowProps = {
-    $gap: number;
+	$gap: number;
 };
 
 export const AreaRow = styled.div<AreaRowProps>`
-    display: flex;
-    gap: ${(props) => props.$gap + "px"};
+	display: flex;
+	gap: ${props => props.$gap + 'px'};
 
-    @media (max-width: 900px) {
-        flex-direction: column;
-    }
+	@media (max-width: 900px) {
+		flex-direction: column;
+	}
 `;

@@ -31,10 +31,16 @@ import { LuConciergeBell } from "react-icons/lu";
 import { MenuItem } from "./MenuItem";
 import avatar from "@/assets/images/avatar.png";
 
+export type SubMenuType = {
+    subMenuTitle: string;
+    navigate: string;
+};
+
 export type SideBarTypes = {
     name: string;
     icon: JSX.Element;
     navigate: string;
+    subMenu?: SubMenuType[];
 };
 // utils/constantes
 export const menu: SideBarTypes[] = [
@@ -47,6 +53,11 @@ export const menu: SideBarTypes[] = [
         name: "Usuários",
         icon: <HiOutlineUser size={18} color="#FFF" />,
         navigate: "/Usuarios",
+        subMenu: [
+            { subMenuTitle: "Cadastro", navigate: "/Cadastro" },
+            { subMenuTitle: "Registros", navigate: "/Registros" },
+            { subMenuTitle: "Configurações", navigate: "/configuracoes" },
+        ],
     },
     {
         name: "Portaria",
@@ -88,10 +99,8 @@ export const Sidebar = (): JSX.Element => {
                     {menu.map((items, index) => (
                         <MenuItem
                             key={index}
-                            icon={items.icon}
-                            title={items.name}
-                            navigate={items.navigate}
                             toggleMenu={toggleMenu}
+                            data={items}
                         />
                     ))}
                 </AreaMenu>

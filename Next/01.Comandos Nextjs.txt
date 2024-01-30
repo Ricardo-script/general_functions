@@ -21,3 +21,14 @@ yarn run dev
 abrir API:
 
 localhost:3000/api/hello
+
+===========================================================================
+
+npm install -g vercel
+
+vercel login
+
+//Inicializar o projeto Vercel:
+//Execute o seguinte comando para iniciar o processo de implantação:
+
+vercel deploy

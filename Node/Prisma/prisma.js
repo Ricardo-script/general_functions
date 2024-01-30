@@ -76,6 +76,31 @@ npx prisma init --datasource-provider SQLITE
 	}
 
 */
+//-------------------------------------------------------------------------------------------------------------------------------------------
+//Configurando o .ENV DATABASE_URL:
+
+// ele vem configurado assim: DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
+//meu postgress esta assim:
+
+Host: localhost
+Port: 5432
+Username: postgres
+Password: 
+Database: postgres
+
+//então ficara da seguinte forma:
+DATABASE_URL="postgresql://postgres:admin@localhost:5432/postgres?schema=public"
+
+/* 
+DATABASE_URL="postgresql://postgres:admin@localhost:5432/cargapro?schema=public"
+
+postgresql://: Indica que o tipo de banco de dados é PostgreSQL.
+postgres:admin@: Especifica o nome de usuário (postgres) e a senha (admin)
+localhost é o Host e 5432 é a porta
+cargapro: é o DataBase
+
+*/
+//-------------------------------------------------------------------------------------------------------------------------------------------
 
 model User {
 	id         String   @id @default(uuid())

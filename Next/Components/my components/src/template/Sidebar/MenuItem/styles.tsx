@@ -8,6 +8,12 @@ type ActiveItemMenu = {
     $activeMenu?: boolean;
 };
 
+type AreaIconArrowProps = {
+    $toggleSubMenu: boolean;
+};
+
+export const Container = styled.div``;
+
 export const Item = styled.li`
     width: 100%;
     height: 40px;
@@ -33,7 +39,7 @@ export const Title = styled.span<SideBarStatus>`
     width: 182px;
 
     @media (max-width: 768px) {
-        font-size: 18px;
+        font-size: 16px;
     }
 `;
 
@@ -93,6 +99,10 @@ export const AreaItem = styled.div<ActiveItemMenu>`
     &:active {
         background: #65835f;
     }
+
+    @media (max-width: 768px) {
+        position: relative;
+    }
 `;
 
 export const AreaIconItem = styled.div`
@@ -102,6 +112,17 @@ export const AreaIconItem = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+`;
+
+export const AreaIconArrow = styled(AreaIconItem)<AreaIconArrowProps>`
+    rotate: ${(props) => (props.$toggleSubMenu ? "180deg" : 0)};
+    transition: 0.2s;
+
+    @media (max-width: 768px) {
+        position: absolute;
+        top: 13px;
+        right: 5vw;
+    }
 `;
 
 export const AreaTitle = styled.div`
