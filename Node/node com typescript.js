@@ -38,7 +38,7 @@ yarn add express
 yarn add -D @types/express
 //------------------------------------------------------------------------------------------
 // typescript não reconhece o start comum do js então instalar ts-node-dev: obs(o heroku precisa dele sem ser como -D)
-yarn add -D ts-node-dev
+yarn add ts-node-dev
 /*
 	Em "scripts":{
 		"dev": "ts-node-dev ./src/server.ts"
