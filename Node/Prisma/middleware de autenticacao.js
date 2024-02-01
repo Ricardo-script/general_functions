@@ -80,34 +80,42 @@ export const auth = async (request: Request, response: Response) => {
     return response.json({ token, email });
 }
 
-
-
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Criar um middleware [o middleware fica entre a chamada da rota e a função de rota : router.get('/secret', isAuthenticated, secret) ]
 //Dentro da pasta routes, criar uma pasta chamada middleware, e dentro de middleware criar um arquivo chamada isAuthenticated.ts:
 import { Request, Response, NextFunction } from 'express';
-import { verify } from 'jsonwebtoken';
+import { verify, VerifyErrors, JsonWebTokenError } from 'jsonwebtoken';
 
-export const isAuthenticated = (request: Request, response: Response, next: NextFunction) => {
-    const authHeader = request.headers.authorization;
+export const isAuthenticated = (request: Request, response: Response, next: NextFunction): Response<string> | undefined => {
+	const authHeader = request.headers.authorization;
 
-    if (!authHeader) { //caso não exista token
-        return response.status(401).json({ message: 'JWT Token is missing' });
-    }
+	if (!authHeader || !authHeader.startsWith('Bearer ')) {
+		return response.status(401).json({ message: 'Formato de token inválido' });
+	}
 
-    const token = authHeader.split(' ')[1]; // da um split no espaço e pega o segundo item [1] 'Bearer ', 'asdfsgsdertreg654g9gfa9se8fwf'
+	const token = authHeader.split(' ')[1];
 
-    try {
-        const decodedToken = verify(token, `${process.env.JWT_SALT}`);  //verifica se o token é válido (verify é dojsonwebtoken); é o token + a chave secreta process.env.JWT_SALT
+	try {
+		verify(token,`${process.env.JWT_SALT}`, (error: VerifyErrors | null, decodedToken: any) => {
+				if (error != null) {
+					// Token inválido
+					if (error instanceof JsonWebTokenError) {
+						return response.status(401).json({ message: 'Token inválido' });
+					}
+					// Outro tipo de erro
+					return response.status(500).json({ message: 'Erro interno do servidor', error });
+				}
 
-        //console.log(decodedToken);
+				// Token válido, você pode acessar as informações do token através de decodedToken se necessário
+				console.log('decodedToken', decodedToken);
 
-        return next();
-
-    } catch (error) {
-        return response.status(401).json({ message: 'Invalid JWT Token' })
-    }
-}  
+				next(); // caso tudo estiver certo então executa o a proxima função 
+			},
+		);
+	} catch (error) {
+		return response.status(401).json({ message: 'Token inválido' });
+	}
+};  
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // routes.js
@@ -121,7 +129,7 @@ const router = Router();
 
 router.post('/auth', auth);
 router.post('/newuser', CreateUserController.create);
-router.get('/list', isAuthenticated, createProduct.getList); // isAuthenticated é middleware de autenticação
+router.get('/list', isAuthenticated, createProduct.getList); // isAuthenticated é middleware de autenticação (next())
 
 export { router };
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

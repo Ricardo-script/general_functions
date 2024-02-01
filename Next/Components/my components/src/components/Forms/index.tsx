@@ -6,3 +6,4 @@ export { Row } from "./Row";
 export { Switch } from "./Switch";
 export { Select } from "./Select";
 export { Option } from "./Option";
+export { Radio } from "./Radio";

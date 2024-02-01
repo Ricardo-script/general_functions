@@ -10,7 +10,7 @@ import {
 import { BoxPanel } from "@/components/BoxPanel";
 import { Dialog } from "@/components/Dialog";
 import { Modal } from "@/components/Modal";
-import { Switch, Checkbox, Button } from "@/components/Forms";
+import { Switch, Checkbox, Button, Radio } from "@/components/Forms";
 import { TempTable } from "@/template/TempTable";
 import { Container } from "@/template/Container";
 import { Header } from "@/template/Header";
@@ -32,7 +32,8 @@ export default function Home(): JSX.Element {
         const value2 = formRef.current?.teste2.checked;
         const value3 = formRef.current?.teste3.checked;
         const value4 = formRef.current?.teste4.checked;
-        console.log(value1, value2, value3, value4);
+        const radio = formRef.current?.radio1.value;
+        console.log(value1, value2, value3, value4, radio);
     };
 
     const [openCam, setOpenCam] = useState(false);
@@ -115,6 +116,9 @@ export default function Home(): JSX.Element {
                 />
                 <Checkbox name="teste3" />
                 <Checkbox name="teste4" />
+                <Radio name="radio1" value="1" />
+                <Radio name="radio1" value="2" />
+                <Radio name="radio3" value="3" />
             </form>
             <Loading open={false} />
             <Button width={50} loading={false}>
@@ -137,6 +141,7 @@ export default function Home(): JSX.Element {
             >
                 Toast
             </button>
+            <form action=""></form>
         </Container>
     );
 }

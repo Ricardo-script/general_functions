@@ -81,10 +81,20 @@ export const ToastContainer = (): JSX.Element => {
  *  Toast.show: mostra Toast
  *  @param show recebe message => { message: 'Enviando Toast' }
  *
+ *  @param time
+ *  @return Ao inserir o time ele fecha após ao valor inserido
+ *
  *  @close
  *  Toast.close: fecha Toast
  *  @param close
  *  fecha toast
+ *
+ *  @example
+ *
+ *  import { Toast } from "@/components/Toast";
+ *
+ *  Toast.show({ message: "Sua mensagem!", time: 5000 })
+ *
  *
  */
 

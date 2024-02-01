@@ -16,7 +16,7 @@ export const ToastMessage = ({
     index,
     message,
     id,
-    time = 5000,
+    time,
 }: ToastMessageProps) => {
     const [fade, setFade] = useState(true);
 
@@ -28,9 +28,10 @@ export const ToastMessage = ({
     }, [onHide]);
 
     const animation = useCallback(() => {
-        setTimeout(() => {
-            hideToast();
-        }, time);
+        time &&
+            setTimeout(() => {
+                hideToast();
+            }, time);
     }, [hideToast, time]);
 
     useEffect(() => {
