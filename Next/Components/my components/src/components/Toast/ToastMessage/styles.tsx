@@ -1,8 +1,28 @@
-import styled, { keyframes, css } from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { ListTypes } from "..";
 
 type ContainerToastProps = {
     index: number;
     $fadeIn?: boolean;
+};
+
+type PercentProps = {
+    $time?: number;
+    $type: ListTypes;
+};
+
+type SelectColor = Record<ListTypes, string>;
+
+const selectColor = (type: ListTypes) => {
+    const listTypes: SelectColor = {
+        success: "#32d583",
+        error: "#FF5F57",
+        info: "#7CD4FD",
+        neutral: "#344054",
+        alert: "#F57F3C",
+    };
+
+    return listTypes[type] || "success";
 };
 
 const fadeIn = keyframes`
@@ -39,6 +59,15 @@ const fadeOut = keyframes`
     }
 `;
 
+const percent = keyframes`
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+`;
+
 export const Container = styled.div<ContainerToastProps>`
     width: 280px;
     height: 70px;
@@ -65,3 +94,12 @@ export const Message = styled.span`
 `;
 
 export const AreaClose = styled.div``;
+
+export const Progress = styled.div<PercentProps>`
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    bottom: 0;
+    background: ${(props) => selectColor(props.$type)};
+    animation: ${percent} ${(props) => `${props.$time}s linear both`};
+`;

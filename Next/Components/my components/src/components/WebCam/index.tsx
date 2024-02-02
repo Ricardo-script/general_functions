@@ -16,8 +16,9 @@ import { AiFillLike } from "react-icons/ai";
 
 type WebCamProps = {
     open: boolean;
-    title: string;
-    description: string;
+    title?: string;
+    description?: string;
+    overlay: boolean;
     onClickCancel?: () => void;
     onTakePicture?: (file: File) => void;
     onTakeBase64?: (imageBase64: string) => void;
@@ -31,6 +32,8 @@ type WebCamProps = {
  * @returns Título da funcionalidade ao qual sera realizada a função da câmera
  * @param description
  * @returns Descrição da funcionalidade ao qual será realizada a função da câmera
+ * @param overlay
+ * @returns Insere um overlay encima da imagem de camera com um circulo para foco
  * @param onClickCancel
  * @returns aborta e fecha componente
  * @param onTakePicture
@@ -48,6 +51,7 @@ export const WebCam = ({
     onTakeBase64,
     onTakePicture,
     onClickCancel,
+    overlay,
 }: WebCamProps): JSX.Element | null => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -133,18 +137,17 @@ export const WebCam = ({
         <Container>
             {previewImage !== null ? (
                 <AreaVideo>
-                    <Image src={previewImage} alt="" width={450} height={350} />
+                    <Image
+                        src={previewImage}
+                        alt=""
+                        layout="fill"
+                        className="image"
+                    />
                 </AreaVideo>
             ) : (
                 <AreaVideo>
-                    <Video
-                        ref={videoRef}
-                        width={450}
-                        height={350}
-                        autoPlay
-                        playsInline
-                    />
-                    <Overlay $circleSize={320} />
+                    <Video ref={videoRef} autoPlay playsInline />
+                    {overlay && <Overlay $circleSize={320} />}
                 </AreaVideo>
             )}
             <canvas ref={canvasRef} style={{ display: "none" }}></canvas>

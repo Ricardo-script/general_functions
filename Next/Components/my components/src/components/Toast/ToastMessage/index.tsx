@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useCallback, useState } from "react";
-import { Container, AreaIcon, Body, Message, AreaClose } from "./styles";
+import {
+    Container,
+    AreaIcon,
+    Body,
+    Message,
+    AreaClose,
+    Progress,
+} from "./styles";
 import { ToastProps } from "..";
 
 type ActionsToastType = {
@@ -17,6 +24,7 @@ export const ToastMessage = ({
     message,
     id,
     time,
+    type,
 }: ToastMessageProps) => {
     const [fade, setFade] = useState(true);
 
@@ -47,6 +55,7 @@ export const ToastMessage = ({
                 <Message>{message + " " + id}</Message>
             </Body>
             <AreaClose onClick={hideToast}>x</AreaClose>
+            {time && <Progress $time={time / 1000} $type={type ?? "neutral"} />}
         </Container>
     );
 };

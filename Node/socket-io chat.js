@@ -233,6 +233,40 @@ export const AreaSendMessage = styled.div`
 `;
 
 
+//====================================================================================================
+ ****************** Não testado
+/* 
+	Emitir um evento Socket.IO para o frontend assim que receber um POST na rota '/teste'
+*/
+
+import express, { Router } from 'express';
+import { prismaClient } from '../database/prismaCliente';
+
+const router: Router = express.Router();
+
+router.post('/', async (req, res) => {
+  try {
+    const { dados } = req.body;
+
+    // Salva os dados no banco de dados
+    const savedData = await prismaClient.teste.create({
+      data: {
+        dados,
+      },
+    });
+
+    // ***Emite um evento Socket.IO com os dados salvos
+    req.app.get('io').emit('novo_dado', savedData);
+
+    return res.status(200).json(savedData);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Erro interno do servidor', error });
+  }
+});
+
+export default router;
+
 
 
 

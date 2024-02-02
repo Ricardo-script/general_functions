@@ -105,6 +105,7 @@ export default function Home(): JSX.Element {
                     onClickCancel={() => setOpenCam(false)}
                     onTakeBase64={(image) => console.log("image base64", image)}
                     onTakePicture={(image) => console.log("file", image)}
+                    overlay={true}
                 />
             </div>
             <br />
@@ -121,8 +122,18 @@ export default function Home(): JSX.Element {
                 <Radio name="radio3" value="3" />
             </form>
             <Loading open={false} />
-            <Button width={50} loading={false}>
-                Entrar
+            <Button
+                width={50}
+                loading={false}
+                onClick={() =>
+                    Toast.show({
+                        message: "Teste",
+                        time: 5000,
+                        type: "success",
+                    })
+                }
+            >
+                Toast
             </Button>
             <Modal
                 open={false}
@@ -136,11 +147,6 @@ export default function Home(): JSX.Element {
                     removePullToReflesh
                 />
             </Modal>
-            <button
-                onClick={() => Toast.show({ message: "Teste", time: 5000 })}
-            >
-                Toast
-            </button>
             <form action=""></form>
         </Container>
     );

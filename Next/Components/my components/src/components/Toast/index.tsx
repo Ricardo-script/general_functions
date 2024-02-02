@@ -9,10 +9,13 @@ import React, {
 } from "react";
 import { ToastMessage } from "./ToastMessage";
 
+export type ListTypes = "success" | "error" | "info" | "neutral" | "alert";
+
 export type ToastProps = {
     message: string;
     id: number;
     time?: number;
+    type?: ListTypes;
 };
 
 type ShowToast = Omit<ToastProps, "id">;
@@ -35,6 +38,7 @@ export const ToastContainer = (): JSX.Element => {
                 id: Math.random(),
                 message: data.message,
                 time: data.time,
+                type: data.type,
             },
         ]);
     };
@@ -59,6 +63,7 @@ export const ToastContainer = (): JSX.Element => {
                         message={items.message}
                         id={items.id}
                         time={items.time}
+                        type={items.type}
                         onHide={() => {
                             setToasts((prev) => {
                                 const filter = prev.filter(
