@@ -1,3 +1,5 @@
+"use client";
+
 import styled, { keyframes } from "styled-components";
 
 type BarProps = {
@@ -27,15 +29,12 @@ const showSteps = keyframes`
     }
 `;
 
-const openStepper = keyframes<AreaStepProps>`
+const openStepper = keyframes`
     0%{
         width: 0;
     }
     100%{
-        width: ${(props) =>
-            typeof window !== "undefined"
-                ? (window.innerWidth - 30) / props.$totalStep + "px"
-                : "100%"}; 
+        width: 100%
     }
 `;
 
@@ -53,36 +52,34 @@ export const Container = styled.div`
     opacity: 0;
     animation: ${showSteps} 1s both;
     animation-delay: 1s;
+    width: 100%;
 `;
 
 export const StepperBar = styled.div`
     display: flex;
     position: relative;
-    width: fit-content;
+    width: 100%;
 `;
 
 export const AreaStep = styled.div<AreaStepProps>`
     width: 150px;
+    height: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    animation: ${openStepper} 1s both;
+    animation: ${openStepper} 3s both;
     animation-delay: 1s;
 
     @media (max-width: 768px) {
-        //width: ${(props) =>
-            (window.innerWidth - 30) / props.$totalStep + "px"};
-        width: ${(props) =>
-            typeof window !== "undefined"
-                ? (window.innerWidth - 30) / props.$totalStep + "px"
-                : "100%"};
+        width: 100vw;
     }
 `;
 
 export const Number = styled.span<InactiveElementProps>`
     width: 30px;
     height: 30px;
+    min-height: 30px;
     z-index: 2;
     border-radius: 50%;
     border: 3px solid ${(props) => (props.$inactive ? "#5bc2a3" : "#a1a1a1")};
@@ -104,16 +101,20 @@ export const Title = styled.span<InactiveElementProps>`
     transition: all 1s;
     opacity: 0;
     animation: ${showTitle} 1s both;
-    animation-delay: 2s;
+    animation-delay: 2.2s;
+    width: 100%;
 `;
 
 export const Bar = styled.div<BarProps>`
-    height: 10px;
-    position: absolute;
-    background: #a1a1a1;
     width: ${(props) => props.$bar}%;
-    top: 11px;
+    height: 10px;
     margin-left: ${(props) => props.$left}%;
+    position: absolute;
+    top: 11px;
+    background: #a1a1a1;
+    opacity: 0;
+    animation: ${showSteps} 3s both;
+    animation-delay: 1.5s;
 `;
 
 export const BarProgress = styled.div<BarProgressProps>`

@@ -5,6 +5,10 @@ type SubMenuProps = {
     $toggleSubMenu: boolean;
 };
 
+type TitleProps = {
+    $activeMenu: boolean;
+};
+
 export const AreaSubMenu = styled.div<SubMenuProps>`
     width: 100%;
     max-height: ${(props) =>
@@ -39,7 +43,7 @@ export const AreaIconItem = styled.div`
     margin-top: -11px;
 `;
 
-export const Title = styled.span`
+export const Title = styled.span<TitleProps>`
     font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 600;
@@ -52,6 +56,8 @@ export const Title = styled.span`
     align-items: center;
     border-radius: 8px;
     padding-left: 15px;
+    background: ${(props) => (props.$activeMenu ? "#2d2f39" : "none")};
+
     &:hover {
         background: #2d2f39;
         color: #fff;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { AreaSubMenu, AreaIconItem, AreaTitle, Title } from "./styles";
 import { SubMenuType } from "..";
 import { Curve } from "@/assets/icons";
@@ -17,6 +17,7 @@ export const SubMenu = ({
     subMenus,
 }: SubMenuProps): JSX.Element | null => {
     const router = useRouter();
+    const path = usePathname();
 
     if (subMenus) {
         return (
@@ -29,7 +30,10 @@ export const SubMenu = ({
                         <AreaIconItem>
                             <Curve />
                         </AreaIconItem>
-                        <Title onClick={() => router.push(subMenu.navigate)}>
+                        <Title
+                            $activeMenu={path === subMenu.navigate}
+                            onClick={() => router.push(subMenu.navigate)}
+                        >
                             {subMenu.subMenuTitle}
                         </Title>
                     </AreaTitle>

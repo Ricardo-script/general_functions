@@ -56,7 +56,7 @@ export const menu: SideBarTypes[] = [
         subMenu: [
             { subMenuTitle: "Cadastro", navigate: "/Cadastro" },
             { subMenuTitle: "Registros", navigate: "/Registros" },
-            { subMenuTitle: "Configurações", navigate: "/configuracoes" },
+            { subMenuTitle: "Configurações", navigate: "/Configuracoes" },
         ],
     },
     {
