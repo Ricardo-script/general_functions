@@ -72,7 +72,7 @@ export const menu: SideBarTypes[] = [
 ];
 
 export const Sidebar = (): JSX.Element => {
-    const [toggleMenu, setToggleMenu] = useState(true);
+    const [toggleMenu, setToggleMenu] = useState(false);
 
     return (
         <Container $toggle={toggleMenu}>
