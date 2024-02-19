@@ -1,8 +1,10 @@
-import StyledComponentsRegistry from "@/lib/registry";
 import type { Metadata } from "next";
+import StyledComponentsRegistry from "@/lib/registry";
+import NextThemeProvider from "@/styles/NextThemeProvider";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { ToastContainer } from "@/components/Toast";
+import { TabBottom } from "@/components/TabBottom";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +22,11 @@ export default function RootLayout({
         <html lang="pt-br">
             <body className={inter.className}>
                 <StyledComponentsRegistry>
-                    <ToastContainer />
-                    {children}
+                    <NextThemeProvider>
+                        <ToastContainer />
+                        <TabBottom notRender={["/Temp"]} />
+                        {children}
+                    </NextThemeProvider>
                 </StyledComponentsRegistry>
             </body>
         </html>

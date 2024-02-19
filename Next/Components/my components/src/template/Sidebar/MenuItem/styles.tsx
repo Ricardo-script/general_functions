@@ -70,6 +70,51 @@ export const PopHover = styled.span`
     }
 `;
 
+export const PopSubMenu = styled.div`
+    width: auto;
+    padding: 7px 7px;
+    background: #2d2f39;
+    border-radius: 5px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    position: absolute;
+    right: -137px;
+    display: none;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -19px;
+        margin-top: -10px;
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent #2d2f39 transparent transparent;
+    }
+`;
+
+export const HoverSubMenu = styled.span`
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 120%;
+    color: #cecccc;
+
+    &:hover {
+        background: #4d505e;
+        transition: 0.3s;
+    }
+
+    &:active {
+        background: #65835f;
+    }
+`;
+
 export const AreaItem = styled.div<ActiveItemMenu>`
     width: 100%;
     height: 100%;
@@ -89,6 +134,14 @@ export const AreaItem = styled.div<ActiveItemMenu>`
 
         ${PopHover} {
             display: block;
+
+            @media (max-width: 720px) {
+                display: none;
+            }
+        }
+
+        ${PopSubMenu} {
+            display: flex;
 
             @media (max-width: 720px) {
                 display: none;

@@ -11,6 +11,11 @@ import { Content, AreaButtons } from "./styles";
 export default function Cadastro(): JSX.Element {
     const [step, setStep] = useState(1);
     const listSteps = ["Basic info", "Contact info", "Photo", "Login info"];
+    const dataBreadCrumbs = [
+        { screen: "Home", navigate: "" },
+        { screen: "Dashboard", navigate: "/" },
+        { screen: "Cadastro", navigate: "" },
+    ];
 
     const nextStep = (): void => {
         const totalSteps = listSteps.length;
@@ -32,7 +37,10 @@ export default function Cadastro(): JSX.Element {
     };
 
     return (
-        <Container renderHeader={() => <Header title="Teste" />}>
+        <Container
+            renderHeader={() => <Header title="Teste" />}
+            breadcrumbs={dataBreadCrumbs}
+        >
             <Content>
                 <div>
                     <h2

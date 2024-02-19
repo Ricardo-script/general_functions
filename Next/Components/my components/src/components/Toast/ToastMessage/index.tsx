@@ -47,7 +47,7 @@ export const ToastMessage = ({
     }, [animation]);
 
     return (
-        <Container index={index} $fadeIn={fade}>
+        <Container $index={index} $fadeIn={fade}>
             <AreaIcon>
                 <span>x</span>
             </AreaIcon>

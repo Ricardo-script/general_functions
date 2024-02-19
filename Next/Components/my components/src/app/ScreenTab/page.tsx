@@ -1,6 +1,7 @@
 "use client";
 
 import { Tabs, TabsTypes } from "@/components/Tab";
+//import { TabBottom } from "@/components/TabBottom";
 import { IoHomeOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoCloudUploadOutline } from "react-icons/io5";
@@ -25,8 +26,9 @@ export default function ScreenTab(): JSX.Element {
     ];
 
     return (
-        <div style={{ padding: 50 }}>
+        <div>
             <Tabs data={dataTab} width={500} height={45} />
+            {/*<TabBottom />*/}
         </div>
     );
 }

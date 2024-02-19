@@ -1,12 +1,5 @@
 "use client";
 
-import {
-    InfoDialog,
-    DeleteDialog,
-    SucessDialog,
-    ErrorDialog,
-    AlertDialog,
-} from "@/assets/icons";
 import { BoxPanel } from "@/components/BoxPanel";
 import { Dialog } from "@/components/Dialog";
 import { Modal } from "@/components/Modal";
@@ -24,10 +17,12 @@ import { DragAndDrop } from "@/components/DragAndDrop";
 import { Signature } from "@/components/Signature";
 import { Toast } from "@/components/Toast";
 import { Tabs, TabsTypes } from "@/components/Tab";
-
+import { Slider } from "@/components/Slider";
 import { IoHomeOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { Card } from "@/components/Card";
+import { BsBoxFill } from "react-icons/bs";
 
 const dataTab: TabsTypes[] = [
     {
@@ -45,6 +40,12 @@ const dataTab: TabsTypes[] = [
         icon: <IoSettingsOutline size={18} />,
         content: <span>3</span>,
     },
+];
+
+const dataBreadCrumbs = [
+    { screen: "Home", navigate: "" },
+    { screen: "Teste", navigate: "/Cadastro" },
+    { screen: "Dashboard", navigate: "/" },
 ];
 
 export default function Home(): JSX.Element {
@@ -65,28 +66,38 @@ export default function Home(): JSX.Element {
         <Container
             renderHeader={() => <Header title="Dashboard" />}
             renderSideBar={() => <Sidebar />}
+            breadcrumbs={dataBreadCrumbs}
         >
-            <span>screen home</span>
+            <div
+                style={{
+                    width: "100%",
+                    display: "flex",
+                    gap: 24,
+                    marginBottom: 20,
+                }}
+            >
+                <Card
+                    title="Today's Moneys"
+                    value="$53,000"
+                    icon={<BsBoxFill size={20} color="#FFF" />}
+                />
+                <Card
+                    title="Today's Moneys"
+                    value="$53,000"
+                    icon={<BsBoxFill size={20} color="#FFF" />}
+                />
+                <Card
+                    title="Today's Moneys"
+                    value="$53,000"
+                    icon={<BsBoxFill size={20} color="#FFF" />}
+                />
+                <Card
+                    title="Today's Moneys"
+                    value="$53,000"
+                    icon={<BsBoxFill size={20} color="#FFF" />}
+                />
+            </div>
             <div>
-                <h5>Icones</h5>
-                <br />
-                <div
-                    style={{
-                        background: "#FFF",
-                        display: "flex",
-                        alignItems: "center",
-                        padding: 10,
-                        gap: 15,
-                    }}
-                >
-                    <InfoDialog />
-                    <DeleteDialog />
-                    <SucessDialog />
-                    <ErrorDialog />
-                    <AlertDialog />
-                </div>
-                <h5>Modal</h5>
-                <br />
                 <Dialog
                     open={false}
                     type="success"
@@ -132,6 +143,7 @@ export default function Home(): JSX.Element {
                 />
             </div>
             <br />
+            <Slider min={0} max={100} step={1} />
             <form ref={formRef}>
                 <Switch name="teste1" onChange={getValues} />
                 <Checkbox
@@ -170,8 +182,8 @@ export default function Home(): JSX.Element {
                     removePullToReflesh
                 />
             </Modal>
-            <div style={{ padding: 5 }}>
-                <Tabs data={dataTab} width={550} height={45} />
+            <div style={{ marginTop: 15 }}>
+                <Tabs data={dataTab} width={450} height={40} />
             </div>
         </Container>
     );

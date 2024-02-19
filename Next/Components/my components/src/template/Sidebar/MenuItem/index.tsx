@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import {
     Container,
@@ -11,6 +11,8 @@ import {
     Title,
     AreaTitle,
     PopHover,
+    PopSubMenu,
+    HoverSubMenu,
 } from "./styles";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { SubMenu } from "../SubMenu";
@@ -43,7 +45,23 @@ export const MenuItem = ({ data, toggleMenu }: MenuItemProps): JSX.Element => {
                     <AreaTitle>
                         <Title $toggle={toggleMenu}>{data.name}</Title>
                     </AreaTitle>
-                    {!toggleMenu && <PopHover>{data.name}</PopHover>}
+                    {!toggleMenu && !data.subMenu && (
+                        <PopHover>{data.name}</PopHover>
+                    )}
+                    {!toggleMenu && data.subMenu && (
+                        <PopSubMenu>
+                            {data.subMenu.map((subMenu, index) => (
+                                <HoverSubMenu
+                                    key={index}
+                                    onClick={() =>
+                                        router.push(subMenu.navigate)
+                                    }
+                                >
+                                    {subMenu.subMenuTitle}
+                                </HoverSubMenu>
+                            ))}
+                        </PopSubMenu>
+                    )}
                     {data.subMenu && (
                         <AreaIconArrow $toggleSubMenu={toggleSubMenu}>
                             <MdKeyboardArrowDown color="#9e9e9e" />

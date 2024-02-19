@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 type ContainerProps = {
     $width: number;
@@ -17,7 +17,10 @@ type TabProps = {
 export const Container = styled.div<ContainerProps>`
     width: ${(props) => (props.$width === 0 ? "100%" : props.$width + "px")};
     user-select: none;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     @media (max-width: 520px) {
         width: 100%;
     }
@@ -32,7 +35,7 @@ export const TabWrap = styled.ul<TabWrapProps>`
         content: "";
         width: calc(100% / ${(props) => props.$totalTabs});
         height: 3px;
-        background: #32d583;
+        background: #4fd1c5;
         position: absolute;
         top: 0px;
         left: calc(
@@ -47,7 +50,7 @@ export const Title = styled.span<Omit<TabProps, "$height">>`
     letter-spacing: 1px;
     font-weight: 700;
     font-size: 0.5em;
-    color: ${(props) => (props.$active ? "#32d583" : "#74777b")};
+    color: ${(props) => (props.$active ? "#4fd1c5" : "#74777b")};
     transition: 0.7s;
 `;
 
@@ -66,7 +69,7 @@ export const Tab = styled.li<TabProps>`
     cursor: pointer;
 
     svg {
-        color: ${(props) => (props.$active ? "#32d583" : "#74777b")};
+        color: ${(props) => (props.$active ? "#4fd1c5" : "#74777b")};
         transition: 0.3s;
     }
 
@@ -76,14 +79,19 @@ export const Tab = styled.li<TabProps>`
 
     &:hover {
         ${Title} {
-            color: #32d583;
+            color: #4fd1c5;
             transition: 0.3s;
         }
         svg {
-            color: #32d583;
+            color: #4fd1c5;
             transition: 0.3s;
         }
     }
 `;
 
-export const ContentTab = styled.div``;
+export const ContentTab = styled.div`
+    width: 99.5%;
+    height: auto;
+    padding: 5px 10px;
+    background: #fff;
+`;

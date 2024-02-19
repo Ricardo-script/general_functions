@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 export const Container = styled.header`
     width: 100%;
-    height: 70px;
+    height: 60px;
     background: #dfdfdf;
     display: flex;
     align-items: center;
-    padding-left: 15px;
+    padding-left: 30px;
     box-shadow: 0px -3px 5px 2px #4b4c4f81;
     position: relative;
     z-index: 1;

@@ -1,8 +1,8 @@
 import { Container, Title } from "./styles";
 
 type HeaderProps = {
-    title: string
-}
+    title: string;
+};
 
 export const Header = ({ title }: HeaderProps): JSX.Element => {
     return (
@@ -10,4 +10,4 @@ export const Header = ({ title }: HeaderProps): JSX.Element => {
             <Title>{title}</Title>
         </Container>
     );
-}
+};

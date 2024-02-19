@@ -30,20 +30,20 @@ export const Menu = styled.nav<SideBarProps>`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 20px 9px;
+    padding: 12px 9px;
     user-select: none;
+    //border-right: 1px solid #9e9e9e;
 
     @media (max-width: 720px) {
         width: 100vw;
         border-radius: 0;
-        //padding: 20px;
     }
 `;
 
 export const HeaderAside = styled.div`
     display: flex;
     width: 100%;
-    padding: 0 8px;
+    padding: 3px 8px;
     align-items: center;
     justify-content: space-between;
     position: relative;
@@ -165,7 +165,7 @@ export const AreaMenu = styled.div`
     overflow: scroll;
     width: 100%;
     height: 100vh;
-    padding: 15px 0;
+    padding: 8px 0;
     display: flex;
     flex-direction: column;
     gap: 5px;

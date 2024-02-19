@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { ListTypes } from "..";
 
 type ContainerToastProps = {
-    index: number;
+    $index: number;
     $fadeIn?: boolean;
 };
 
@@ -78,7 +78,7 @@ export const Container = styled.div<ContainerToastProps>`
     box-shadow: 2px 2px 7px 0px rgb(0 0 0 / 21%);
     border-radius: 4px;
     position: fixed;
-    top: ${({ index }) => `${30 + index * 80}px`};
+    top: ${({ $index }) => `${30 + $index * 80}px`};
     transition: all 1s;
     right: 2vw;
     z-index: 2;

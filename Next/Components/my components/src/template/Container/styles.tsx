@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Content = styled.main`
     width: 100%;
@@ -24,7 +24,6 @@ export const ScreenContent = styled.section`
     overflow-y: scroll;
     padding: 15px;
     background: #efefef;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -34,13 +33,13 @@ export const ScreenContent = styled.section`
         height: 6px;
 
         &-track-piece {
-            background-color: #EEE;
+            background-color: #eee;
         }
 
         &-thumb:vertical,
         &-thumb:horizontal {
             background-color: #7a7878;
-            border-radius:5px;
+            border-radius: 5px;
         }
 
         &-thumb:vertical:hover,
