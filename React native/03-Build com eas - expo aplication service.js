@@ -25,3 +25,30 @@
 	eas submit --plataform ios
 
 */
+
+configurar Eas:
+
+{
+    "cli": {
+        "version": ">= 7.5.0"
+    },
+    "build": {
+        "development": {
+            "developmentClient": true,
+            "distribution": "internal"
+        },
+        "preview": {
+            "distribution": "internal",
+            "channel": "preview"
+        },
+        "production": {
+            "channel": "production"
+        }
+    },
+    "submit": {
+        "production": {}
+    }
+}
+
+run:
+eas update --branch preview --message "updating the app"
