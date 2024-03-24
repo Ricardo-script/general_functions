@@ -4,6 +4,23 @@ import { Container, Label, AreaInput, InputContent, Message } from "./styles";
 import { MaskOptions } from 'src/types/FormsTypes';
 import { cpfMask, phoneMask, plateMask } from 'src/utils/functions/mask'
 
+export type InputProps = {
+	label?: string;
+	required?: boolean;
+	width?: number;
+	height?: number;
+	disabled?: boolean;
+	maskType?: 'cpf' | 'telefone' | 'placa';
+	iconLeft?: JSX.Element;
+	iconRight?: JSX.Element;
+	onClickIconLeft?: () => void;
+	onClickIconRight?: () => void;
+} & InputHTMLAttributes<HTMLInputElement>;
+
+export type MaskOptions = {
+	[key: string]: (value: string) => string;
+};
+
 export const Input = ({ label, required, width = 0, disabled = false, maskType, ...rest }: InputProps): JSX.Element => {
 
     const inputRef = useRef<HTMLInputElement>(null);
