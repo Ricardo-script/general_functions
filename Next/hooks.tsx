@@ -82,6 +82,21 @@ export default function App(): JSX.Element {
     );
 }
 
+
+*** multiplos: --- ---- ---- ---- ---- ----
+
+const { executePost: postCommunication, data: communicationData } = usePost<
+        BodyCommunication,
+        CommunicationInterface
+    >();
+
+    const { executePost: postEvent, data: eventData } = usePost<
+        BodyEvent | BodyCommunication,
+        CommunicationInterface | EventInterface
+    >();
+
+    ou quando não precisa usar o response.data ao mesmo tempo: 
+     const { executePost, data } = usePost<BodyEvent | BodyCommunication, CommunicationInterface | EventInterface>();
 */
 
 
