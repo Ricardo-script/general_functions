@@ -34,6 +34,14 @@ Rodar projeto com Expo:
 yarn start
 
 ----------------------------------------------------------------------
+Atualizar todas as dependencias do expo:
+
+npx expo install --fix
+
+
+
+
+------------------------------------------------------------------------
 Instalar picker:
 
 npm install @react-native-community/picker --save
