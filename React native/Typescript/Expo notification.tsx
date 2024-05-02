@@ -3,6 +3,34 @@
 	npx expo install expo-device // caso necessário
 */
 
+import * as Notifications from 'expo-notifications';
+
+export const handleCallNotification = async (): Promise<void> => {
+    await requestNotificationPermission();
+    console.log('chamou notificação');
+
+    await Notifications.scheduleNotificationAsync({
+        content: {
+            title: 'App do Aluno',
+            body: 'Você Possui 2 novas mensagens',
+        },
+        trigger: {
+            seconds: 3,
+        },
+    });
+};
+
+const requestNotificationPermission = async (): Promise<void> => {
+    const { status } = await Notifications.getPermissionsAsync();
+    if (status !== 'granted') {
+        const { status: newStatus } = await Notifications.requestPermissionsAsync();
+        if (newStatus !== 'granted') {
+            alert('Você não concedeu permissão para receber notificações');
+        }
+    }
+
+
+//==========================================================================================================================================
 // Notificação simples local:
 import { View, Button, Alert} from 'react-native';
 import * as Notifications from 'expo-notifications' // import de expo-notifications
