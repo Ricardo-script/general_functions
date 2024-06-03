@@ -100,8 +100,6 @@ export const Select = (props: InputTypes): JSX.Element => {
 
 	useEffect(() => {
 		if (selectRef.current) {
-			console.log('caiu no useEffect');
-			//selectRef.current.value = defaultValue as string;
 			// Atualiza o estado com o texto correspondente ao valor selecionado
 			const selectedOption = Children.toArray(children).find((child: ReactNode) => {
 				if (isValidElement<OptionProps>(child)) {
