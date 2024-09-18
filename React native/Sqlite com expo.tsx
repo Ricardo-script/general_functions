@@ -237,7 +237,7 @@ export default function Home(): JSX.Element {
     function details(item: ProductDatabase) {
         setName(item.name);
         setQuantity(String(item.quantity));
-        setId(quantity);
+        setId(String(item.id));
     }
 
     async function handleSave() {
