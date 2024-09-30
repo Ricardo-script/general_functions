@@ -139,3 +139,34 @@ export const config = {
     matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)',]
 }
 
+// exemplo aplicado:
+
+import { NextRequest, NextResponse } from 'next/server';
+
+export default function middleware(request: NextRequest): NextResponse | undefined {
+	const token = request.cookies.get('token')?.value;
+
+	const signInURL = new URL('/login', request.url); // Página de login
+	const selecaoURL = new URL('/selecao', request.url); // Página principal após o login
+
+	const publicRoutes = ['/', '/site', 'login', 
+        '/contato']; // Definindo rotas públicas
+
+	if (!token) {
+		// Se não houver token e a rota atual não estiver nas rotas públicas
+		if (!publicRoutes.includes(request.nextUrl.pathname)) {
+			return NextResponse.redirect(signInURL);
+		}
+	} else {
+		// Se houver token e o usuário tentar acessar a rota de login
+		if (request.nextUrl.pathname === '/') {
+			return NextResponse.redirect(selecaoURL);
+		}
+	}
+
+	return NextResponse.next(); // Prosseguir normalmente
+}
+
+export const config = {
+	matcher: ['/((?!api|_next/static|_next/image|favicon.ico|site).*)'], // Protege todas as rotas, exceto '/site' e '/api', '_next' etc.
+};
