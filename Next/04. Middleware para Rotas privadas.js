@@ -139,7 +139,7 @@ export const config = {
     matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)',]
 }
 
-// exemplo aplicado:
+// exemplo aplicado ---------------------------------------------------------------------------------------------:
 
 import { NextRequest, NextResponse } from 'next/server';
 
