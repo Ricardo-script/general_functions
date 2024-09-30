@@ -166,7 +166,7 @@ export default function middleware(request: NextRequest): NextResponse | undefin
 		}
 	} else {
 		// Se houver token e o usuário tentar acessar a rota de login
-		if (request.nextUrl.pathname === '/') {
+		if (request.nextUrl.pathname === '/login') {
 			return NextResponse.redirect(selecaoURL);
 		}
 	}
