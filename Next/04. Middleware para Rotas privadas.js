@@ -149,8 +149,15 @@ export default function middleware(request: NextRequest): NextResponse | undefin
 	const signInURL = new URL('/login', request.url); // Página de login
 	const selecaoURL = new URL('/selecao', request.url); // Página principal após o login
 
-	const publicRoutes = ['/', '/site', 'login', 
-        '/contato']; // Definindo rotas públicas
+	const publicRoutes = [
+		'/',
+		'/site',
+		'/login',
+		'/contato',
+		'/mensagem-enviada',
+		'/politica-privacidade',
+		'/termos-uso',
+	]; // Definindo rotas públicas
 
 	if (!token) {
 		// Se não houver token e a rota atual não estiver nas rotas públicas
@@ -168,5 +175,7 @@ export default function middleware(request: NextRequest): NextResponse | undefin
 }
 
 export const config = {
-	matcher: ['/((?!api|_next/static|_next/image|favicon.ico|site).*)'], // Protege todas as rotas, exceto '/site' e '/api', '_next' etc.
+	matcher: [
+		'/((?!api|_next/static|_next/image|favicon.ico|static|public).*)', // Protege todas as rotas, exceto 'api', '_next', 'static', 'public', e outras exceções
+	],
 };
