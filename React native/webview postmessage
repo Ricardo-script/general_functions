@@ -1,0 +1,45 @@
+import * as React from "react";
+import { WebView } from "react-native-webview";
+import {
+    StyleSheet,
+    SafeAreaView,
+    StatusBar,
+    Dimensions,
+    Platform,
+} from "react-native";
+
+export default function App() {
+    const webviewRef = React.useRef<WebView>(null);
+
+    const sendPlataformWeb = () => {
+        const plataform = Platform.OS;
+        webviewRef.current?.postMessage(JSON.stringify({ plataform })); //postMessage envia para o front-end
+    };
+
+    React.useEffect(() => {
+        sendPlataformWeb();
+    }, []);
+
+    return (
+        <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor="#00254b" barStyle="light-content" />
+            <WebView
+                bounces={false}
+                ref={webviewRef}
+                style={styles.view}
+                source={{ uri: "https://periodical.tradeappone.com.br/login" }}
+                onMessage={(event) => console.log(event)} // recebe do front-end
+            />
+        </SafeAreaView>
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#1c64ff",
+    },
+    view: {
+        width: Dimensions.get("window").width,
+    },
+});
