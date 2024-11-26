@@ -53,7 +53,7 @@ type FormsTemplateProps = {
 };
 
 export default function FormsTemplate({ data, refleshData }: FormsTemplateProps): JSX.Element {
-	const [clients, setClients] = useState<ItemClientData[]>(data);
+	const [clients, setClients] = useState<ItemClientData[]>(data); // data é inserido dentro do state
 	const dataSelect: DataSelectTypes[] = [{ name: 'Teste', value: 'Teste' }];
 
 	const handleSearch = async (): Promise<void> => {
