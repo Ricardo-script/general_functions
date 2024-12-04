@@ -12,6 +12,10 @@ type SelectProps = {
 	$height?: number;
 };
 
+type StatusProps = {
+	$status: boolean;
+};
+
 export const Container = styled.div<SelectProps>`
 	width: ${props =>
 		props.$width === 0
@@ -22,17 +26,20 @@ export const Container = styled.div<SelectProps>`
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	pointer-events: ${props => (props.$disabled ? 'none' : 'auto')};
+	opacity: ${props => (props.$disabled ? '0.5' : '1')};
 	cursor: pointer;
 
 	@media (max-height: 580px) {
 		gap: 0;
-		width: 100%;
 	}
 `;
 
 export const InputSelect = styled.input<SelectProps>`
 	width: 100%;
+	height: 26px;
 	outline: none;
+	border: 0;
 	text-indent: 5px;
 	color: #9b9191;
 	font-size: 14px;
@@ -62,7 +69,7 @@ export const Label = styled.label`
 
 export const AreaSelect = styled.div<SelectProps>`
 	width: 100%;
-	height: 33.5px;
+	height: auto;
 	min-height: 33.5px;
 	display: flex;
 	align-items: center;
@@ -148,12 +155,15 @@ export const BoxList = styled.ul<PropsOpen>`
 	}
 `;
 
-export const AreaItem = styled.div`
+export const AreaItem = styled.div<StatusProps>`
 	width: 100%;
 	display: flex;
 	align-items: center;
-	height: 30px;
-	padding: 0 10px;
+	height: 40px;
+	padding: 0 5px;
+	pointer-events: ${props => (props.$status ? 'auto' : 'none')};
+	opacity: ${props => (props.$status ? '1' : '0.7')};
+	user-select: none;
 	cursor: pointer;
 	&:hover {
 		background: #e7e4e4;
@@ -164,29 +174,50 @@ export const AreaItem = styled.div`
 	}
 `;
 
+export const Group = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 8px;
+`;
+
+export const Status = styled.div<StatusProps>`
+	font-size: 11px;
+	font-weight: 600;
+	background: ${props => (props.$status ? '#54e25b' : '#fa5c5c')};
+	color: #fff;
+	padding: 2px 9px;
+	border-radius: 5px;
+`;
+
 export const Item = styled.li`
 	width: 100%;
 	height: 30px;
-	font-size: 12px;
+	font-size: 13px;
 	color: #494848;
 	display: flex;
 	align-items: center;
 	user-select: none;
 `;
 
-export const ItemSelected = styled.div`
+export const ListSelected = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	gap: 10px;
-	padding: 10px;
+	padding: 5px 10px;
 `;
 
-export const Name = styled.span`
-	color: #9b9191;
-	font-size: 14px;
-	font-weight: 300;
+export const ItemSelected = styled.div`
+	width: fit-content;
+	font-size: 12px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	user-select: none;
+	padding: 5px 15px;
+	background: #437289;
+	border-radius: 6px;
 `;
 
 export const Placeholder = styled.span`

@@ -1,9 +1,9 @@
-import { Label, Input, AreaSwitch } from "./styles";
-import { InputHTMLAttributes } from "react";
+import { Label, Input, AreaSwitch } from './styles';
+import { InputHTMLAttributes } from 'react';
 
 type SwitchProps = {
-    color?: string
-} & InputHTMLAttributes<HTMLInputElement>
+	color?: string;
+} & InputHTMLAttributes<HTMLInputElement>;
 
 /**
  * @param color Background do switch
@@ -12,11 +12,11 @@ type SwitchProps = {
  * Para resgatar uma valor com ref acesse o ref.current.checked
  */
 
-export const Switch = ({ color = '#4FD1C5', ...rest }: SwitchProps) => {
-    return (
-        <Label>
-            <Input type="checkbox" {...rest} $color={color} />
-            <AreaSwitch />
-        </Label>
-    );
+export const Switch = ({ color = '#4FD1C5', ...rest }: SwitchProps): JSX.Element => {
+	return (
+		<Label>
+			<Input type="checkbox" {...rest} $color={color} />
+			<AreaSwitch />
+		</Label>
+	);
 };

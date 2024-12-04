@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 import { Container, Title, Spinner } from './styes';
 
 type ButtonProps = {
@@ -6,10 +6,13 @@ type ButtonProps = {
 	variant?: 'contained' | 'outlined';
 	color?: 'neutral' | 'success' | 'info' | 'alert' | 'danger';
 	width?: number;
+	height?: number;
 	iconRight?: JSX.Element;
 	iconLeft?: JSX.Element;
 	loading?: boolean;
-} & HTMLAttributes<HTMLDivElement>;
+	enabled?: boolean;
+	fontSize?: number;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 /**
  * Botão personalizado com suporte a ícones, loading e várias opções de estilo.
@@ -34,15 +37,27 @@ export const Button = ({
 	variant = 'contained',
 	color = 'success',
 	width = 0,
+	height = 0,
 	iconRight,
 	iconLeft,
 	loading,
+	enabled = true,
+	fontSize = 14,
 	...rest
 }: ButtonProps): JSX.Element => {
 	return (
-		<Container $variant={variant} $color={color} $width={width} {...rest}>
+		<Container
+			as="button"
+			type={rest.type || 'button'}
+			$variant={variant}
+			$color={color}
+			$width={width}
+			$height={height}
+			{...rest}
+			$enabled={enabled}
+		>
 			{iconLeft && iconLeft}
-			<Title $variant={variant} $color={color}>
+			<Title $variant={variant} $color={color} $fontSize={fontSize}>
 				{children}
 			</Title>
 			{iconRight && iconRight}

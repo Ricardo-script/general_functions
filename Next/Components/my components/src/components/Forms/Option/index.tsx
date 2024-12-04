@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { Item } from "./styles";
+import { ReactNode } from 'react';
+import { Item } from './styles';
 
 /**
  * Componente estilizado para o < option /> do html
@@ -9,19 +9,15 @@ import { Item } from "./styles";
  */
 
 type propsOptions = {
-    children: ReactNode;
-    onClick?: () => void;
-    value?: string;
+	children: ReactNode;
+	onClick?: () => void;
+	value?: string | number;
 };
 
-export const Option = ({
-    children,
-    onClick,
-    value,
-}: propsOptions): JSX.Element => {
-    return (
-        <Item onClick={onClick} value={value}>
-            {children}
-        </Item>
-    );
+export const Option = ({ children, onClick, value }: propsOptions): JSX.Element => {
+	return (
+		<Item onClick={onClick} value={value}>
+			{children}
+		</Item>
+	);
 };

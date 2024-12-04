@@ -2,10 +2,10 @@
 
 import styled from 'styled-components';
 
-type InputProps = {
+type TextProps = {
 	$status?: string;
 	$disabled?: boolean;
-	$width?: number | string;
+	$width?: number;
 	$height?: number;
 };
 
@@ -14,20 +14,11 @@ type InputActionProps = {
 	$onClickIconLeft?: boolean;
 };
 
-export const Container = styled.div<InputProps>`
-	width: ${props =>
-		props.$width === 0
-			? '100%'
-			: typeof props.$width === 'number'
-				? props.$width * 4 + 'px'
-				: props.$width};
+export const Container = styled.div<TextProps>`
+	width: ${props => (props.$width === 0 ? '100%' : props.$width && props.$width * 4 + 'px')};
 	display: flex;
 	flex-direction: column;
 	position: relative;
-
-	@media (max-width: 580px) {
-		width: 100%;
-	}
 `;
 
 export const Label = styled.label`
@@ -39,9 +30,8 @@ export const Label = styled.label`
 	margin-bottom: 2px;
 `;
 
-export const AreaInput = styled.div<InputProps>`
+export const AreaInput = styled.div<TextProps>`
 	width: 100%;
-	height: ${props => props.$height + 'px'};
 	border: 1px solid ${props => (props.$status === '' ? '#99a7bd' : 'red')};
 	border-radius: 8px;
 	display: flex;
@@ -49,9 +39,9 @@ export const AreaInput = styled.div<InputProps>`
 	gap: 5px;
 	pointer-events: ${props => (props.$disabled ? 'none' : 'auto')};
 	opacity: ${props => (props.$disabled ? '1' : '0.5')};
-	background: ${props => (props.$disabled ? '#E4E7EC' : '#FFF')};
+	background: ${props => (props.$disabled ? '#E4E7EC' : 'transparent')};
 	overflow: hidden;
-	padding: 0 7px;
+	padding: 7px;
 
 	&:hover {
 		border: 1px solid #5e6166;
@@ -61,10 +51,6 @@ export const AreaInput = styled.div<InputProps>`
 	&:focus-within {
 		border: 1px solid ${props => (props.$status === '' ? '#1c64ff9b' : 'red')};
 		box-shadow: 0px 0px 1px 2px ${props => (props.$status === '' ? '#1c64ff37' : '#ff05053e')};
-	}
-
-	@media (max-width: 600px) {
-		height: 43px;
 	}
 `;
 
@@ -85,9 +71,10 @@ export const AreaIcon = styled.div<InputActionProps>`
 	}
 `;
 
-export const InputContent = styled.input<InputProps>`
+export const TextContent = styled.textarea<TextProps>`
 	width: 100%;
-	height: 30px;
+	height: ${props => props.$height + 'px'};
+	max-height: 120px;
 	border: none;
 	font-weight: 500;
 	font-size: 14px;
@@ -106,6 +93,11 @@ export const InputContent = styled.input<InputProps>`
 
 	&:-webkit-autofill {
 		box-shadow: 0 0 0px 1000px white inset !important; /* remove o background padrão do browser quando preenche automaticamente os campos */
+	}
+
+	@media (max-width: 600px) {
+		height: 100px;
+		max-height: 200px;
 	}
 `;
 

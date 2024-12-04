@@ -1,27 +1,27 @@
 'use client';
 
-import { useState, useRef, ChangeEvent, InputHTMLAttributes } from 'react';
-import { Container, Label, AreaInput, AreaIcon, InputContent, Message } from './styles';
-import { cpfMask, priceMask, phoneMask, plateMask } from '@/utils/functions/mask';
+import { useState, useRef, ChangeEvent, TextareaHTMLAttributes } from 'react';
+import { Container, Label, AreaInput, AreaIcon, TextContent, Message } from './styles';
+import { cpfMask, phoneMask, plateMask } from '@/utils/functions/mask';
 
-export type InputProps = {
+export type TextareaProps = {
 	label?: string;
 	required?: boolean;
-	width?: number | string;
+	width?: number;
 	height?: number;
 	disabled?: boolean;
-	maskType?: 'cpf' | 'telefone' | 'placa' | 'price';
+	maskType?: 'cpf' | 'telefone' | 'placa';
 	iconLeft?: JSX.Element;
 	iconRight?: JSX.Element;
 	onClickIconLeft?: () => void;
 	onClickIconRight?: () => void;
-} & InputHTMLAttributes<HTMLInputElement>;
+} & TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export type MaskOptions = {
 	[key: string]: (value: string) => string;
 };
 
-export const Input = ({
+export const Textarea = ({
 	label,
 	required,
 	width = 0,
@@ -33,18 +33,17 @@ export const Input = ({
 	onClickIconLeft,
 	onClickIconRight,
 	...rest
-}: InputProps): JSX.Element => {
-	const inputRef = useRef<HTMLInputElement>(null);
+}: TextareaProps): JSX.Element => {
+	const textRef = useRef<HTMLTextAreaElement>(null);
 	const [error, setError] = useState<string>('');
 
 	const masks: MaskOptions = {
 		cpf: cpfMask,
 		telefone: phoneMask,
 		placa: plateMask,
-		price: priceMask,
 	};
 
-	const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+	const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
 		if (maskType !== undefined) {
 			const selectedMask = masks[maskType];
 			if (selectedMask) {
@@ -55,7 +54,7 @@ export const Input = ({
 	};
 
 	const handleValidation = () => {
-		if (required && inputRef.current?.value === '') {
+		if (required && textRef.current?.value === '') {
 			setError('O campo é obrigatório');
 		} else {
 			setError('');
@@ -65,7 +64,7 @@ export const Input = ({
 	return (
 		<Container $width={width}>
 			<Label>{label}</Label>
-			<AreaInput $status={error} $disabled={disabled} $height={height}>
+			<AreaInput $status={error} $disabled={disabled}>
 				{iconLeft && (
 					<AreaIcon
 						$onClickIconLeft={!!onClickIconLeft}
@@ -74,13 +73,14 @@ export const Input = ({
 						{iconLeft && iconLeft}
 					</AreaIcon>
 				)}
-				<InputContent
-					ref={inputRef}
+				<TextContent
+					ref={textRef}
 					onBlur={handleValidation}
 					onChange={handleInputChange}
 					$disabled={disabled}
 					$status={error}
 					disabled={disabled}
+					$height={height}
 					{...rest}
 				/>
 				{iconRight && (

@@ -11,6 +11,9 @@ type ButtonProps = {
 	$variant?: VariantTypes;
 	$color?: ColorsTypes;
 	$width: number;
+	$height: number;
+	$enabled?: boolean;
+	$fontSize?: number;
 };
 
 const getColorValue = (color: ColorsTypes, type: ViewTypes = 'background') => {
@@ -18,53 +21,57 @@ const getColorValue = (color: ColorsTypes, type: ViewTypes = 'background') => {
 		background: {
 			neutral: '#FFF',
 			success: '#32D583',
-			info: '#7CD4FD',
+			info: '#006999',
 			alert: '#F57F3C',
-			danger: '#FF5F57',
+			danger: '#7e1836',
 		},
 		border: {
 			neutral: '#D0D5DD',
 			success: '#32D583',
-			info: '#7CD4FD',
+			info: '#006999',
 			alert: '#F57F3C',
-			danger: '#FF5F57',
+			danger: '#7e1836',
 		},
 		text: {
 			neutral: '#344054',
 			success: '#32D583',
 			info: '#2F7EAA',
 			alert: '#F57F3C',
-			danger: '#FF5F57',
+			danger: '#7e1836',
 		},
 		hover: {
 			neutral: '#e2e5eb',
 			success: '#28bd73',
 			info: '#6cbee4',
 			alert: '#d87237',
-			danger: '#e44c44',
+			danger: '#973f5a',
 		},
 	};
 
 	return colors[type][color] || colors[type]['neutral'];
 };
 
-export const Title = styled.span<Pick<ButtonProps, '$color' | '$variant'>>`
+export const Title = styled.span<Pick<ButtonProps, '$color' | '$variant' | '$fontSize'>>`
 	font-family: var(--font-Inter);
 	color: ${props =>
 		props.$variant === 'contained'
 			? '#FFF'
 			: getColorValue(props.$color as ColorsTypes, 'text')};
 	display: flex;
-	font-size: 14px;
+	font-size: ${props => props.$fontSize + 'px'};
 	font-weight: 600;
 `;
 
 export const Container = styled.div<ButtonProps>`
 	width: ${props => (props.$width === 0 ? '100%' : props.$width * 4 + 'px')};
-	height: 38px;
+	height: ${props => (props.$height === 0 ? '38px' : props.$height + 'px')};
+	//min-height: 38px;
+	padding: 0 10px;
 	background: ${props =>
 		props.$variant === 'contained' ? getColorValue(props.$color as ColorsTypes) : '#FFF'};
 	border: 1px solid ${props => getColorValue(props.$color as ColorsTypes, 'border')};
+	pointer-events: ${props => (props.$enabled ? 'auto' : 'none')};
+	opacity: ${props => (props.$enabled ? '1' : '0.5')};
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -93,6 +100,10 @@ export const Container = styled.div<ButtonProps>`
 	@media (max-width: 768px) {
 		user-select: none;
 		-moz-user-select: none;
+	}
+
+	@media (max-width: 580px) {
+		width: 100%;
 	}
 `;
 

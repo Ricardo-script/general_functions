@@ -1,81 +1,56 @@
 'use client';
 
+import { InputHTMLAttributes, useState, useRef, useEffect } from 'react';
 import {
-	useState,
-	useEffect,
-	InputHTMLAttributes,
-	useRef,
-	ReactNode,
-	Children,
-	isValidElement,
-	cloneElement,
-} from 'react';
-import {
-	Content,
+	Container,
+	InputSelect,
 	Label,
-	AreaInput,
-	InputComponent,
-	IconLeft,
+	AreaSelect,
 	Icon,
 	BoxList,
+	ItemSelected,
+	Name,
+	Placeholder,
 	Message,
-	Value,
+	AreaItem,
+	Item,
 } from './styles';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
-type InputTypes = {
-	label: string;
+export type DataSelectTypes = {
+	name: string;
+	value: string | number;
+};
+
+type SelectProps = {
+	label?: string;
 	required?: boolean;
-	value?: string | number | boolean;
-	defaultValue?: string | number | boolean;
-	placeholder?: string;
-	iconLeft?: JSX.Element;
-	children: ReactNode;
 	width?: number | string;
 	heightBox?: number;
+	data: DataSelectTypes[];
+	placeholder?: string;
+	defaultValue?: string | number;
 	onChange?: (value: string) => void;
 	onClick?: () => void;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-type OptionProps = {
-	children: string;
-	value: string;
-	onClick?: () => void;
-};
-
-type ValuesTypes = {
-	value: string;
-	children: string;
-};
-
-export const Select = (props: InputTypes): JSX.Element => {
-	const {
-		label,
-		defaultValue,
-		required,
-		placeholder,
-		iconLeft,
-		children,
-		width = 0,
-		heightBox = 200,
-		onClick,
-		onChange = () => null,
-		...rest
-	} = props;
+export const Select = ({
+	label,
+	required,
+	width = 0,
+	heightBox = 200,
+	data,
+	placeholder,
+	defaultValue,
+	onChange = () => null,
+	onClick,
+	...rest
+}: SelectProps): JSX.Element => {
 	const [openSelect, setOpenSelect] = useState(false);
-	const [value, setValue] = useState(defaultValue);
+	const [value, setValue] = useState<DataSelectTypes>();
+	const [error, setError] = useState<string>('');
 	const selectRef = useRef<HTMLInputElement>(null);
 	const contentRef = useRef<HTMLDivElement>(null);
-	const [error, setError] = useState<string>('');
-
-	const getValues = (value: ValuesTypes) => {
-		onChange(value.value);
-		if (selectRef.current) {
-			selectRef.current.value = value.value;
-			setValue(value.children);
-			handleValidation();
-		}
-	};
 
 	const handleValidation = () => {
 		setTimeout(() => {
@@ -86,6 +61,25 @@ export const Select = (props: InputTypes): JSX.Element => {
 			}
 		}, 300);
 	};
+
+	const getValues = (value: DataSelectTypes) => {
+		onChange(value.value as string);
+		setOpenSelect(false);
+		if (selectRef.current) {
+			selectRef.current.value = value.value as string;
+			setValue(value);
+			handleValidation();
+		}
+	};
+	useEffect(() => {
+		/*console.log('data', data);
+		console.log('defaultValue', defaultValue);*/
+		const valueDefaultIndex = data.findIndex(values => values.value === String(defaultValue));
+
+		if (valueDefaultIndex >= 0) {
+			setValue({ name: data[valueDefaultIndex].name, value: data[valueDefaultIndex].value });
+		}
+	}, [data, defaultValue]);
 
 	useEffect(() => {
 		const handleOutsideClick = (event: MouseEvent) => {
@@ -99,64 +93,38 @@ export const Select = (props: InputTypes): JSX.Element => {
 		};
 	}, []);
 
-	useEffect(() => {
-		if (selectRef.current) {
-			// Atualiza o estado com o texto correspondente ao valor selecionado
-			const selectedOption = Children.toArray(children).find((child: ReactNode) => {
-				if (isValidElement<OptionProps>(child)) {
-					return child.props.value === selectRef.current?.value;
-				}
-				return false;
-			});
-			if (selectedOption && isValidElement<OptionProps>(selectedOption)) {
-				setValue(selectedOption.props.children as string);
-			}
-		}
-	}, [selectRef, children]);
-
 	return (
-		<Content ref={contentRef} onBlur={handleValidation} $width={width}>
+		<Container ref={contentRef} onBlur={handleValidation} $width={width} tabIndex={-1}>
 			<Label>{label}</Label>
-			<Value>{value}</Value>
-			<AreaInput
+			<InputSelect {...rest} $status={error} ref={selectRef} defaultValue={defaultValue} />
+			<AreaSelect
 				onClick={() => {
 					setOpenSelect(!openSelect);
-					onClick && onClick();
+					onClick?.();
 				}}
 				$status={error}
 			>
-				{iconLeft && <IconLeft>{iconLeft}</IconLeft>}
-				<InputComponent
-					placeholder={placeholder}
-					$status={error}
-					ref={selectRef}
-					defaultValue={defaultValue}
-					{...rest}
-					readOnly
-				/>
+				<ItemSelected>
+					{value?.name !== '' && value?.name !== undefined ? (
+						<Name>{value?.name}</Name>
+					) : (
+						<Placeholder>{placeholder && placeholder}</Placeholder>
+					)}
+				</ItemSelected>
+
 				<Icon $open={openSelect}>
 					<MdKeyboardArrowDown size={18} color="#9b98a8" />
 				</Icon>
-			</AreaInput>
+			</AreaSelect>
 			{error && <Message>{error}</Message>}
 			<BoxList $open={openSelect} $heightBox={heightBox}>
-				{Children.map(children, (child, index) => {
-					if (isValidElement<OptionProps>(child)) {
-						const optionProps = child.props as OptionProps;
-						return cloneElement(child, {
-							key: index,
-							onClick: (): void => {
-								getValues(optionProps as ValuesTypes);
-								if (optionProps.onClick) {
-									optionProps.onClick();
-								}
-								setOpenSelect(!openSelect);
-							},
-						});
-					}
-					return child;
-				})}
+				{data &&
+					data.map((items, index) => (
+						<AreaItem key={index} onClick={() => getValues(items)}>
+							<Item>{items.name}</Item>
+						</AreaItem>
+					))}
 			</BoxList>
-		</Content>
+		</Container>
 	);
 };

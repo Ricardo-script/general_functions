@@ -6,6 +6,7 @@ import { FormContent } from './styles';
 type FormProps = {
 	children: React.ReactNode;
 	flexDirection?: 'column' | 'row';
+	alignItems?: 'center' | 'flex-end' | 'flex-start';
 	gap?: number;
 	padding?: number;
 	width?: number | string;
@@ -15,6 +16,7 @@ const FormComponent = (
 	{
 		children,
 		flexDirection = 'column',
+		alignItems = 'flex-start',
 		gap = 15,
 		padding = 0,
 		width = 0,
@@ -25,6 +27,7 @@ const FormComponent = (
 	return (
 		<FormContent
 			$flexDirection={flexDirection}
+			$alignItems={alignItems}
 			$gap={gap}
 			$padding={padding}
 			$width={width}
