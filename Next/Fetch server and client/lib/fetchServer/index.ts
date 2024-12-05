@@ -1,17 +1,17 @@
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 export async function fetchServer<T>(
 	input: string | URL | Request,
 	init?: RequestInit | undefined,
 ): Promise<T & Response> {
-	const tokenIntegrator = cookies().get('tokenIntegrator')?.value || '';
-	const token = cookies().get('token')?.value || '';
+	const tokenIntegrator = (await cookies()).get('tokenIntegrator')?.value || '';
+	const token = (await cookies()).get('token')?.value || '';
 
-	const response = await fetch(input, {
+	const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${input}`, {
 		...init,
 		headers: {
 			...init?.headers,
+			'Content-Type': 'application/json',
 			...(token && {
 				Authorization: tokenIntegrator,
 				AuthorizationUser: token,
@@ -19,11 +19,13 @@ export async function fetchServer<T>(
 		},
 	});
 
-	if (response.status === 401) {
-		return redirect('/');
-	}
-
 	const responseData = await response.json();
+
+	if (!response.ok) {
+		const error = new Error(response.statusText || 'Request failed');
+		error.cause = responseData;
+		throw error.cause;
+	}
 
 	return responseData;
 }
