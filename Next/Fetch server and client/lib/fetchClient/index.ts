@@ -8,7 +8,7 @@ export async function fetchClient<T>(
 ): Promise<T & Response> {
 	const cookies = parseCookies();
 
-	const response = await fetch(input, {
+	const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${input}`, {
 		...init,
 		headers: {
 			...init?.headers,
@@ -21,8 +21,14 @@ export async function fetchClient<T>(
 
 	const responseData = await response.json();
 
+	if (!response.ok) {
+		const error = new Error(response.statusText || 'Request failed');
+		error.cause = responseData;
+		throw error.cause;
+	}
 	return responseData;
 }
+
 
 //------------------------------------------------------------------------------------------------
 
