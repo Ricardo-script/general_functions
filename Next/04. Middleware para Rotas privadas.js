@@ -17,64 +17,6 @@
 	que especifica quais URLs devem ser tratadas por este middleware.
 
 */
-
-// instalar pacotes de cookies
-
-yarn add js-cookie
-yarn add @types/js-cookie
-
-//-----------------------------------------------------------------------------
-
-//src/app/page.tsx
-
-'use client'
-
-import Cookie from "js-cookie"
-import { useRouter } from "next/navigation"
-
-export default function Home() {
-
-    const router = useRouter();
-
-    const handleLogin = () => { // cria um JWT ficticio
-        Cookie.set('auth_token', 'asdfghjyrwqweqsadafgtereteerfeety')
-        router.push('/dashboard')
-    }    
-
-    return (
-        <section>
-            <button onClick={handleLogin}>Login</button>
-        </section>
-    )
-}
-
-//----------------------------------------------------------------------------------------------------------
-
-//src/app/Dashboard/page.tsx
-
-'use client'
-
-import Cookie from "js-cookie"
-import { useRouter } from "next/navigation"
-
-export default function Dashboard() {
-
-    const router = useRouter();
-
-    const handleLogout = () => {
-        Cookie.remove('auth_token');
-        router.push('/');
-    }
-
-    return (
-        <section>
-            <button onClick={handleLogout} style={{ background: '#963a3a' }}>Logout Sair</button>
-        </section>
-    )
-}
-
-//---------------------------------------------------------------------------------------------------------
-
 //src/middleware.ts
 
 // Antes de renderizar as rota configuradas ele vai passar por essa função
@@ -147,21 +89,31 @@ export default function middleware(request: NextRequest): NextResponse | undefin
 	const token = request.cookies.get('token')?.value;
 
 	const signInURL = new URL('/login', request.url); // Página de login
-	const selecaoURL = new URL('/selecao', request.url); // Página principal após o login
+	const selecaoURL = new URL('/home', request.url); // Página principal após o login
 
+	// Definindo rotas públicas (devem ser comparadas de forma mais precisa)
 	const publicRoutes = [
 		'/',
-		'/site',
 		'/login',
-		'/contato',
-		'/mensagem-enviada',
-		'/politica-privacidade',
-		'/termos-uso',
-	]; // Definindo rotas públicas
+		'/camisetas',
+		'/convite',
+		'/quartos',
+		'/selecionar-match',
+		'/translado-ida',
+		'/translado-volta',
+	];
+
+	// Verifica se a rota é pública considerando parâmetros
+	const isPublicRoute = publicRoutes.some(route => {
+		// A rota pública deve ser exatamente igual ou começar com o caminho + `/`
+		return (
+			request.nextUrl.pathname === route || request.nextUrl.pathname.startsWith(`${route}/`)
+		);
+	});
 
 	if (!token) {
 		// Se não houver token e a rota atual não estiver nas rotas públicas
-		if (!publicRoutes.includes(request.nextUrl.pathname)) {
+		if (!isPublicRoute) {
 			return NextResponse.redirect(signInURL);
 		}
 	} else {
