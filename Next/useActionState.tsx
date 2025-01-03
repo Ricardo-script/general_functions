@@ -44,6 +44,8 @@ export default function RegisterForm() {
 
 //action.tsx:
 
+'use server'
+
 export async function registerUser(_: unknown, data: FormData) {
     const { user, password } = Object.fromEntries(data);
 
