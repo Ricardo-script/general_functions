@@ -1,6 +1,8 @@
 //registro.tsx:
 "use client";
 
+"use client";
+
 import { useActionState } from "react";
 import { handleSaveRegister } from "./actions";
 
@@ -66,6 +68,7 @@ export default function Register() {
     );
 }
 
+//--------------------------------------------------------------------------------------------------------------------------
 // action.ts:
 
 "use server";
@@ -83,17 +86,18 @@ export const handleSaveRegister = async (_: unknown, formData: FormData) => {
     const email = formData.get("email") as string;
     const idade = formData.get("idade") as string;
 
+    const ERROR_MESSAGES = {
+        nameUser: "Nome do usuário é obrigatório",
+        email: "O E-mail precisa ter @",
+        idade: "Idade é obrigatório",
+    };
+
     const errors = {} as ErrorsType;
 
-    if (nameUser.length < 5) {
-        errors.nameUser = "O nome deve ter pelo menos 5 caracteres.";
-    }
-    if (!email.includes("@")) {
-        errors.email = "O E-mail precisa ter @";
-    }
-    if (!idade) {
-        errors.idade = "A idade não pode estar vazia.";
-    }
+    if (!nameUser) errors.nameUser = ERROR_MESSAGES.nameUser;
+    if (!email.includes("@")) errors.email = ERROR_MESSAGES.email;
+    if (!idade) errors.idade = ERROR_MESSAGES.idade;
 
     return errors;
 };
+
