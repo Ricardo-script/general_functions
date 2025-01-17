@@ -1,6 +1,29 @@
-configurando tailwind.config.ts
+//arquivo a parte com keyframes:
+
+// src/styles/animations.js
+
+export const keyframes = {
+    slidein: {
+        "0%": { transform: "translateX(-100%)", opacity: "0" },
+        "100%": { transform: "translateX(0)", opacity: "1" },
+    },
+    slideout: {
+        "0%": { transform: "translateX(0)", opacity: "1" },
+        "100%": { transform: "translateX(-100%)", opacity: "0" },
+    },
+};
+
+export const animation = {
+    slidein: "slidein 0.5s ease-out forwards",
+    slideout: "slideout 0.5s ease-out forwards",
+};
+
+//---------------------------------------------------------------------
+
+//configurando tailwind.config.ts
 
 import type { Config } from "tailwindcss";
+import { animation, keyframes } from "./src/styles/animations";
 
 export default {
     content: [
@@ -10,20 +33,8 @@ export default {
     ],
     theme: {
         extend: {
-            animation: {
-                slidein: "slidein 0.5s ease-out forwards",
-                slideout: "slideout 0.5s ease-out forwards",
-            },
-            keyframes: {
-                slidein: {
-                    "0%": { transform: "translateX(-100%)", opacity: "0" },
-                    "100%": { transform: "translateX(0)", opacity: "1" },
-                },
-                slideout: {
-                    "0%": { transform: "translateX(0)", opacity: "1" },
-                    "100%": { transform: "translateX(-100%)", opacity: "0" },
-                },
-            },
+            keyframes: keyframes,
+            animation: animation,
         },
         screens: {
             tablet: "640px",
@@ -33,7 +44,8 @@ export default {
 } satisfies Config;
 
 
-// uso:
+
+// uso: ---------------------------------------------------------------------
 
 
 "use client";
