@@ -2,6 +2,10 @@
 
 npx create-expo-app
 
+ou
+
+npx create-expo-app --template
+
 //-------------------------------------------------------------------------------------------------------------
 
 - Criar para src, apagar tudo de dentro de app e arrastar para dentro de src
