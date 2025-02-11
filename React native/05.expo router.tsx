@@ -5,6 +5,7 @@ npx create-expo-app
 ou
 
 npx create-expo-app --template
+--choose a template: Navigation Typescript
 
 //-------------------------------------------------------------------------------------------------------------
 
