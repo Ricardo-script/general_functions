@@ -5,6 +5,7 @@
 	
 	- eas whoami                              : retorna o usuário caso esteja logado, caso contrário rodar: eas login
 	- eas build:configure                     : criar o arquivo eas.json
+        - eas logout                              : desloga usuário
 	- eas build -p android --profile preview  : gera o apk
 	ou
 	- eas build -p ios --profile preview
