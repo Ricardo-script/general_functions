@@ -124,3 +124,21 @@ export default function Profile(): JSX.Element {
   --_layout.tsx
  
  ----------------------------------------------------------------------------------------------------------------
+
+//navegação com router:
+import { router } from "expo-router";
+
+export default function Index() {
+    const signUp = () => {
+        router.navigate("/sign-up");
+    };
+
+    return (
+        <View style={styles.container}>
+            <TouchableOpacity onPress={signUp}>
+                <Text>Entrar</Text>
+            </TouchableOpacity>
+        </View>
+    );
+}
+
