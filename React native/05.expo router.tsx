@@ -8,8 +8,11 @@ npx create-expo-app --template
 --choose a template: Navigation Typescript
 
 //-------------------------------------------------------------------------------------------------------------
-
-- Criar para src, apagar tudo de dentro de app e arrastar para dentro de src
+- Excluir a pasta app 
+- Excluir de dentro da pasta assets a pasta fonts
+- Excluir pasta components
+- Excluir pasta constants
+- Criar para src
 - Ao criar a pasta src deve mudar o caminho da pasta dentro de tsconfig.json e na propriedade compilerOptions
 
 "compilerOptions": {
