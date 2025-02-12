@@ -2,9 +2,17 @@
 
 npx create-expo-app
 
-//-------------------------------------------------------------------------------------------------------------
+ou
 
-- Criar para src, apagar tudo de dentro de app e arrastar para dentro de src
+npx create-expo-app --template
+--choose a template: Navigation Typescript
+
+//-------------------------------------------------------------------------------------------------------------
+- Excluir a pasta app 
+- Excluir de dentro da pasta assets a pasta fonts
+- Excluir pasta components
+- Excluir pasta constants
+- Criar para src
 - Ao criar a pasta src deve mudar o caminho da pasta dentro de tsconfig.json e na propriedade compilerOptions
 
 "compilerOptions": {
@@ -116,3 +124,21 @@ export default function Profile(): JSX.Element {
   --_layout.tsx
  
  ----------------------------------------------------------------------------------------------------------------
+
+//navegação com router:
+import { router } from "expo-router";
+
+export default function Index() {
+    const signUp = () => {
+        router.navigate("/sign-up");
+    };
+
+    return (
+        <View style={styles.container}>
+            <TouchableOpacity onPress={signUp}>
+                <Text>Entrar</Text>
+            </TouchableOpacity>
+        </View>
+    );
+}
+

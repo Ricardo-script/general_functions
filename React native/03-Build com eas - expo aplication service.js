@@ -5,6 +5,7 @@
 	
 	- eas whoami                              : retorna o usuário caso esteja logado, caso contrário rodar: eas login
 	- eas build:configure                     : criar o arquivo eas.json
+        - eas logout                              : desloga usuário
 	- eas build -p android --profile preview  : gera o apk
 	ou
 	- eas build -p ios --profile preview
@@ -52,3 +53,32 @@ configurar Eas:
 
 run:
 eas update --branch preview --message "updating the app"
+
+//---------------------------------------------------------------------------------------------------------------------------
+
+## Gerar Preview
+
+eas update --branch preview --message "teste app"
+
+## update
+
+eas update --branch production --message "up app"
+
+## build
+
+eas build --platform all
+
+eas build --platform ios
+
+## Android (Gerar APK)
+
+eas build -p android --profile preview
+
+## IOS (Gerar IPA)
+
+eas build -p ios
+
+## SECRETS (EAS SERVICE ENV)
+
+eas secret:push --scope project --env-file .env
+
