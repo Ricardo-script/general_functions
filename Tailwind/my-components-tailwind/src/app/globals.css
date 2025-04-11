@@ -28,6 +28,26 @@ body {
     background: #555;
 }
 
+::-webkit-scrollbar:horizontal {
+    height: 5px; /* Define a altura do scroll horizontal */
+}
+
+/* Track */
+::-webkit-scrollbar-track:horizontal {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb:horizontal {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:horizontal:hover {
+    background: #555;
+}
+
 @layer utilities {
     /* Esconder barra de rolagem para Chrome, Safari e Opera */
     .no-scrollbar::-webkit-scrollbar {

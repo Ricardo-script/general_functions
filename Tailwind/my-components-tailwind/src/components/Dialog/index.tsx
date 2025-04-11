@@ -48,7 +48,7 @@ export const Dialog = ({
         return listIcons[type] || <InfoDialog />;
     };
 
-    /*const getTypeButton = ():
+    const getTypeButton = ():
         | "success"
         | "info"
         | "alert"
@@ -67,7 +67,7 @@ export const Dialog = ({
         };
 
         return types[type] || "success";
-    };*/
+    };
 
     if (!open) {
         return null;
@@ -75,7 +75,7 @@ export const Dialog = ({
 
     return (
         <div
-            className={`w-[500px] h-fit max-h-[95vh] bg-white rounded-lg p-6 flex flex-col gap-4 animate-scale-up ${
+            className={`w-[500px] max-[576px]:w-[90%] h-fit max-h-[95vh] bg-white rounded-lg p-6 flex flex-col gap-4 animate-scale-up ${
                 position === "fixed" ? "fixed" : "absolute"
             } top-0 left-0 right-0 bottom-0 m-auto shadow-lg z-50`}
         >
@@ -96,10 +96,16 @@ export const Dialog = ({
             </div>
             <div className="flex gap-4 items-center justify-end">
                 {onClickCancel && (
-                    <Button onClick={onClickCancel}>{titleButtonCancel}</Button>
+                    <Button
+                        onClick={onClickCancel}
+                        color="neutral"
+                        variant="outlined"
+                    >
+                        {titleButtonCancel}
+                    </Button>
                 )}
                 {onClickConfirm && (
-                    <Button onClick={onClickConfirm}>
+                    <Button onClick={onClickConfirm} color={getTypeButton()}>
                         {titleButtonConfirm}
                     </Button>
                 )}

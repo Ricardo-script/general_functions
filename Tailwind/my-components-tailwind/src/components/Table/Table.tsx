@@ -38,7 +38,7 @@ export const Tr = ({ children }: ChildrenProps) => {
 
 export const Th = ({ children }: ChildrenProps) => {
     return (
-        <th className="bg-white h-[42px] text-[10px] font-semibold text-[#a0aec0] uppercase text-left sticky top-[-17px]">
+        <th className="bg-white h-[42px] p-2 text-[10px] font-semibold text-[#a0aec0] uppercase text-left sticky top-0">
             {children}
         </th>
     );
@@ -50,7 +50,7 @@ export const Tbody = ({ children }: ChildrenProps) => {
 
 export const Td = ({ children }: ChildrenProps) => {
     return (
-        <td className="text-[13px] h-[35px] font-bold text-[#2d3748] text-left py-[10px]">
+        <td className="text-[13px] p-2 h-[35px] font-bold text-[#2d3748] text-left py-[10px]">
             {children}
         </td>
     );

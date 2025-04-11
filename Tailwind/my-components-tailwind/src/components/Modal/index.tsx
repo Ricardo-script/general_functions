@@ -23,7 +23,7 @@ export const Modal = ({
     }
 
     return (
-        <div className="w-[500px] h-fit bg-white rounded-xl p-6 flex flex-col gap-4 animate-scale-up transform scale-50 absolute top-0 left-0 right-0 bottom-0 m-auto shadow-lg z-20">
+        <div className="w-[500px] max-[576px]:w-[90%] h-fit bg-white rounded-xl p-6 flex flex-col gap-4 animate-scale-up transform scale-50 absolute top-0 left-0 right-0 bottom-0 m-auto shadow-lg z-20">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     {icon && (

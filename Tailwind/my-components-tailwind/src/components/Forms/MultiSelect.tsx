@@ -1,3 +1,5 @@
+"use client";
+
 import {
     ChangeEvent,
     forwardRef,
@@ -173,7 +175,7 @@ export const MultiSelect = forwardRef<MultiSelectRef, MultiSelectProps>(
                 }}
                 tabIndex={-1}
             >
-                <label className="text-[#344054] font-medium text-xs mb-[2px]">
+                <label className="w-fit text-[#344054] font-medium text-xs mb-[2px]">
                     {label}
                 </label>
                 <input

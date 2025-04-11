@@ -9,7 +9,7 @@ export const BoxPanel = ({ children, title }: BoxPanelProps) => {
             <span className="text-sm text-[#2d3748] font-semibold">
                 {title}
             </span>
-            <div>{children}</div>
+            <div className={`overflow-auto w-full`}>{children}</div>
         </section>
     );
 };

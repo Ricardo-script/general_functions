@@ -20,10 +20,14 @@ import { Select } from "@/components/Forms/Select";
 import { Modal } from "@/components/Modal";
 import { Dialog, DialogProps } from "@/components/Dialog";
 import { Table, Thead, Tr, Tbody, Td, Th } from "@/components/Table";
+import { Tabs, TabsTypes } from "@/components/Tabs";
+import { DragAndDrop } from "@/components/DragAndDrop";
+import { Pagination } from "@/components/Pagination";
 
 export default function Home() {
     const [loadingButton, setLoadingButton] = useState(false);
     const [openModal, setOpenModal] = useState(false);
+    const [page, setPage] = useState(1);
     const [dialog, setDialog] = useState<DialogProps>({
         open: false,
         title: "",
@@ -37,6 +41,12 @@ export default function Home() {
         { screen: <UserIcon />, navigate: "" },
         { screen: "Home", navigate: "/" },
         { screen: "Configurações", navigate: "/teste" },
+    ];
+
+    const tabsExemple: TabsTypes[] = [
+        { icon: <UserIcon />, content: <span>1</span>, nameTab: "one" },
+        { icon: <UserIcon />, content: <span>2</span>, nameTab: "two" },
+        { icon: <UserIcon />, content: <span>3</span>, nameTab: "three" },
     ];
 
     const sendExample = (event: React.FormEvent<HTMLFormElement>) => {
@@ -78,9 +88,10 @@ export default function Home() {
                                 label="Nome Completo:"
                             />
                             <Input
-                                placeholder="Digite seu nome"
-                                label="Nome Completo:"
+                                placeholder="Digite sua senha"
+                                label="Password:"
                                 message="*Campo é obrigatório"
+                                type="password"
                             />
                         </Row>
                         <Input
@@ -123,7 +134,11 @@ export default function Home() {
                         <Radio name="radioExample" />
                         <Button loading={loadingButton}>Enviar</Button>
                     </Form>
-                    <Button onClick={() => setOpenModal((prev) => !prev)}>
+                    <Button
+                        onClick={() => setOpenModal((prev) => !prev)}
+                        variant="outlined"
+                        color="alert"
+                    >
                         Open Modal
                     </Button>
                     <Button
@@ -147,11 +162,132 @@ export default function Home() {
                                 },
                             })
                         }
+                        color="info"
                     >
                         Open Dialog
                     </Button>
                 </div>
             </BoxPanel>
+            <div className="w-full mt-10 h-[300px] overflow-y-scroll">
+                <Table minWidth={800}>
+                    <Thead>
+                        <Tr>
+                            <Th>Song</Th>
+                            <Th>Artist</Th>
+                            <Th>Year</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        <Tr>
+                            <Td>
+                                The Sliding Mr. Bones (Next Stop, Pottersville)
+                            </Td>
+                            <Td>Malcolm Lockyer</Td>
+                            <Td>1961</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>
+                                The Sliding Mr. Bones (Next Stop, Pottersville)
+                            </Td>
+                            <Td>Malcolm Lockyer</Td>
+                            <Td>1961</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>
+                                The Sliding Mr. Bones (Next Stop, Pottersville)
+                            </Td>
+                            <Td>Malcolm Lockyer</Td>
+                            <Td>1961</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>
+                                The Sliding Mr. Bones (Next Stop, Pottersville)
+                            </Td>
+                            <Td>Malcolm Lockyer</Td>
+                            <Td>1961</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>
+                                The Sliding Mr. Bones (Next Stop, Pottersville)
+                            </Td>
+                            <Td>Malcolm Lockyer</Td>
+                            <Td>1961</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>
+                                The Sliding Mr. Bones (Next Stop, Pottersville)
+                            </Td>
+                            <Td>Malcolm Lockyer</Td>
+                            <Td>1961</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>
+                                The Sliding Mr. Bones (Next Stop, Pottersville)
+                            </Td>
+                            <Td>Malcolm Lockyer</Td>
+                            <Td>1961</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>
+                                The Sliding Mr. Bones (Next Stop, Pottersville)
+                            </Td>
+                            <Td>Malcolm Lockyer</Td>
+                            <Td>1961</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>
+                                The Sliding Mr. Bones (Next Stop, Pottersville)
+                            </Td>
+                            <Td>Malcolm Lockyer</Td>
+                            <Td>1961</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>
+                                The Sliding Mr. Bones (Next Stop, Pottersville)
+                            </Td>
+                            <Td>Malcolm Lockyer</Td>
+                            <Td>1961</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>
+                                The Sliding Mr. Bones (Next Stop, Pottersville)
+                            </Td>
+                            <Td>Malcolm Lockyer</Td>
+                            <Td>1961</Td>
+                        </Tr>
+                        <Tr>
+                            <Td>
+                                The Sliding Mr. Bones (Next Stop, Pottersville)
+                            </Td>
+                            <Td>Malcolm Lockyer</Td>
+                            <Td>1961</Td>
+                        </Tr>
+                    </Tbody>
+                </Table>
+            </div>
+            <div className="my-10">
+                <Pagination
+                    page={page}
+                    backgroundColor="#FFF"
+                    totalPages={20}
+                    onChangePage={(page) => {
+                        setPage(page);
+                    }}
+                />
+            </div>
+
+            <div className="my-10 w-96">
+                <Tabs data={tabsExemple} activeTab={1} />
+            </div>
+            <div className="w-96">
+                <DragAndDrop
+                    title="Teste de upload"
+                    onDragAndDrop={(file) => console.log(file)}
+                    onReadBase64={(base64) => console.log(base64)}
+                    showListUploads
+                    multiple
+                />
+            </div>
             <Modal
                 icon={<UserIcon />}
                 open={openModal}
@@ -170,78 +306,6 @@ export default function Home() {
                 {...dialog}
                 onClose={() => setDialog((prev) => ({ ...prev, open: false }))}
             />
-            <h2>Example Table</h2>
-            <Table>
-                <Thead>
-                    <Tr>
-                        <Th>Song</Th>
-                        <Th>Artist</Th>
-                        <Th>Year</Th>
-                    </Tr>
-                </Thead>
-                <Tbody>
-                    <Tr>
-                        <Td>The Sliding Mr. Bones (Next Stop, Pottersville)</Td>
-                        <Td>Malcolm Lockyer</Td>
-                        <Td>1961</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>The Sliding Mr. Bones (Next Stop, Pottersville)</Td>
-                        <Td>Malcolm Lockyer</Td>
-                        <Td>1961</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>The Sliding Mr. Bones (Next Stop, Pottersville)</Td>
-                        <Td>Malcolm Lockyer</Td>
-                        <Td>1961</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>The Sliding Mr. Bones (Next Stop, Pottersville)</Td>
-                        <Td>Malcolm Lockyer</Td>
-                        <Td>1961</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>The Sliding Mr. Bones (Next Stop, Pottersville)</Td>
-                        <Td>Malcolm Lockyer</Td>
-                        <Td>1961</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>The Sliding Mr. Bones (Next Stop, Pottersville)</Td>
-                        <Td>Malcolm Lockyer</Td>
-                        <Td>1961</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>The Sliding Mr. Bones (Next Stop, Pottersville)</Td>
-                        <Td>Malcolm Lockyer</Td>
-                        <Td>1961</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>The Sliding Mr. Bones (Next Stop, Pottersville)</Td>
-                        <Td>Malcolm Lockyer</Td>
-                        <Td>1961</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>The Sliding Mr. Bones (Next Stop, Pottersville)</Td>
-                        <Td>Malcolm Lockyer</Td>
-                        <Td>1961</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>The Sliding Mr. Bones (Next Stop, Pottersville)</Td>
-                        <Td>Malcolm Lockyer</Td>
-                        <Td>1961</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>The Sliding Mr. Bones (Next Stop, Pottersville)</Td>
-                        <Td>Malcolm Lockyer</Td>
-                        <Td>1961</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>The Sliding Mr. Bones (Next Stop, Pottersville)</Td>
-                        <Td>Malcolm Lockyer</Td>
-                        <Td>1961</Td>
-                    </Tr>
-                </Tbody>
-            </Table>
         </Container>
     );
 }

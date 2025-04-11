@@ -23,8 +23,8 @@ export const Sidebar = () => {
 
     return (
         <aside
-            className={`flex flex-col w-64 h-screen bg-[#161a23] transition-all duration-300 ${
-                toggleSideBar ? "ml-0" : "-ml-64"
+            className={`flex flex-col w-64 h-svh bg-[#161a23] transition-all duration-300 ${
+                toggleSideBar ? "ml-0 max-md:-ml-64" : "-ml-64 max-md:ml-0"
             }`}
         >
             {/* Cabeçalho */}

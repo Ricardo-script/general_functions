@@ -23,18 +23,18 @@ export default function Container({
     breadcrumbs,
 }: ContainerProps) {
     return (
-        <main className="min-h-screen flex">
+        <main className="h-svh flex overflow-hidden">
             {renderSideBar && renderSideBar()}
-            <div className="flex flex-col flex-1">
+            <div className="flex flex-col h-full w-full">
                 {renderHeader && renderHeader()}
-                <section className="w-full bg-[#efefef] flex flex-col flex-1 p-4 max-h-[calc(100vh-84px)] overflow-scroll">
-                    {breadcrumbs && <BreadCrumbs crumbs={breadcrumbs} />}
-                    {children}
+                <section className="w-full @max-[572px]:w-screen h-full bg-[#efefef] flex flex-col overflow-hidden">
+                    <div className="flex-1 overflow-auto p-4">
+                        {breadcrumbs && <BreadCrumbs crumbs={breadcrumbs} />}
+                        {children}
+                    </div>
                 </section>
                 <Footer />
             </div>
         </main>
     );
 }
-
-//<Header open={toggleSideBar} setOpen={setToggleSideBar} />

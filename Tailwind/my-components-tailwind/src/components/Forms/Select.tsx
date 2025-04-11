@@ -68,7 +68,7 @@ export const Select = ({
         >
             <label
                 htmlFor=""
-                className="text-[#344054] font-medium text-xs mb-[2px]"
+                className="w-fit text-[#344054] font-medium text-xs mb-[2px]"
             >
                 {label}
             </label>
