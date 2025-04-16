@@ -34,22 +34,24 @@ export const Pagination = ({
         const maxlenght = 7;
         const showValuesLength = maxlenght - 2;
 
-        if (
-            currentPage >= showValuesLength &&
-            currentPage <= newArray.length + 1 - showValuesLength
-        ) {
-            newArray = [1, "..."]
-                .concat([currentPage - 1, currentPage, currentPage + 1])
-                .concat(["...", newArray.length]);
-        } else if (
-            currentPage <= newArray.length &&
-            currentPage > showValuesLength
-        ) {
-            newArray = [1, "..."].concat(newArray.slice(-showValuesLength));
-        } else if (currentPage < showValuesLength) {
-            newArray = newArray
-                .slice(0, showValuesLength)
-                .concat(["...", newArray.length]);
+         if (newArray.length >= maxlenght) {
+            if (
+                currentPage >= showValuesLength &&
+                currentPage <= newArray.length + 1 - showValuesLength
+            ) {
+                newArray = [1, "..."]
+                    .concat([currentPage - 1, currentPage, currentPage + 1])
+                    .concat(["...", newArray.length]);
+            } else if (
+                currentPage <= newArray.length &&
+                currentPage > showValuesLength
+            ) {
+                newArray = [1, "..."].concat(newArray.slice(-showValuesLength));
+            } else if (currentPage < showValuesLength) {
+                newArray = newArray
+                    .slice(0, showValuesLength)
+                    .concat(["...", newArray.length]);
+            }
         }
 
         return newArray;
