@@ -67,3 +67,26 @@ export default function App() {
         </main>
     );
 }
+
+//********* ************** *************** **************** ***************/
+
+
+import { useFormContext } from "react-hook-form";
+import type { InputHTMLAttributes } from "react";
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+    name: string
+}
+
+export function Input(props: InputProps) {
+    const { register } = useFormContext();
+
+    return(
+        <input
+            id={props.name}
+            {...register(props.name)}
+            {...props}
+        />
+    );
+}
+
