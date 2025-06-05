@@ -23,3 +23,29 @@ let date = new Date();
 
 let formated = Intl.DateTimeFormat('pt-br').format(date)
 //console: 23/02/2023
+
+//---------------------------------------------------------------------------------------
+
+const sumDateWithNumberOfDays = (date: Date, days: number): string => {
+  date.setDate(date.getDate() + days);
+  const sumDate = date.toLocaleDateString('pt-BR');
+  return sumDate;
+};
+
+console.log(sumDateWithNumberOfDays(new Date(), 5));
+console.log(new Date('2025-06-05T22:00:00.000Z'));
+
+//Convertendo para time zone:
+const dataUTC = new Date('2025-06-05T22:00:00.000Z');
+
+const dataBrasilia = dataUTC.toLocaleString('pt-BR', {
+  timeZone: 'America/Sao_Paulo',
+});
+
+console.log('dataBrasilia', dataBrasilia);
+console.log(new Date().toISOString()) // transformar em UTC
+
+/* 
+  Africa/Banjul
+  America/Los_Angeles
+*/
