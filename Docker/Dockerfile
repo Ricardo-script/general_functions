@@ -44,3 +44,20 @@ CMD ["nginx", "-g", "daemon off;"]
 ## remover o container: docker rm abc123456789
 
 ## remover imagem: docker rmi 0a8d770bca0f
+
+
+#Exemplo com next:
+
+FROM node:20
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+EXPOSE 3000
+CMD ["npm", "start"]
