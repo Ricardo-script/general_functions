@@ -1,0 +1,14 @@
+services:  # declara os container que serão executados por exemplo: front-end
+    front-end: #**nome do serviço** (ou seja, o identificador do contêiner que será criado).
+        build: . #Informa ao Docker Compose que ele deve construir a imagem Docker a partir do diretório atual (.), onde está localizado o Dockerfile. Equivalente ao terminal: docker build -t nome_da_imagem .
+        image: nginx:latest # ou pode ser minha-imagem-personalizada
+        ports:
+        - "80:80" #Define o **mapeamento de portas** entre o host (sua máquina) e o contêiner. "porta_host:porta_container"
+
+
+
+#Comandos:
+    # subir o docker
+        # docker-compose up -d
+    # derrubar docker
+        # docker-compose down
