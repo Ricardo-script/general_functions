@@ -10,5 +10,6 @@ services:  # declara os container que serão executados por exemplo: front-end
 #Comandos:
     # subir o docker
         # docker-compose up -d
+        # docker-compose up --build (forçar a reconstrução)
     # derrubar docker
         # docker-compose down
