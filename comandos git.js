@@ -9,7 +9,8 @@ git branch
 
 // Excluir uma branch
 git branch -d namedabranch
-
+//ou
+git branch -D namedabranch
 
 //Depois que terminar tudo oque a tarefa de branch:
 antes de dar o git add, verificar se esta tudo ok, não deixar imports sem usar e etc
