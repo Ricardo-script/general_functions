@@ -74,3 +74,43 @@ describe('CodeVerification', () => {
 		expect(document.activeElement).toBe(inputs[1]);
 	});
 });
+
+// covergage: -----------------------------------------------------------------------------------------------------------------------------------
+
+yarn add @vitest/coverage-v8
+
+
+//vitest.config.ts:
+
+import { defineConfig } from 'vitest/config';
+import path from 'path';
+
+export default defineConfig({
+	test: {
+		environment: 'jsdom',
+		globals: true,
+		setupFiles: './vitest-setup.ts',
+		coverage: {
+			provider: 'v8',
+			reporter: ['text', 'lcov'], // 'text' mostra no terminal, 'lcov' para uso com ferramentas como Coveralls
+			reportsDirectory: './coverage', // opcional, padrão é "coverage"
+			exclude: ['node_modules/', 'vite.config.*', '**/*.d.ts'],
+		},
+	},
+	resolve: {
+		alias: {
+			src: path.resolve(__dirname, 'src'),
+		},
+	},
+});
+
+
+//package.json:
+
+"scripts": {
+  "test": "vitest",
+  "test:coverage": "vitest run --coverage"
+}
+
+// rodar: yarn test:coverage
+
