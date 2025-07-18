@@ -22,10 +22,6 @@ O Development Build é uma versão do seu app que você instala no dispositivo (
 
 # 🧪 Depois de instalar o Dev Build:
 
-```js
-    npx expo start
-```
-
 - Escaneie o QR Code com a câmera do celular, que tem o app instalado.
 
 - Ele vai abrir seu app com hot reload, debug e suporte total às libs nativas.
