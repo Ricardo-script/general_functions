@@ -44,7 +44,8 @@ npx expo install --fix
 
  - OBS:
 
-🕐 Quando usar
+🕐 Quando usar?
+
 Você deve rodar npx expo install --fix nos seguintes casos:
 
 ✅ Após atualizar a versão do Expo SDK (ex: de 49 para 50).
