@@ -40,7 +40,22 @@ ___
 
 ```js
 npx expo install --fix
-``` 
+```
+
+ - OBS:
+
+🕐 Quando usar
+Você deve rodar npx expo install --fix nos seguintes casos:
+
+✅ Após atualizar a versão do Expo SDK (ex: de 49 para 50).
+
+🛠️ Se você instalou alguma lib manualmente e começou a dar erro, especialmente erros nativos.
+
+❌ Quando o app quebra após npm install ou yarn install com erros relacionados a bibliotecas nativas.
+
+🔄 Quando clonar um projeto antigo e quiser alinhar as dependências com o SDK atual.
+
+----
 
 ### Comando para instalar globalmente expo:
 
