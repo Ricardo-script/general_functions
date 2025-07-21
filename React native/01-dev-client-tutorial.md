@@ -36,6 +36,25 @@ Isso abrirá o servidor de desenvolvimento e vai gerar um QR Code no terminal ou
 
 ___
 
+### Atualizar todas as dependencias do expo:
+
+```js
+npx expo install --fix
+``` 
+
+### Comando para instalar globalmente expo:
+
+```js
+npm install -g expo-cli
+```
+ou
+
+```js
+yarn global add expo-cli
+```
+
+___
+
 # Build e Submit
 
 ## build para enviar para as lojas
