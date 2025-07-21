@@ -36,7 +36,7 @@ Isso abrirá o servidor de desenvolvimento e vai gerar um QR Code no terminal ou
 
 ___
 
-### Atualizar todas as dependencias do expo:
+## Atualizar todas as dependencias do expo:
 
 ```js
 npx expo install --fix
