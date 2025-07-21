@@ -35,3 +35,74 @@ npx expo start --dev-client
 Isso abrirá o servidor de desenvolvimento e vai gerar um QR Code no terminal ou no navegador.
 
 ___
+
+# Build e Submit
+
+## build para enviar para as lojas
+
+⚠️ Importante: Antes de gerar as builds e subir nas lojas deve-se trocar a versão do app no arquivo app.json:
+
+- expo :
+
+```js
+    "expo": {
+    "name": "App do Aluno",
+    "slug": "Mobile",
+    "version": "2.0.4", --->>> trocar a versão do projeto
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+```
+
+- Android:
+
+```j̀s
+    "android": {
+            "targetSdkVersion": 35,
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-icon.png",
+                "backgroundColor": "#ffffff"
+            },
+            "versionCode": 32, --->>> trocar para o android
+            "package": "com.ricardoscript.Mobile",
+            "googleServicesFile": "./firebase/google-services.json"
+        },
+```
+
+- ou IOS:
+
+```j̀s
+ "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.ricardoscript.Mobile",
+            "buildNumber": "2.0.4", ---> trocar aqui
+            "googleServicesFile": "./firebase/GoogleService-Info.plist"
+        },
+
+```
+
+```js
+eas build --platform all
+```
+
+```js
+eas build --platform ios
+```
+
+## Android (Gerar APK)
+
+```js
+eas build -p android --profile preview
+```
+
+## IOS (Gerar IPA)
+
+```js
+eas build -p ios
+```
+
