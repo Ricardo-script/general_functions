@@ -94,7 +94,15 @@ export default defineConfig({
 			provider: 'v8',
 			reporter: ['text', 'lcov'], // 'text' mostra no terminal, 'lcov' para uso com ferramentas como Coveralls
 			reportsDirectory: './coverage', // opcional, padrão é "coverage"
-			exclude: ['node_modules/', 'vite.config.*', '**/*.d.ts'],
+			exclude: [ // remove os arquivos do teste
+				'node_modules/', 
+				'vite.config.*', 
+				'**/*.d.ts',
+				'src/main.tsx',
+				'src/App.tsx',
+				'**/styles.tsx',
+				'**/assets/**',
+			],
 		},
 	},
 	resolve: {
@@ -108,9 +116,11 @@ export default defineConfig({
 //package.json:
 
 "scripts": {
-  "test": "vitest",
-  "test:coverage": "vitest run --coverage"
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "coverage:report": "vite --open coverage/lcov-report/index.html"
 }
 
 // rodar: yarn test:coverage
+// report: yarn coverage:report
 
