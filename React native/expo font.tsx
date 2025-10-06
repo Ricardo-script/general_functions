@@ -1,3 +1,70 @@
+//install:
+
+npx expo install expo-font @expo-google-fonts/roboto
+
+// arquivo _layout principal
+import { Slot } from "expo-router";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { StatusBar } from "expo-status-bar";
+import {
+    useFonts,
+    Roboto_400Regular,
+    Roboto_500Medium,
+    Roboto_700Bold,
+} from "@expo-google-fonts/roboto";
+import "../styles/global.css";
+import { Loading } from "../components/loading";
+
+export default function Layout() {
+    const [fontsLoaded] = useFonts({
+        Roboto_400Regular,
+        Roboto_500Medium,
+        Roboto_700Bold,
+    });
+
+    if (!fontsLoaded) {
+        return <Loading />;
+    }
+
+    return (
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <StatusBar style="light" />
+            <Slot />
+        </GestureHandlerRootView>
+    );
+}
+
+//tailwind:
+
+
+import { colors } from './src/styles/colors'
+import { fontFamily } from './src/styles/font-family'
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    content: ["./src/**/*.{js,jsx,ts,tsx}"],
+    presets: [require("nativewind/preset")],
+    theme: {
+        extend: {
+            colors,
+            fontFamily
+        },
+    },
+    plugins: [],
+}
+
+
+// src/styles/font-family:
+export const fontFamily = {
+    heading: "Roboto_700Bold",
+    subtitle: "Roboto_500Medium",
+    body: "Roboto_400Regular",
+};
+
+
+
+// outras maneiras:
+//*****************************************************************************************************
 //src/providers/FontProvider.tsx:
 
 import { useCallback } from "react";
