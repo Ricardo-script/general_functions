@@ -1,4 +1,36 @@
 {
+  "workbench.colorTheme": "Dracula Theme",
+  "editor.formatOnSave": true,
+  "editor.fontLigatures": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontFamily": "Fira Code",
+  //"editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "workbench.tree.indent": 14,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "redhat.telemetry.enabled": true,
+
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "entity.name.function", // funções normais
+          "support.function", // funções nativas
+          "support.function.any-method" // métodos de classes/objetos
+        ],
+        "settings": {
+          "foreground": "#64FFDA" // cor verde-aqua (você pode ajustar)
+        }
+      }
+    ]
+  }
+}
+
+------------------------------------------------------------------------------
+
+# others:
+
+{
     "workbench.colorTheme": "Transylvania",
     "workbench.iconTheme": "material-icon-theme",
     "editor.fontFamily": "Fira Code, 'Courier New', monospace",
