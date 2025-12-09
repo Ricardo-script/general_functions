@@ -22,6 +22,7 @@ npx create-expo-app --template
     }
 },
 
+- criar dentro de src a pasta "app"
 - criar um arquivo chamado '_layout.tsx' dentro de app que sera o ponto de entrada da aplicação:
 
 import { Slot } from "expo-router";
