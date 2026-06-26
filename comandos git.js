@@ -2,7 +2,7 @@
 git switch -c namedabranch
 
 // Trocar de branch
-git branch namedabranch
+git switch namedabranch
 
 // Mostras todas as branchs
 git branch
